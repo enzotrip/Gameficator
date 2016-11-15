@@ -1,0 +1,3 @@
+gr_gameficator_homepage:
+    path:     /
+    defaults: { _controller: GRGameficatorBundle:Default:index }

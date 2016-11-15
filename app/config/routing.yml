@@ -1,3 +1,7 @@
+gr_gameficator:
+    resource: "@GRGameficatorBundle/Resources/config/routing.yml"
+    prefix:   /
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation

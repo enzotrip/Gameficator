@@ -1,0 +1,4 @@
+services:
+#    gr_gameficator.example:
+#        class: GR\GameficatorBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
