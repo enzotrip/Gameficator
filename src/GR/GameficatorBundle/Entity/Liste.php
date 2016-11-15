@@ -7,11 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * List
  *
- * @ORM\Table(name="list")
- * @ORM\Entity(repositoryClass="GR\GameficatorBundle\Repository\ListRepository")
+ * @ORM\Table(name="liste")
+ * @ORM\Entity(repositoryClass="GR\GameficatorBundle\Repository\ListeRepository")
  */
-
-class List
+class Liste
 {
     /**
      * @var int
@@ -129,5 +128,29 @@ class List
     public function getMotivations()
     {
         return $this->motivations;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \GR\UserBundle\Entity\User $user
+     *
+     * @return Liste
+     */
+    public function setUser(\GR\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \GR\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

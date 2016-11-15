@@ -34,10 +34,10 @@ class Task
       private $project;
 
       /**
-       * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\List")
+       * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Liste")
        * @ORM\JoinColumn(nullable=true)
        */
-       private $list;
+       private $liste;
 
     /**
      * @var string
@@ -291,9 +291,9 @@ class Task
      *
      * @return Task
      */
-    public function setList(\GR\GameficatorBundle\Entity\List $list = null)
+    public function setList(\GR\GameficatorBundle\Entity\Liste $liste = null)
     {
-        $this->list = $list;
+        $this->liste = $liste;
 
         return $this;
     }
