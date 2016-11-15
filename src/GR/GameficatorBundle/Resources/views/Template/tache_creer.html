@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Créer une tâche | Gamificator</title>
+
+            <link href="css/style.default.css" rel="stylesheet">
+        <link href="css/jquery.tagsinput.css" rel="stylesheet" />
+        <link href="css/toggles.css" rel="stylesheet" />
+        <link href="css/bootstrap-timepicker.min.css" rel="stylesheet" />
+        <link href="css/select2.css" rel="stylesheet" />
+        <link href="css/colorpicker.css" rel="stylesheet" />
+        <link href="css/dropzone.css" rel="stylesheet" />
+        <link rel="stylesheet" href="css/bootstrap-override.css">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        
+        <header>
+            <div class="headerwrapper">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+                        <img src="images/logo.png" alt="" /> 
+                    </a>
+                    <div class="pull-right">
+                        <a href="" class="menu-collapse">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                </div><!-- header-left -->
+                
+                <div class="header-right">
+                    <div class="pull-left dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Ajouter 
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Tâche</a></li>
+                        <li><a href="#">Projet</a></li>
+                        <li><a href="#">Récompense</a></li>                        
+                      </ul>
+                    </div>
+                    
+                    <div class="pull-right">
+                        
+                        <form class="form form-search" action="search-results.html">
+                            <input type="search" class="form-control" placeholder="Search" />
+                        </form>
+                        
+                        <div class="btn-group btn-group-list btn-group-notification">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <i class="fa fa-bell-o"></i>
+                              <span class="badge">5</span>
+                            </button>
+                            <div class="dropdown-menu pull-right">
+                                <a href="" class="link-right"><i class="fa fa-search"></i></a>
+                                <h5>Notification</h5>
+                                <ul class="media-list dropdown-list">
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>                                       
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>                                       
+                                        </div>
+                                    </li>     
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>                                       
+                                        </div>
+                                    </li>     
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>                                       
+                                        </div>
+                                    </li>     
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016   <span class="label label-warning">Projet 1</span>                                      
+                                        </div>
+                                    </li>                                         
+                                </ul>
+                                <div class="dropdown-footer text-center">
+                                    <a href="" class="link">See All Notifications</a>
+                                </div>
+                            </div><!-- dropdown-menu -->
+                        </div><!-- btn-group -->
+                        
+                        
+                        
+                        <div class="btn-group btn-group-option">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                              <li><a href="#"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-star"></i> Activity Log</a></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
+                            </ul>
+                        </div><!-- btn-group -->
+                        
+                    </div><!-- pull-right -->
+                    
+                </div><!-- header-right -->
+                
+            </div><!-- headerwrapper -->
+        </header>
+        
+        <section>
+            <div class="mainwrapper">
+                <div class="leftpanel">
+                    <div class="media profile-left">
+                        <a class="pull-left profile-thumb" href="profile.html">
+                            <img class="img-circle" src="images/photos/rl.jpg" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">Renaud Lacroix</h4>                            
+                        </div>
+                    </div><!-- media -->
+                    
+                    <h5 class="leftpanel-title">Navigation</h5>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                        <li class="parent"><a href=""><i class="fa fa-suitcase"></i> <span>Projet</span></a>
+                            <ul class="children">
+                                <li><a href="">Mes projets</a></li>
+                                <li><a href="">Mes projets archivés</a></li> 
+                                <li><a href="">Corbeille</a></li>                               
+                            </ul>
+                        </li>
+                        <li class="parent"><a href=""><i class="fa fa-edit"></i> <span>Tâches</span></a>
+                            <ul class="children">
+                                <li><a href="calendar.html">Calendrier des tâches</a></li>
+                                <li><a href="taches-a-faire.html">Tâches à faire</a></li>
+                                <li><a href="">Tâches récurrentes</a></li>
+                                <li><a href="">Tâches archivées</a></li>
+                                <li><a href="">Corbeille</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href=""><i class="fa fa-bars"></i> <span>Récompenses</span></a>
+                            <ul class="children">
+                                <li><a href="">Mes récompenses</a></li>
+                                <li><a href="">Récompenses en cours</a></li>
+                                <li><a href="">Récompenses archivées</a></li>
+                            </ul>
+                        </li>                       
+                        
+                    </ul>
+                    
+                </div><!-- leftpanel -->
+                
+                <div class="mainpanel">
+                    <div class="pageheader">
+                        <div class="media">
+                            <div class="pageicon pull-left">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="media-body">
+                                <ul class="breadcrumb">
+                                    <li><a href=""><i class="glyphicon glyphicon-home"></i></a></li>
+                                    <li>Créer une tâche</li>
+                                </ul>
+                                <h4>Créer une tâche</h4>
+                            </div>
+                        </div><!-- media -->
+                    </div><!-- pageheader -->
+                    
+                    <div class="contentpanel">                       
+                        
+                        
+                       
+                            <form class="form-horizontal form-bordered">
+                            <div class="row">
+                                 <div class="col-sm-6">
+                                   <div class="form-group">
+                                       <label class="col-sm-2 control-label">Nom de la tâche</label>
+                                       <div class="col-sm-8">
+                                           <input type="text" class="form-control">
+                                        </div>
+                                 </div>
+                                   </div><!-- form-group -->
+                                   <div class="col-sm-6"><div class="form-group">
+                                       <label class="col-sm-2 control-label">Projet(s) lié(s)</label>
+                                       <div class="col-sm-8">
+                                           <input type="text" class="form-control">
+                                        </div>
+                                     </div><!-- form-group --></div>
+                    
+
+                                   <div class="col-sm-6"><div class="form-group">
+                                       <label class="col-sm-2 control-label">Topic</label>
+                                       <div class="col-sm-8">
+                                           <input type="text" class="form-control">
+                                           </div>
+                                     </div><!-- form-group -->
+                                     </div>
+                                   <div class="col-sm-6"><div class="form-group">
+                                       <label class="col-sm-2 control-label">Tâche parente</label>
+                                       <div class="col-sm-8">
+                                           <input type="text" class="form-control">
+                                        </div>
+                                     </div><!-- form-group --></div>
+                                     <div class="col-sm-6"><div class="form-group">
+                                       <label class="col-sm-2 control-label">Récompense</label>
+                                       <div class="col-sm-8">
+                                           <input type="text" class="form-control">
+                                        </div>
+                                     </div><!-- form-group --></div>
+                                     <div class="col-sm-6"><div class="form-group">
+                                       <label class="col-sm-2 control-label">Nombre de points</label>
+                                       <div class="col-sm-8">
+                                           <input type="text" class="form-control">
+                                        </div>
+                                     </div><!-- form-group --></div>
+                                     <div class="col-sm-6"><div class="form-group">
+                                       <label class="col-sm-2 control-label">Priorité</label>
+                                       <div class="col-sm-8">
+                                           <input type="text" class="form-control">
+                                        </div>
+                                     </div><!-- form-group --></div>
+                                   <div class="col-sm-6"><div class="form-group">
+                                       <label class="col-sm-2 control-label">Couleur</label>
+                                       <div class="col-sm-6">
+                                           <input type="text" name="colorpicker" class="form-control colorpicker-input" placeholder="#000000" id="colorpicker">
+                                           <span id="colorSelector" class="colorselector">
+                                              <span></span>
+                                          </span>
+                                        </div>
+                                     </div><!-- form-group --></div>
+                                     </div>
+                                     <div class="form-group">
+                                                <label class="col-sm-1 control-label">Description</label>
+                                                <div class="col-sm-11">
+                                                    <textarea class="form-control" rows="5"></textarea>
+                                                </div>
+                                            </div>
+
+
+                                              
+                                                      
+                                                   
+      
+                                    <div class="form-group">
+                                              
+                                                <div class="col-sm-3">
+                                                    
+                                                    <div class="rdio rdio-default">
+                                                        <input type="radio" name="radio" id="radioDefault" value="1" >
+                                                        <label for="radioDefault">Echéance</label>
+                                                        <div class="input-group col-sm-8" style="float:right">
+                                                            <input type="text" class="form-control hasDatepicker" placeholder="mm/dd/yyyy" id="datepicker" disabled>
+                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                        </div>
+                                                  </div>
+                              
+                                                    </div>
+                                               <div class="col-sm-12" style="clear:both; margin-top: 2em"> 
+                                                    <div class="rdio rdio-primary">
+                                                        <input type="radio" name="radio" value="2" id="radioPrimary" checked="checked">
+                                                        <label for="radioPrimary">Tâche réccurrente</label>
+                                                    </div>
+                                                      <div class="form-group">
+                                                <div class="col-sm-3">
+                                                  <label class="col-sm-3 control-label">Tous les</label>
+                                                  <div class="col-sm-4  " >
+                                                                                                            
+                                                      <div class="ckbox ckbox-primary">
+                                                          <input type="checkbox" value="1" id="checkboxPrimary" checked="checked">
+                                                          <label for="checkboxPrimary">Lundi</label>                                                       
+                                                      </div>
+                                                      <div class="ckbox ckbox-primary">
+                                                          <input type="checkbox" value="1" id="checkboxPrimary">
+                                                          <label for="checkboxPrimary">Mardi</label>                                                       
+                                                      </div>
+                                                      <div class="ckbox ckbox-primary">
+                                                          <input type="checkbox" value="1" id="checkboxPrimary">
+                                                          <label for="checkboxPrimary">Mercredi</label>                                                       
+                                                      </div>
+                                                      <div class="ckbox ckbox-primary">
+                                                          <input type="checkbox" value="1" id="checkboxPrimary">
+                                                          <label for="checkboxPrimary">Jeudi</label>                                                       
+                                                      </div>
+                                                      <div class="ckbox ckbox-primary">
+                                                          <input type="checkbox" value="1" id="checkboxPrimary">
+                                                          <label for="checkboxPrimary">Vendredi</label>                                                       
+                                                      </div>
+                                                      <div class="ckbox ckbox-primary">
+                                                          <input type="checkbox" value="1" id="checkboxPrimary">
+                                                          <label for="checkboxPrimary">Samedi</label>                                                       
+                                                      </div>
+                                                      <div class="ckbox ckbox-primary">
+                                                          <input type="checkbox" value="1" id="checkboxPrimary">
+                                                          <label for="checkboxPrimary">Dimanche</label>                                                       
+                                                      </div>
+                                                </div>
+                                                      
+                                                   
+                                                    
+                                                </div><!-- col-sm-8 -->
+                                                 <div class="col-sm-3"><div>
+                                                     <label class="col-sm-4 control-label">Date de début</label>
+                                                      <div class="col-sm-6" >
+                                                            <input type="text"  class="form-control">
+                                                       
+                                                   </div>
+                                                   </div>
+                                                   
+                                                   <div style="clear:both; padding-top:2em;">
+                                                     <label class="col-sm-4 control-label">Ou Tous les</label>
+                                                     
+                                                                                                             
+                                                       <div class="col-sm-2">
+                                                       <input type="text"  class="form-control">
+                                                                                                    </div>
+                                                   <div class="form-group col-sm-6" style="margin:0; border:none;padding: 0">
+                                                     <select class="form-control " id="sel1">
+                                                       <option></option>
+                                                       <option>Heures</option>
+                                                       <option>Jours</option>
+                                                       <option>Semaines</option>
+                                                       <option>Mois</option>
+                                                        <option>Ans</option>
+                                                     </select>
+                                                                                                    </div>
+                                                                                                   
+                                                                                                        
+                                                     
+                                                      
+                                                                                                   </div><!-- col-sm-8 -->
+                                                    </div>
+                  
+                                                    <div class="col-sm-5">
+                                                      <label class="col-sm-4 control-label">Au moins</label>
+                                                     
+                                                                                                             
+                                                       <div class="col-sm-2">
+                                                       <input type="text"  class="form-control">
+                                                                                                    </div>
+                                                   
+                                                   <div class="form-group col-sm-6" style="margin:0; border:none;padding: 0">
+                                                       <label class="col-sm-3 control-label">Fois par</label>
+                                                     <div class="col-sm-8">
+                                                       <select class="form-control" id="sel1">
+                                                         <option></option>
+                                                         <option>Heure</option>
+                                                         <option>Jour</option>
+                                                         <option>Semaine</option>
+                                                         <option>Mois</option>
+                                                          <option>Ans</option>
+                                                       </select>
+                                                     </div>
+
+                                                    </div>
+
+                                            </div>
+
+                                            </div>
+
+                              
+                                            
+                                                
+                             </form>
+
+
+                            
+                        </div><!-- row -->
+                        
+                    </div><!-- contentpanel -->
+                    
+                </div><!-- mainpanel -->
+            </div><!-- mainwrapper -->
+        </section>
+
+
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="js/jquery-ui-1.10.3.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/modernizr.min.js"></script>
+        <script src="js/pace.min.js"></script>
+        <script src="js/retina.min.js"></script>
+        <script src="js/jquery.cookies.js"></script>
+        
+        <script src="js/jquery.autogrow-textarea.js"></script>
+        <script src="js/jquery.mousewheel.js"></script>
+        <script src="js/jquery.tagsinput.min.js"></script>
+        <script src="js/toggles.min.js"></script>
+        <script src="js/bootstrap-timepicker.min.js"></script>
+        <script src="js/jquery.maskedinput.min.js"></script>
+        <script src="js/select2.min.js"></script>
+        <script src="js/colorpicker.js"></script>
+        <script src="js/dropzone.min.js"></script>
+
+        <script src="js/custom.js"></script>
+        <script>
+            jQuery(document).ready(function() {
+                
+                // Tags Input
+                jQuery('#tags').tagsInput({width:'auto'});
+                 
+                // Textarea Autogrow
+                jQuery('#autoResizeTA').autogrow();
+                
+                // Spinner
+                var spinner = jQuery('#spinner').spinner();
+                spinner.spinner('value', 0);
+                
+                // Form Toggles
+                jQuery('.toggle').toggles({on: true});
+                
+                // Time Picker
+                jQuery('#timepicker').timepicker({defaultTIme: false});
+                jQuery('#timepicker2').timepicker({showMeridian: false});
+                jQuery('#timepicker3').timepicker({minuteStep: 15});
+                
+                // Date Picker
+                jQuery('#datepicker').datepicker();
+                jQuery('#datepicker-inline').datepicker();
+                jQuery('#datepicker-multiple').datepicker({
+                    numberOfMonths: 3,
+                    showButtonPanel: true
+                });
+                
+                // Input Masks
+                jQuery("#date").mask("99/99/9999");
+                jQuery("#phone").mask("(999) 999-9999");
+                jQuery("#ssn").mask("999-99-9999");
+                
+                // Select2
+                jQuery("#select-basic, #select-multi").select2();
+                jQuery('#select-search-hide').select2({
+                    minimumResultsForSearch: -1
+                });
+                
+                function format(item) {
+                    return '<i class="fa ' + ((item.element[0].getAttribute('rel') === undefined)?"":item.element[0].getAttribute('rel') ) + ' mr10"></i>' + item.text;
+                }
+                
+                // This will empty first option in select to enable placeholder
+                jQuery('select option:first-child').text('');
+                
+                jQuery("#select-templating").select2({
+                    formatResult: format,
+                    formatSelection: format,
+                    escapeMarkup: function(m) { return m; }
+                });
+                
+                // Color Picker
+                if(jQuery('#colorpicker').length > 0) {
+                    jQuery('#colorSelector').ColorPicker({
+      onShow: function (colpkr) {
+          jQuery(colpkr).fadeIn(500);
+                            return false;
+      },
+      onHide: function (colpkr) {
+                            jQuery(colpkr).fadeOut(500);
+                            return false;
+      },
+      onChange: function (hsb, hex, rgb) {
+          jQuery('#colorSelector span').css('backgroundColor', '#' + hex);
+          jQuery('#colorpicker').val('#'+hex);
+      }
+                    });
+                }
+  
+                // Color Picker Flat Mode
+                jQuery('#colorpickerholder').ColorPicker({
+                    flat: true,
+                    onChange: function (hsb, hex, rgb) {
+      jQuery('#colorpicker3').val('#'+hex);
+                    }
+                });
+                
+                
+            });
+        </script>
+
+    </body>
+</html>

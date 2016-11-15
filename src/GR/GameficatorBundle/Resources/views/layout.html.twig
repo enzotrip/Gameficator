@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Gamificator | Dashboard</title>
+
+        <link href="Template/css/style.default.css" rel="stylesheet">
+        <link href="Template/css/morris.css" rel="stylesheet">
+        <link href="Template/css/select2.css" rel="stylesheet" />
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <header>
+            <div class="headerwrapper">
+                <div class="header-left">
+                    <a href="index.html" class="logo">
+                        <img src="images/logo.png" alt="" />
+                    </a>
+                    <div class="pull-right">
+                        <a href="" class="menu-collapse">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                </div><!-- header-left -->
+
+                <div class="header-right">
+                    <div class="pull-left dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Ajouter
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Tâche</a></li>
+                        <li><a href="#">Projet</a></li>
+                        <li><a href="#">Récompense</a></li>
+                      </ul>
+                    </div>
+
+                    <div class="pull-right">
+
+                        <form class="form form-search" action="search-results.html">
+                            <input type="search" class="form-control" placeholder="Search" />
+                        </form>
+
+                        <div class="btn-group btn-group-list btn-group-notification">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <i class="fa fa-bell-o"></i>
+                              <span class="badge">5</span>
+                            </button>
+                            <div class="dropdown-menu pull-right">
+                                <a href="" class="link-right"><i class="fa fa-search"></i></a>
+                                <h5>Notification</h5>
+                                <ul class="media-list dropdown-list">
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016   <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="dropdown-footer text-center">
+                                    <a href="" class="link">See All Notifications</a>
+                                </div>
+                            </div><!-- dropdown-menu -->
+                        </div><!-- btn-group -->
+
+
+
+                        <div class="btn-group btn-group-option">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                              <li><a href="#"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-star"></i> Activity Log</a></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
+                              <li class="divider"></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
+                            </ul>
+                        </div><!-- btn-group -->
+
+                    </div><!-- pull-right -->
+
+                </div><!-- header-right -->
+
+            </div><!-- headerwrapper -->
+        </header>
+
+        <section>
+            <div class="mainwrapper">
+                <div class="leftpanel">
+                    <div class="media profile-left">
+                        <a class="pull-left profile-thumb" href="profile.html">
+                            <img class="img-circle" src="images/photos/rl.jpg" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">Renaud Lacroix</h4>
+                        </div>
+                    </div><!-- media -->
+
+                    <h5 class="leftpanel-title">Navigation</h5>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                        <li class="parent"><a href=""><i class="fa fa-suitcase"></i> <span>Projet</span></a>
+                            <ul class="children">
+                                <li><a href="">Mes projets</a></li>
+                                <li><a href="">Mes projets archivés</a></li>
+                                <li><a href="">Corbeille</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href=""><i class="fa fa-edit"></i> <span>Tâches</span></a>
+                            <ul class="children">
+                                <li><a href="calendar.html">Calendrier des tâches</a></li>
+                                <li><a href="taches-a-faire.html">Tâches à faire</a></li>
+                                <li><a href="">Tâches récurrentes</a></li>
+                                <li><a href="">Tâches archivées</a></li>
+                                <li><a href="">Corbeille</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href=""><i class="fa fa-bars"></i> <span>Récompenses</span></a>
+                            <ul class="children">
+                                <li><a href="">Mes récompenses</a></li>
+                                <li><a href="">Récompenses en cours</a></li>
+                                <li><a href="">Récompenses archivées</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                </div><!-- leftpanel -->
+
+                <div class="mainpanel">
+                    {% block pageheader %}
+                    <div class="pageheader">
+                        <div class="media">
+                            <div class="pageicon pull-left">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="media-body">
+                                <ul class="breadcrumb">
+                                    <li><a href=""><i class="glyphicon glyphicon-home"></i></a></li>
+                                    <li>Dashboard</li>
+                                </ul>
+                                <h4>Dashboard</h4>
+                            </div>
+                        </div><!-- media -->
+                    </div><!-- pageheader -->
+                    {% endblock %}
+
+
+                    <div class="contentpanel">
+                      {% block body %}
+                        {% endblock %}
+                    </div><!-- contentpanel -->
+
+                </div><!-- mainpanel -->
+            </div><!-- mainwrapper -->
+        </section>
+
+
+        <script src="Template/js/jquery-1.11.1.min.js"></script>
+        <script src="Template/js/jquery-migrate-1.2.1.min.js"></script>
+        <script src="Template/js/bootstrap.min.js"></script>
+        <script src="Template/js/modernizr.min.js"></script>
+        <script src="Template/js/pace.min.js"></script>
+        <script src="Template/js/retina.min.js"></script>
+        <script src="Template/js/jquery.cookies.js"></script>
+
+        <script src="Template/js/flot/jquery.flot.min.js"></script>
+        <script src="Template/js/flot/jquery.flot.resize.min.js"></script>
+        <script src="Template/js/flot/jquery.flot.spline.min.js"></script>
+        <script src="Template/js/jquery.sparkline.min.js"></script>
+        <script src="Template/js/morris.min.js"></script>
+        <script src="Template/js/raphael-2.1.0.min.js"></script>
+        <script src="Template/js/bootstrap-wizard.min.js"></script>
+        <script src="Template/js/select2.min.js"></script>
+
+        <script src="Template/js/custom.js"></script>
+        <script src="Template/js/dashboard.js"></script>
+
+    </body>
+</html>
