@@ -22,7 +22,12 @@ class Project
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="GR\UserBundle\Entity\User")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="project")
+     */
+    private $tasks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="GR\UserBundle\Entity\User", inversedBy="projects")
      */
     private $user;
 
@@ -276,5 +281,48 @@ class Project
     public function getUser()
     {
         return $this->user;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add task
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $task
+     *
+     * @return Project
+     */
+    public function addTask(\GR\GameficatorBundle\Entity\Task $task)
+    {
+        $this->tasks[] = $task;
+
+        $task->setProject($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove task
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $task
+     */
+    public function removeTask(\GR\GameficatorBundle\Entity\Task $task)
+    {
+        $this->tasks->removeElement($task);
+    }
+
+    /**
+     * Get tasks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
     }
 }

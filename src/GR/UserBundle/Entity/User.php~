@@ -1,0 +1,35 @@
+<?php
+
+namespace GR\UserBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="gr_user")
+ */
+class User extends BaseUser
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Project", mappedBy="user")
+     */
+    private $projects;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Liste", mappedBy="user")
+     */
+    private $listes;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+}

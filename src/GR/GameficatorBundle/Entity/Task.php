@@ -25,19 +25,19 @@ class Task
      * @ORM\OneToOne(targetEntity="GR\GameficatorBundle\Entity\Reward")
      * @ORM\JoinColumn(nullable=true)
      */
-     private $reward;
+    private $reward;
 
-     /**
-      * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Project")
+    /**
+     * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Project", inversedBy="tasks")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $project;
+
+    /**
+      * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Liste", inversedBy="tasks")
       * @ORM\JoinColumn(nullable=true)
       */
-      private $project;
-
-      /**
-       * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Liste")
-       * @ORM\JoinColumn(nullable=true)
-       */
-       private $liste;
+    private $liste;
 
     /**
      * @var string
