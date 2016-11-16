@@ -8,9 +8,9 @@
 
         <title>Gamificator | Dashboard</title>
 
-        <link href="Template/css/style.default.css" rel="stylesheet">
-        <link href="Template/css/morris.css" rel="stylesheet">
-        <link href="Template/css/select2.css" rel="stylesheet" />
+        <link href="{{ asset('Template/css/style.default.css') }}" rel="stylesheet">
+        <link href="{{ asset('Template/css/morris.css') }}" rel="stylesheet">
+        <link href="{{ asset('Template/css/select2.css') }}" rel="stylesheet" />
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -25,7 +25,7 @@
             <div class="headerwrapper">
                 <div class="header-left">
                     <a href="index.html" class="logo">
-                        <img src="images/logo.png" alt="" />
+                        <img src="{{ asset('Template/images/logo.png') }}" alt="" />
                     </a>
                     <div class="pull-right">
                         <a href="" class="menu-collapse">
@@ -122,7 +122,7 @@
                 <div class="leftpanel">
                     <div class="media profile-left">
                         <a class="pull-left profile-thumb" href="profile.html">
-                            <img class="img-circle" src="images/photos/rl.jpg" alt="">
+                            <img class="img-circle" src="{{ asset('Template/images/photos/rl.jpg') }}" alt="">
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">Renaud Lacroix</h4>
@@ -189,25 +189,25 @@
         </section>
 
 
-        <script src="Template/js/jquery-1.11.1.min.js"></script>
-        <script src="Template/js/jquery-migrate-1.2.1.min.js"></script>
-        <script src="Template/js/bootstrap.min.js"></script>
-        <script src="Template/js/modernizr.min.js"></script>
-        <script src="Template/js/pace.min.js"></script>
-        <script src="Template/js/retina.min.js"></script>
-        <script src="Template/js/jquery.cookies.js"></script>
+        <script src="{{ asset('Template/js/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery-migrate-1.2.1.min.js') }}"></script>
+        <script src="{{ asset('Template/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('Template/js/modernizr.min.js') }}"></script>
+        <script src="{{ asset('Template/js/pace.min.js') }}"></script>
+        <script src="{{ asset('Template/js/retina.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.cookies.js') }}"></script>
 
-        <script src="Template/js/flot/jquery.flot.min.js"></script>
-        <script src="Template/js/flot/jquery.flot.resize.min.js"></script>
-        <script src="Template/js/flot/jquery.flot.spline.min.js"></script>
-        <script src="Template/js/jquery.sparkline.min.js"></script>
-        <script src="Template/js/morris.min.js"></script>
-        <script src="Template/js/raphael-2.1.0.min.js"></script>
-        <script src="Template/js/bootstrap-wizard.min.js"></script>
-        <script src="Template/js/select2.min.js"></script>
+        <script src="{{ asset('Template/js/flot/jquery.flot.min.js') }}"></script>
+        <script src="{{ asset('Template/js/flot/jquery.flot.resize.min.js') }}"></script>
+        <script src="{{ asset('Template/js/flot/jquery.flot.spline.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.sparkline.min.js') }}"></script>
+        <script src="{{ asset('Template/js/morris.min.js') }}"></script>
+        <script src="{{ asset('Template/js/raphael-2.1.0.min.js') }}"></script>
+        <script src="{{ asset('Template/js/bootstrap-wizard.min.js') }}"></script>
+        <script src="{{ asset('Template/js/select2.min.js') }}"></script>
 
-        <script src="Template/js/custom.js"></script>
-        <script src="Template/js/dashboard.js"></script>
+        <script src="{{ asset('Template/js/custom.js') }}"></script>
+        <script src="{{ asset('Template/js/dashboard.js') }}"></script>
 
     </body>
 </html>
