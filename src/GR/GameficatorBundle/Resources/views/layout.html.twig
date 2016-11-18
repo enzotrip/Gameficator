@@ -6,7 +6,9 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Gamificator | Dashboard</title>
+        {% block title %}
+            <title>Gamificator | Dashboard</title>
+        {% endblock title %}
 
         <link href="{{ asset('Template/css/style.default.css') }}" rel="stylesheet">
         <link href="{{ asset('Template/css/morris.css') }}" rel="stylesheet">
