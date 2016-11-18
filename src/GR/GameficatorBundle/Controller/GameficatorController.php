@@ -21,11 +21,9 @@ class GameficatorController extends Controller
     public function indexAction()
     {
 
-      $listTasks = $this->getDoctrine()
-        ->getManager()
-        ->getRepository('GRGameficatorBundle:Task')
-        ->findAll()
-      ;
+      $user = $this->getUser();
+
+      $listTasks = $user->getTasks();
 
         return $this->render('GRGameficatorBundle:Gameficator:index.html.twig', array(
           'listTasks' => $listTasks
@@ -40,6 +38,12 @@ class GameficatorController extends Controller
 
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $task = $form->getData();
+
+        $currentuser = $this->get('security.token_storage')->getToken()->getUser()->getUsername(); // get the current user
+        $user = $this ->getDoctrine()
+                      ->getRepository('GRUserBundle:User')
+                      ->findOneBy(array('username' => $currentuser));
+        $task->setUser($user); // set the current user
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($task);

@@ -22,6 +22,11 @@ class Task
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="GR\UserBundle\Entity\User", inversedBy="tasks")
+     */
+    private $user;
+
+    /**
      * @ORM\OneToOne(targetEntity="GR\GameficatorBundle\Entity\Reward")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -73,6 +78,7 @@ class Task
      * @var \DateTime
      *
      * @ORM\Column(name="Deadline", type="datetime")
+     * @ORM\Column(nullable=true)
      */
     private $deadline;
 

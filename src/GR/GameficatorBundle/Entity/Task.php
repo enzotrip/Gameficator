@@ -22,6 +22,11 @@ class Task
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="GR\UserBundle\Entity\User", inversedBy="tasks")
+     */
+    private $user;
+
+    /**
      * @ORM\OneToOne(targetEntity="GR\GameficatorBundle\Entity\Reward")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -395,5 +400,29 @@ class Task
     public function getPoints()
     {
         return $this->points;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \GR\UserBundle\Entity\User $user
+     *
+     * @return Task
+     */
+    public function setUser(\GR\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \GR\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
