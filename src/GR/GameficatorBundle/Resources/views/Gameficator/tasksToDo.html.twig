@@ -1,0 +1,58 @@
+{% extends "GRGameficatorBundle::layout.html.twig" %}
+
+{% block title %}
+    <title>Gamificator | Tasks To Do</title>
+{% endblock title %}
+
+{% block pageheader %}
+<div class="pageheader">
+    <div class="media">
+        <div class="pageicon pull-left">
+            <i class="fa fa-th-list"></i>
+        </div>
+        <div class="media-body">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li>Tasks</li>
+                <li>Tasks To Do</li>
+                <li class="pull-right"><button class="btn btn-primary" href="gr_gameficator_createtask"><i class="fa fa-plus"> </i> Add New Task</button></li>
+            </ul>
+            <h4>Tasks To Do</h4>
+        </div>
+    </div><!-- media -->
+</div><!-- pageheader -->
+{% endblock %}
+
+{% block body %}
+<p class="mb20"><a href="http://datatables.net/" target="_blank">DataTables</a> is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.</p>
+
+<div class="panel panel-primary-head">
+
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+            <th>Nom</th>
+            <th>Projets liés</th>
+            <th>Topic</th>
+            <th>Statut</th>
+            <th>Date limite</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          {% for task in listTasks %}
+            <tr>
+                <td><a href="">{{ task.name }}</a></td>
+                <td><span class="label label-warning"></span></td>
+                <td></td>
+                <td><span class="badge">A faire</span></td>
+                <td></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div><!-- panel -->
+
+<br />
+
+{% endblock %}

@@ -54,4 +54,18 @@ class GameficatorController extends Controller
         'form' => $form->createView(),
       ));
     }
+
+    public function tasksToDoAction()
+    {
+
+      $listTasks = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('GRGameficatorBundle:Task')
+        ->findAll()
+      ;
+
+        return $this->render('GRGameficatorBundle:Gameficator:tasksToDo.html.twig', array(
+          'listTasks' => $listTasks
+        ));
+    }
 }

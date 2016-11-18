@@ -5,3 +5,7 @@ gr_gameficator_homepage:
 gr_gameficator_createtask:
     path:     /createTask
     defaults: { _controller: GRGameficatorBundle:Gameficator:createTask }
+
+gr_gameficator_taskstodo:
+    path:     /tasksToDo
+    defaults: { _controller: GRGameficatorBundle:Gameficator:tasksToDo }
