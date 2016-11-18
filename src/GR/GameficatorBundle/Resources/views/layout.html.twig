@@ -24,7 +24,7 @@
         <header>
             <div class="headerwrapper">
                 <div class="header-left">
-                    <a href="index.html" class="logo">
+                    <a href="{{ path('gr_gameficator_homepage') }}" class="logo">
                         <img src="{{ asset('Template/images/logo.png') }}" alt="" />
                     </a>
                     <div class="pull-right">
@@ -41,7 +41,7 @@
                         <span class="caret"></span>
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                        <li><a href="#">Tâche</a></li>
+                        <li><a href="{{ path('gr_gameficator_createtask') }}">Tâche</a></li>
                         <li><a href="#">Projet</a></li>
                         <li><a href="#">Récompense</a></li>
                       </ul>
@@ -181,7 +181,7 @@
 
                     <div class="contentpanel">
                       {% block body %}
-                        {% endblock %}
+                      {% endblock %}
                     </div><!-- contentpanel -->
 
                 </div><!-- mainpanel -->

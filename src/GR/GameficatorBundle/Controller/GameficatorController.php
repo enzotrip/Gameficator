@@ -10,4 +10,9 @@ class GameficatorController extends Controller
     {
         return $this->render('GRGameficatorBundle:Gameficator:index.html.twig');
     }
+
+    public function createTaskAction()
+    {
+      return $this->render('GRGameficatorBundle:Gameficator:createTask.html.twig');
+    }
 }

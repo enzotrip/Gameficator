@@ -1,8 +1,60 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}" />
-    </div>
-{{ form_end(form) }}
+<div class="panel panel-signup">
+                <div class="panel-body">
+                    <div class="logo text-center">
+                        <img src="{{ asset('Template/images/logo.png') }}" alt="Chain Logo" >
+                    </div>
+                    <br />
+                    <h4 class="text-center mb5">Create a new account</h4>
+                    <p class="text-center">Please enter your credentials below</p>
+
+                    <div class="mb30"></div>
+                        {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb15">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Enter Email Adress' } }) }}
+                                    </div><!-- input-group -->
+                                    {{ form_errors(form.email) }}
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb15">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Enter Username' } }) }}
+                                    </div><!-- input-group -->
+                                    {{ form_errors(form.username) }}
+                                </div>
+
+                            </div><!-- row -->
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="input-group mb15">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Enter Password' } }) }}
+                                        {{ form_errors(form.plainPassword.first) }}
+                                    </div><!-- input-group -->
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group mb15">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Confirm Password' } }) }}
+                                        {{ form_errors(form.plainPassword.second) }}
+                                    </div><!-- input-group -->
+                                </div>
+                            </div><!-- row -->
+                            <br />
+                            <div class="clearfix">
+                                <div class="pull-right">
+                                    <button type="submit" id="_submit" name="_submit" class="btn btn-success">Create New Account <i class="fa fa-angle-right ml5"></i></button>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+
+                      </div><!-- panel-body -->
+              <div class="panel-footer">
+                  <a href="{{ path('fos_user_security_login')}}" class="btn btn-primary btn-block">Already a Member? Sign In</a>
+              </div><!-- panel-footer -->
+          </div><!-- panel -->

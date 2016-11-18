@@ -19,10 +19,12 @@
           {% if csrf_token %}
               <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
           {% endif %}
+
             <div class="input-group mb15">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control">
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="Username">
             </div><!-- input-group -->
+            
             <div class="input-group mb15">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                 <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="Password">

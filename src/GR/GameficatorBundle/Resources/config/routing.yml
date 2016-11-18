@@ -1,3 +1,7 @@
 gr_gameficator_homepage:
     path:     /
     defaults: { _controller: GRGameficatorBundle:Gameficator:index }
+
+gr_gameficator_createtask:
+    path:     /createTask
+    defaults: { _controller: GRGameficatorBundle:Gameficator:createTask }
