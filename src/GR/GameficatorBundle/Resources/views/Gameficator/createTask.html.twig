@@ -24,14 +24,15 @@
 
 {% block body %}
 
-<form class="form-horizontal form-bordered">
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 <div class="row">
      <div class="col-sm-6">
        <div class="form-group">
            <label class="col-sm-2 control-label">Nom de la tâche</label>
            <div class="col-sm-8">
-               <input type="text" class="form-control">
+               {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
             </div>
+            {{ form_errors(form.name) }}
      </div>
        </div><!-- form-group -->
        <div class="col-sm-6"><div class="form-group">
@@ -64,14 +65,16 @@
          <div class="col-sm-6"><div class="form-group">
            <label class="col-sm-2 control-label">Nombre de points</label>
            <div class="col-sm-8">
-               <input type="text" class="form-control">
-            </div>
+             {{ form_widget(form.points, { 'attr': {'class': 'form-control'} }) }}
+          </div>
+          {{ form_errors(form.points) }}
          </div><!-- form-group --></div>
          <div class="col-sm-6"><div class="form-group">
            <label class="col-sm-2 control-label">Priorité</label>
            <div class="col-sm-8">
-               <input type="text" class="form-control">
+               {{ form_widget(form.priority, { 'attr': {'class': 'form-control'} }) }}
             </div>
+            {{ form_errors(form.priority) }}
          </div><!-- form-group --></div>
        <div class="col-sm-6"><div class="form-group">
            <label class="col-sm-2 control-label">Couleur</label>
@@ -86,135 +89,21 @@
          <div class="form-group">
                     <label class="col-sm-1 control-label">Description</label>
                     <div class="col-sm-11">
-                        <textarea class="form-control" rows="5"></textarea>
-                    </div>
-                </div>
+                      {{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}
+                   </div>
+                   {{ form_errors(form.description) }}
+          </div>
+
+<div class="form-group">
+      <div class="pull-left">
+          {{ form_widget(form.save, { 'attr': {'value': 'Create Task', 'class': 'btn btn-success'}}) }}
+      </div>
+
+</div>
 
 
 
-
-
-
-        <div class="form-group">
-
-                    <div class="col-sm-3">
-
-                        <div class="rdio rdio-default">
-                            <input type="radio" name="radio" id="radioDefault" value="1" >
-                            <label for="radioDefault">Echéance</label>
-                            <div class="input-group col-sm-8" style="float:right">
-                                <input type="text" class="form-control hasDatepicker" placeholder="mm/dd/yyyy" id="datepicker" disabled>
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            </div>
-                      </div>
-
-                        </div>
-                   <div class="col-sm-12" style="clear:both; margin-top: 2em">
-                        <div class="rdio rdio-primary">
-                            <input type="radio" name="radio" value="2" id="radioPrimary" checked="checked">
-                            <label for="radioPrimary">Tâche réccurrente</label>
-                        </div>
-                          <div class="form-group">
-                    <div class="col-sm-3">
-                      <label class="col-sm-3 control-label">Tous les</label>
-                      <div class="col-sm-4  " >
-
-                          <div class="ckbox ckbox-primary">
-                              <input type="checkbox" value="1" id="checkboxPrimary" checked="checked">
-                              <label for="checkboxPrimary">Lundi</label>
-                          </div>
-                          <div class="ckbox ckbox-primary">
-                              <input type="checkbox" value="1" id="checkboxPrimary">
-                              <label for="checkboxPrimary">Mardi</label>
-                          </div>
-                          <div class="ckbox ckbox-primary">
-                              <input type="checkbox" value="1" id="checkboxPrimary">
-                              <label for="checkboxPrimary">Mercredi</label>
-                          </div>
-                          <div class="ckbox ckbox-primary">
-                              <input type="checkbox" value="1" id="checkboxPrimary">
-                              <label for="checkboxPrimary">Jeudi</label>
-                          </div>
-                          <div class="ckbox ckbox-primary">
-                              <input type="checkbox" value="1" id="checkboxPrimary">
-                              <label for="checkboxPrimary">Vendredi</label>
-                          </div>
-                          <div class="ckbox ckbox-primary">
-                              <input type="checkbox" value="1" id="checkboxPrimary">
-                              <label for="checkboxPrimary">Samedi</label>
-                          </div>
-                          <div class="ckbox ckbox-primary">
-                              <input type="checkbox" value="1" id="checkboxPrimary">
-                              <label for="checkboxPrimary">Dimanche</label>
-                          </div>
-                    </div>
-
-
-
-                    </div><!-- col-sm-8 -->
-                     <div class="col-sm-3"><div>
-                         <label class="col-sm-4 control-label">Date de début</label>
-                          <div class="col-sm-6" >
-                                <input type="text"  class="form-control">
-
-                       </div>
-                       </div>
-
-                       <div style="clear:both; padding-top:2em;">
-                         <label class="col-sm-4 control-label">Ou Tous les</label>
-
-
-                           <div class="col-sm-2">
-                           <input type="text"  class="form-control">
-                                                                        </div>
-                       <div class="form-group col-sm-6" style="margin:0; border:none;padding: 0">
-                         <select class="form-control " id="sel1">
-                           <option></option>
-                           <option>Heures</option>
-                           <option>Jours</option>
-                           <option>Semaines</option>
-                           <option>Mois</option>
-                            <option>Ans</option>
-                         </select>
-                                                                        </div>
-
-
-
-
-                                                                       </div><!-- col-sm-8 -->
-                        </div>
-
-                        <div class="col-sm-5">
-                          <label class="col-sm-4 control-label">Au moins</label>
-
-
-                           <div class="col-sm-2">
-                           <input type="text"  class="form-control">
-                                                                        </div>
-
-                       <div class="form-group col-sm-6" style="margin:0; border:none;padding: 0">
-                           <label class="col-sm-3 control-label">Fois par</label>
-                         <div class="col-sm-8">
-                           <select class="form-control" id="sel1">
-                             <option></option>
-                             <option>Heure</option>
-                             <option>Jour</option>
-                             <option>Semaine</option>
-                             <option>Mois</option>
-                              <option>Ans</option>
-                           </select>
-                         </div>
-
-                        </div>
-
-                </div>
-
-                </div>
-
-
-
-
- </form>
+{{ form_end(form) }}
 
 
 

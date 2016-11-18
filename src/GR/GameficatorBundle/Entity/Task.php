@@ -47,9 +47,18 @@ class Task
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Description", type="string", length=255)
+     * @ORM\Column(nullable=true)
+     */
+    private $description;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="Start", type="datetime")
+     * @ORM\Column(nullable=true)
      */
     private $start;
 
@@ -64,6 +73,7 @@ class Task
      * @var \DateTime
      *
      * @ORM\Column(name="Deadline", type="datetime")
+     * @ORM\Column(nullable=true)
      */
     private $deadline;
 
@@ -80,6 +90,13 @@ class Task
      * @ORM\Column(name="Priority", type="integer")
      */
     private $priority;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="Points", type="integer")
+     */
+    private $points;
 
 
     /**
@@ -306,5 +323,77 @@ class Task
     public function getList()
     {
         return $this->list;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Task
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set liste
+     *
+     * @param \GR\GameficatorBundle\Entity\Liste $liste
+     *
+     * @return Task
+     */
+    public function setListe(\GR\GameficatorBundle\Entity\Liste $liste = null)
+    {
+        $this->liste = $liste;
+
+        return $this;
+    }
+
+    /**
+     * Get liste
+     *
+     * @return \GR\GameficatorBundle\Entity\Liste
+     */
+    public function getListe()
+    {
+        return $this->liste;
+    }
+
+    /**
+     * Set points
+     *
+     * @param integer $points
+     *
+     * @return Task
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+
+        return $this;
+    }
+
+    /**
+     * Get points
+     *
+     * @return integer
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 }

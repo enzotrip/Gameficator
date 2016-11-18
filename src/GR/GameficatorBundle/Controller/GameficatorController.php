@@ -4,15 +4,54 @@ namespace GR\GameficatorBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use GR\GameficatorBundle\Entity\Task;
+use GR\GameficatorBundle\Entity\Liste;
+use GR\GameficatorBundle\Entity\Project;
+use GR\GameficatorBundle\Entity\Reward;
+use GR\UserBundle\Entity\User;
+
+use GR\GameficatorBundle\Form\TaskType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+
 class GameficatorController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('GRGameficatorBundle:Gameficator:index.html.twig');
+
+      $listTasks = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('GRGameficatorBundle:Task')
+        ->findAll()
+      ;
+
+        return $this->render('GRGameficatorBundle:Gameficator:index.html.twig', array(
+          'listTasks' => $listTasks
+        ));
     }
 
-    public function createTaskAction()
+    public function createTaskAction(Request $request)
     {
-      return $this->render('GRGameficatorBundle:Gameficator:createTask.html.twig');
+
+      $task = new Task();
+      $form   = $this->get('form.factory')->create(TaskType::class, $task);
+
+      if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        $task = $form->getData();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($task);
+        $em->flush();
+
+        $request->getSession()->getFlashBag()->add('notice', 'Tâche bien créée.');
+
+        return $this->redirectToRoute('gr_gameficator_homepage');
+      }
+
+      return $this->render('GRGameficatorBundle:Gameficator:createTask.html.twig', array(
+        'form' => $form->createView(),
+      ));
     }
 }
