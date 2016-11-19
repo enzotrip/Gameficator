@@ -54,16 +54,14 @@ class Task
     /**
      * @var string
      *
-     * @ORM\Column(name="Description", type="string", length=255)
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(name="Description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Start", type="datetime")
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(name="Start", type="datetime", nullable=true)
      */
     private $start;
 
@@ -77,8 +75,7 @@ class Task
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Deadline", type="datetime")
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(name="Deadline", type="datetime", nullable=true)
      */
     private $deadline;
 

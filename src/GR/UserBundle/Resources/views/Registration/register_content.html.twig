@@ -26,7 +26,6 @@
                                     </div><!-- input-group -->
                                     {{ form_errors(form.username) }}
                                 </div>
-
                             </div><!-- row -->
                             <br />
                             <div class="row">
@@ -34,15 +33,15 @@
                                     <div class="input-group mb15">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'Enter Password' } }) }}
-                                        {{ form_errors(form.plainPassword.first) }}
                                     </div><!-- input-group -->
+                                    {{ form_errors(form.plainPassword.first) }}
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="input-group mb15">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'Confirm Password' } }) }}
-                                        {{ form_errors(form.plainPassword.second) }}
                                     </div><!-- input-group -->
+                                    {{ form_errors(form.plainPassword.second) }}
                                 </div>
                             </div><!-- row -->
                             <br />
@@ -51,6 +50,8 @@
                                     <button type="submit" id="_submit" name="_submit" class="btn btn-success">Create New Account <i class="fa fa-angle-right ml5"></i></button>
                                 </div>
                             </div>
+
+                            {{ form_errors(form) }}
                         {{ form_end(form) }}
 
                       </div><!-- panel-body -->
