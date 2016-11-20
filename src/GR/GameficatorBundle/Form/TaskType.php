@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\DatetimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -25,10 +26,16 @@ class TaskType extends AbstractType
 
     $builder
       ->add('name',           TextType::class)
-      ->add('priority',       IntegerType::class)
+      ->add('priority',        ChoiceType::class, array(
+                    'choices' => array(
+                        '0' => 0,
+                        '1' => 1,
+                        '2' => 2,
+                        '3' => 3
+                    )))
       ->add('description',    TextareaType::class)
       ->add('points',         IntegerType::class)
-      ->add('save',           SubmitType::class)
+      ->add('save',           SubmitType::class, array('label' => 'Créer'))
     ;
 
     $builder->addEventListener(

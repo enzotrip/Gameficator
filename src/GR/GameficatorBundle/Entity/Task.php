@@ -71,6 +71,7 @@ class Task
      * @var array
      *
      * @ORM\Column(name="Type", type="array")
+     * @ORM\Column(nullable=true)
      */
     private $type;
 
@@ -86,6 +87,7 @@ class Task
      * @var array
      *
      * @ORM\Column(name="State", type="array")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $state;
 
@@ -103,7 +105,11 @@ class Task
      */
     private $points;
 
-
+    public function __construct()
+    {
+        $this->start= new \Datetime();
+        $this->deadline= new \Datetime();
+    }
     /**
      * Get id
      *

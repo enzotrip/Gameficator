@@ -9,3 +9,11 @@ gr_gameficator_createtask:
 gr_gameficator_taskstodo:
     path:     /tasksToDo
     defaults: { _controller: GRGameficatorBundle:Gameficator:tasksToDo }
+
+gr_gameficator_createproject:
+    path:    /createProject
+    defaults: {_controller: GRGameficatorBundle:Gameficator:createProject }
+
+gr_gameficator_createreward:
+    path:    /createReward
+    defaults: {_controller: GRGameficatorBundle:Gameficator:createReward }
