@@ -17,3 +17,15 @@ gr_gameficator_createproject:
 gr_gameficator_createreward:
     path:    /createReward
     defaults: {_controller: GRGameficatorBundle:Gameficator:createReward }
+
+gr_gameficator_viewprojects:
+    path:    /mesProjets
+    defaults: {_controller: GRGameficatorBundle:Gameficator:viewProjects }
+
+gr_gameficator_viewrewards:
+    path:    /mesRécompenses
+    defaults: {_controller: GRGameficatorBundle:Gameficator:viewRewards }
+
+gr_gameficator_viewreward:
+    path:    /reward/{id}
+    defaults: {_controller: GRGameficatorBundle:Gameficator:viewReward }

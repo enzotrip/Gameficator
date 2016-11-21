@@ -1,0 +1,51 @@
+{% extends "GRGameficatorBundle::layout.html.twig" %}
+
+{% block title %}
+    <title>Gamificator | Mes Récompenses</title>
+{% endblock title %}
+
+{% block pageheader %}
+<div class="pageheader">
+    <div class="media">
+        <div class="pageicon pull-left">
+            <i class="fa fa-file"></i>
+        </div>
+        <div class="media-body">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li>Dashboard</li>
+                <li>Récompenses</li>
+                <li>Mes Récompenses</li>
+            </ul>
+            <h4>Mes Récompenses</h4>
+        </div>
+    </div><!-- media -->
+</div><!-- pageheader -->
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-sm-12">
+    {% for reward in listRewards %}
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a href="{{ path('gr_gameficator_viewreward', {'id': reward.id}) }}"><h2 class=".h2">{{reward.name}}</h2></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Points nécéssaires : {{ reward.price }}</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

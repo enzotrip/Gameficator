@@ -24,6 +24,14 @@ class RewardType extends AbstractType
     {
         $builder->add('name',       TextType::class)
                 ->add('price',       IntegerType::class)
+                ->add('price',        ChoiceType::class, array(
+                    'choices' => array(
+                        '0' => 0,
+                        '5' => 5,
+                        '10' => 10,
+                        '20' => 20,
+                        '50' => 50,
+                    )))
                 ->add('save',           SubmitType::class, array('label' => 'Créer'))        
         ;
     }
