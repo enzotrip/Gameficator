@@ -29,3 +29,7 @@ gr_gameficator_viewrewards:
 gr_gameficator_viewreward:
     path:    /reward/{id}
     defaults: {_controller: GRGameficatorBundle:Gameficator:viewReward }
+
+gr_gameficator_viewproject:
+    path:    /project/{id}
+    defaults: {_controller: GRGameficatorBundle:Gameficator:viewProject }

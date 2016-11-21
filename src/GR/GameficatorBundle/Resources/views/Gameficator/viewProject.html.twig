@@ -1,7 +1,7 @@
 {% extends "GRGameficatorBundle::layout.html.twig" %}
 
 {% block title %}
-    <title>Gamificator | Ma Récompense</title>
+    <title>Gamificator | Mon Projet</title>
 {% endblock title %}
 
 {% block pageheader %}
@@ -14,10 +14,10 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
                 <li>Dashboard</li>
-                <li>Récompenses</li>
-                <li>{{reward.name}}</li>
+                <li>Projets</li>
+                <li>{{project.name}}</li>
             </ul>
-            <h4>{{reward.name}}</h4>
+            <h4>{{project.name}}</h4>
         </div>
     </div><!-- media -->
 </div><!-- pageheader -->

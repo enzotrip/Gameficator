@@ -69,6 +69,20 @@ class GameficatorController extends Controller
         ));
     }
 
+    public function viewProjectAction($id)
+    {
+
+      $em = $this->getDoctrine()->getManager();
+      $Projects= $this->getDoctrine()->getManager()->getRepository('GRGameficatorBundle:Project');
+      $project = $Projects->find($id);
+      if($project == null){
+        throw new NotFoundHttpException('Projet introuvable');
+      }
+        return $this->render('GRGameficatorBundle:Gameficator:viewProject.html.twig', array(
+          'project' => $project
+        ));
+    }
+
     public function createTaskAction(Request $request)
     {
 
