@@ -33,6 +33,12 @@ class TaskType extends AbstractType
                         '2' => 2,
                         '3' => 3
                     )))
+      ->add('project',     EntityType::class, array(
+        'class' => 'GRGameficatorBundle:Project',
+        'choice_label' => 'name',
+        'multiple'     => false,
+      ))
+      ->add('color',           TextType::class)
       ->add('description',    TextareaType::class)
       ->add('points',         IntegerType::class)
       ->add('save',           SubmitType::class, array('label' => 'Créer'))

@@ -55,14 +55,14 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="Motivation_plus", type="string", length=255)
+     * @ORM\Column(name="Motivation_plus", type="string", length=255, nullable=true)
      */
     private $motivationplus;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="Motivation_neg", type="string", length=255)
+     * @ORM\Column(name="Motivation_neg", type="string", length=255, nullable=true)
      */
     private $motivationneg;
 
@@ -76,7 +76,7 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="Objectives", type="string", length=255)
+     * @ORM\Column(name="Objectives", type="string", length=255, nullable=true)
      */
     private $objectives;
 
@@ -84,7 +84,7 @@ class Project
      * @ORM\Column(name="Avancement", type="integer")
      */
     private $avancement;
-    
+
     /**
      * Constructor
      */
@@ -94,6 +94,7 @@ class Project
         $this->deadline= new \Datetime();
         $this->lastUpdate= new \Datetime();
         $this->avancement= 0;
+        $this->priority=0;
     }
 
     /**

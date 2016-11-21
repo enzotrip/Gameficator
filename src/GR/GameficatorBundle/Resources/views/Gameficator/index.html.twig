@@ -35,10 +35,10 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <div class="row">                                      
+                <div class="row">
                     <div class="col-md-5">
                         <h2 class=".h2">Projets</h2>
-                        <p class="mb15">Statut de vos projets</p>                                        
+                        <p class="mb15">Statut de vos projets</p>
                         {% for project in listProjects %}
                         <span class=""><a href="">{{project.name}}</a> ({{project.avancement}} %)</span>
                         <div class="progress progress-striped active">
@@ -52,6 +52,6 @@
             </div><!-- panel-body -->
         </div><!-- panel -->
   </div>
-                            
+
 </div><!-- row -->
 {% endblock %}
