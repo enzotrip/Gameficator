@@ -62,12 +62,14 @@ class GameficatorController extends Controller
     public function tasksToDoAction()
     {
 
-      $user = $this->getUser();
+      $listTasks = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('GRGameficatorBundle:Task')
+        ->findAll()
+      ;
 
-      $listTasks = $user->getTasks();
-
-      return $this->render('GRGameficatorBundle:Gameficator:tasksToDo.html.twig', array(
-        'listTasks' => $listTasks
-      ));
+        return $this->render('GRGameficatorBundle:Gameficator:tasksToDo.html.twig', array(
+          'listTasks' => $listTasks
+        ));
     }
 }
