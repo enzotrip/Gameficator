@@ -24,7 +24,6 @@
 {% endblock %}
 
 {% block body %}
-<p class="mb20"><a href="http://datatables.net/" target="_blank">DataTables</a> is a plug-in for the jQuery Javascript library. It is a highly flexible tool, based upon the foundations of progressive enhancement, and will add advanced interaction controls to any HTML table.</p>
 
 <div class="panel panel-primary-head">
 
@@ -54,5 +53,11 @@
 </div><!-- panel -->
 
 <br />
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
 
 {% endblock %}

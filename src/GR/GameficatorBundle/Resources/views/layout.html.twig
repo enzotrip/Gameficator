@@ -13,6 +13,8 @@
         <link href="{{ asset('Template/css/style.default.css') }}" rel="stylesheet">
         <link href="{{ asset('Template/css/morris.css') }}" rel="stylesheet">
         <link href="{{ asset('Template/css/select2.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/style.datatables.css') }}" rel="stylesheet">
+        <link href="{{ asset('Template/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
 
         <link href="{{ asset('Template/css/dropzone.css') }}" rel="stylesheet" />
         <link href="{{ asset('Template/css/jquery.tagsinput.css') }}" rel="stylesheet" />
@@ -138,7 +140,11 @@
 
                     <h5 class="leftpanel-title">Navigation</h5>
                     <ul class="nav nav-pills nav-stacked">
+<<<<<<< HEAD
                         <li class="active"><a href="{{ path('gr_gameficator_homepage') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+=======
+                        <li class="active"><a href="{{ path('gr_gameficator_homepage')}}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+>>>>>>> master
                         <li class="parent"><a href=""><i class="fa fa-suitcase"></i> <span>Projet</span></a>
                             <ul class="children">
                                 <li><a href="">Mes projets</a></li>
@@ -176,7 +182,7 @@
                             </div>
                             <div class="media-body">
                                 <ul class="breadcrumb">
-                                    <li><a href=""><i class="glyphicon glyphicon-home"></i></a></li>
+                                    <li><a href="{{ path('gr_gameficator_homepage')}}"><i class="glyphicon glyphicon-home"></i></a></li>
                                     <li>Dashboard</li>
                                 </ul>
                                 <h4>Dashboard</h4>
@@ -227,8 +233,16 @@
         <script src="{{ asset('Template/js/custom.js') }}"></script>
         <script src="{{ asset('Template/js/dashboard.js') }}"></script>
 
+<<<<<<< HEAD
 
         {% block script %}
         {% endblock %}
+=======
+        <script src="{{ asset('Template/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('Template/js/dataTables.bootstrap.js') }}"></script>
+        <script src="{{ asset('Template/js/dataTables.responsive.js') }}"></script>
+        <script src="{{ asset('Template/js/select2.min.js') }}"></script>
+
+>>>>>>> master
     </body>
 </html>
