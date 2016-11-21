@@ -40,11 +40,11 @@ class TaskType extends AbstractType
         'multiple'     => false,
       ))
       ->add('type',             ChoiceType::class, array(
-                    'choices' => array(
-                        'Echéance' => 0,
-                        'Récurrent' => 1),
-                      'expanded' => true,
-                    'multiple' => false))
+        'choices' => array(
+        'Echéance' => 0,
+        'Récurrent' => 1),
+        'expanded' => true,
+        'multiple' => false))
       ->add('deadline',        DateType::class, array(
         'widget' => 'single_text',
         'format' => 'dd/MM/yyyy'

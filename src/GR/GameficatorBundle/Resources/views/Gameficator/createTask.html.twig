@@ -110,7 +110,7 @@
       <div class="col-sm-6"><div class="form-group">
           <div class="col-sm-3">
               <div class="rdio rdio-primary">
-                {{ form_widget(form.type[0], {'full_name': 'radio', 'value': '1'})}}
+                {{ form_widget(form.type[0], {'attr':{'class': 'radio_type'}}) }}
                 {{ form_label(form.type[0])}}
               </div>
           </div>
@@ -125,7 +125,7 @@
       <div class="col-sm-12"><div class="form-group">
             <div class="col-sm-3">
               <div class="rdio rdio-primary">
-                    {{ form_widget(form.type[1], {'full_name': 'radio', 'value': '2'})}}
+                    {{ form_widget(form.type[1], {'attr':{'class': 'radio_type'}}) }}
                     {{ form_label(form.type[1])}}
                   </div>
               </div>
@@ -261,15 +261,15 @@ $('#datepicker').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
         }
       });
     }
-  var choiceradio = document.getElementsByName("radio");
+  var choiceradio = document.getElementsByClassName("radio_type");
   console.log(choiceradio);
   for( var i = 0; i < choiceradio.length; i++) {
     choiceradio[i].addEventListener("change", function(e) {
-      if(e.target.checked == true && e.target.value == 1) {
+      if(e.target.checked == true && e.target.value == 0) {
         document.getElementById("echeance").style.display = 'block';
         document.getElementById("recurrent").style.display = 'none';
       }
-      if(e.target.checked == true && e.target.value == 2) {
+      if(e.target.checked == true && e.target.value == 1) {
         document.getElementById("echeance").style.display = 'none';
         document.getElementById("recurrent").style.display = 'block';
       }
