@@ -55,16 +55,16 @@ class Project
     /**
      * @var string
      *
-     * @ORM\Column(name="Motivations_plus", type="string", length=255)
+     * @ORM\Column(name="Motivation_plus", type="string", length=255)
      */
-    private $motivationsPlus;
+    private $motivationplus;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Motivation_neg", type="string", length=255)
      */
-    private $motivationNeg;
+    private $motivationneg;
 
     /**
      * @var string
@@ -80,11 +80,26 @@ class Project
      */
     private $objectives;
 
+    /**
+     * @ORM\Column(name="Avancement", type="integer")
+     */
+    private $avancement;
+    
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->deadline= new \Datetime();
+        $this->lastUpdate= new \Datetime();
+        $this->avancement= 0;
+    }
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -164,51 +179,51 @@ class Project
     }
 
     /**
-     * Set motivationsPlus
+     * Set motivationplus
      *
-     * @param string $motivationsPlus
+     * @param string $motivationplus
      *
      * @return Project
      */
-    public function setMotivationsPlus($motivationsPlus)
+    public function setMotivationplus($motivationplus)
     {
-        $this->motivationsPlus = $motivationsPlus;
+        $this->motivationplus = $motivationplus;
 
         return $this;
     }
 
     /**
-     * Get motivationsPlus
+     * Get motivationplus
      *
      * @return string
      */
-    public function getMotivationsPlus()
+    public function getMotivationplus()
     {
-        return $this->motivationsPlus;
+        return $this->motivationplus;
     }
 
     /**
-     * Set motivationNeg
+     * Set motivationneg
      *
-     * @param string $motivationNeg
+     * @param string $motivationneg
      *
      * @return Project
      */
-    public function setMotivationNeg($motivationNeg)
+    public function setMotivationneg($motivationneg)
     {
-        $this->motivationNeg = $motivationNeg;
+        $this->motivationneg = $motivationneg;
 
         return $this;
     }
 
     /**
-     * Get motivationNeg
+     * Get motivationneg
      *
      * @return string
      */
-    public function getMotivationNeg()
+    public function getMotivationneg()
     {
-        return $this->motivationNeg;
+        return $this->motivationneg;
     }
 
     /**
@@ -260,6 +275,40 @@ class Project
     }
 
     /**
+     * Add task
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $task
+     *
+     * @return Project
+     */
+    public function addTask(\GR\GameficatorBundle\Entity\Task $task)
+    {
+        $this->tasks[] = $task;
+        $task->setProject($this);
+        return $this;
+    }
+
+    /**
+     * Remove task
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $task
+     */
+    public function removeTask(\GR\GameficatorBundle\Entity\Task $task)
+    {
+        $this->tasks->removeElement($task);
+    }
+
+    /**
+     * Get tasks
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasks()
+    {
+        return $this->tasks;
+    }
+
+    /**
      * Set user
      *
      * @param \GR\UserBundle\Entity\User $user
@@ -282,47 +331,30 @@ class Project
     {
         return $this->user;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
+
 
     /**
-     * Add task
+     * Set avancement
      *
-     * @param \GR\GameficatorBundle\Entity\Task $task
+     * @param integer $avancement
      *
      * @return Project
      */
-    public function addTask(\GR\GameficatorBundle\Entity\Task $task)
+    public function setAvancement($avancement)
     {
-        $this->tasks[] = $task;
-
-        $task->setProject($this);
+        $this->avancement = $avancement;
 
         return $this;
     }
 
     /**
-     * Remove task
+     * Get avancement
      *
-     * @param \GR\GameficatorBundle\Entity\Task $task
+     * @return integer
      */
-    public function removeTask(\GR\GameficatorBundle\Entity\Task $task)
+    public function getAvancement()
     {
-        $this->tasks->removeElement($task);
-    }
-
-    /**
-     * Get tasks
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTasks()
-    {
-        return $this->tasks;
+        return $this->avancement;
     }
 }

@@ -42,6 +42,15 @@ class Reward
      */
     private $price;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="GR\UserBundle\Entity\User", inversedBy="rewards")
+     */
+    private $user;
+    
+    public function __construct()
+    {
+        $this->description= 'rien';
+    }
 
     /**
      * Get id
@@ -123,5 +132,29 @@ class Reward
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \GR\UserBundle\Entity\User $user
+     *
+     * @return Reward
+     */
+    public function setUser(\GR\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \GR\UserBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

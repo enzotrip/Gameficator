@@ -54,16 +54,14 @@ class Task
     /**
      * @var string
      *
-     * @ORM\Column(name="Description", type="string", length=255)
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(name="Description", type="string", length=255, nullable=true)
      */
     private $description;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Start", type="datetime")
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(name="Start", type="datetime", nullable=true)
      */
     private $start;
 
@@ -71,14 +69,14 @@ class Task
      * @var array
      *
      * @ORM\Column(name="Type", type="array")
+     * @ORM\Column(nullable=true)
      */
     private $type;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="Deadline", type="datetime")
-     * @ORM\Column(nullable=true)
+     * @ORM\Column(name="Deadline", type="datetime", nullable=true)
      */
     private $deadline;
 
@@ -86,6 +84,7 @@ class Task
      * @var array
      *
      * @ORM\Column(name="State", type="array")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $state;
 
@@ -103,7 +102,11 @@ class Task
      */
     private $points;
 
-
+    public function __construct()
+    {
+        $this->start= new \Datetime();
+        $this->deadline= new \Datetime();
+    }
     /**
      * Get id
      *

@@ -13,7 +13,17 @@
         <link href="{{ asset('Template/css/style.default.css') }}" rel="stylesheet">
         <link href="{{ asset('Template/css/morris.css') }}" rel="stylesheet">
         <link href="{{ asset('Template/css/select2.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/style.datatables.css') }}" rel="stylesheet">
+        <link href="{{ asset('Template/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
 
+<<<<<<< HEAD
+        <link href="{{ asset('Template/css/dropzone.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/jquery.tagsinput.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/toggles.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/colorpicker.css') }}" rel="stylesheet" />
+=======
+>>>>>>> master
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
         <script src="js/html5shiv.js"></script>
@@ -44,8 +54,8 @@
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="{{ path('gr_gameficator_createtask') }}">Tâche</a></li>
-                        <li><a href="#">Projet</a></li>
-                        <li><a href="#">Récompense</a></li>
+                        <li><a href="{{ path('gr_gameficator_createproject') }}">Projet</a></li>
+                        <li><a href="{{ path('gr_gameficator_createreward') }}">Récompense</a></li>
                       </ul>
                     </div>
 
@@ -133,7 +143,15 @@
 
                     <h5 class="leftpanel-title">Navigation</h5>
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+<<<<<<< HEAD
+<<<<<<< HEAD
+                        <li class="active"><a href="{{ path('gr_gameficator_homepage') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+=======
+                        <li class="active"><a href="{{ path('gr_gameficator_homepage')}}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+>>>>>>> master
+=======
+                        <li class="active"><a href="{{ path('gr_gameficator_homepage')}}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+>>>>>>> master
                         <li class="parent"><a href=""><i class="fa fa-suitcase"></i> <span>Projet</span></a>
                             <ul class="children">
                                 <li><a href="">Mes projets</a></li>
@@ -171,7 +189,7 @@
                             </div>
                             <div class="media-body">
                                 <ul class="breadcrumb">
-                                    <li><a href=""><i class="glyphicon glyphicon-home"></i></a></li>
+                                    <li><a href="{{ path('gr_gameficator_homepage')}}"><i class="glyphicon glyphicon-home"></i></a></li>
                                     <li>Dashboard</li>
                                 </ul>
                                 <h4>Dashboard</h4>
@@ -193,6 +211,7 @@
 
         <script src="{{ asset('Template/js/jquery-1.11.1.min.js') }}"></script>
         <script src="{{ asset('Template/js/jquery-migrate-1.2.1.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery-ui-1.10.3.min.js') }}"></script>
         <script src="{{ asset('Template/js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('Template/js/modernizr.min.js') }}"></script>
         <script src="{{ asset('Template/js/pace.min.js') }}"></script>
@@ -200,6 +219,16 @@
         <script src="{{ asset('Template/js/jquery.cookies.js') }}"></script>
 
         <script src="{{ asset('Template/js/flot/jquery.flot.min.js') }}"></script>
+
+        <script src="{{ asset('Template/js/jquery.autogrow-textarea.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.mousewheel.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.tagsinput.min.js') }}"></script>
+        <script src="{{ asset('Template/js/toggles.min.js') }}"></script>
+        <script src="{{ asset('Template/js/bootstrap-timepicker.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.maskedinput.min.js') }}"></script>
+        <script src="{{ asset('Template/js/colorpicker.js') }}"></script>
+        <script src="{{ asset('Template/js/dropzone.min.js') }}"></script>
+
         <script src="{{ asset('Template/js/flot/jquery.flot.resize.min.js') }}"></script>
         <script src="{{ asset('Template/js/flot/jquery.flot.spline.min.js') }}"></script>
         <script src="{{ asset('Template/js/jquery.sparkline.min.js') }}"></script>
@@ -211,5 +240,22 @@
         <script src="{{ asset('Template/js/custom.js') }}"></script>
         <script src="{{ asset('Template/js/dashboard.js') }}"></script>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+
+        {% block script %}
+        {% endblock %}
+=======
+=======
+>>>>>>> master
+        <script src="{{ asset('Template/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('Template/js/dataTables.bootstrap.js') }}"></script>
+        <script src="{{ asset('Template/js/dataTables.responsive.js') }}"></script>
+        <script src="{{ asset('Template/js/select2.min.js') }}"></script>
+
+<<<<<<< HEAD
+>>>>>>> master
+=======
+>>>>>>> master
     </body>
 </html>
