@@ -30,6 +30,7 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="user")
+     * @ORM\OrderBy({"deadline" = "DESC"})
      */
     private $tasks;
 

@@ -37,7 +37,6 @@ class GameficatorController extends Controller
     {
 
       $task = new Task();
-      $type = 0;
       $form   = $this->get('form.factory')->create(TaskType::class, $task);
 
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
@@ -48,7 +47,6 @@ class GameficatorController extends Controller
                       ->getRepository('GRUserBundle:User')
                       ->findOneBy(array('username' => $currentuser));
         $task->setUser($user); // set the current user
-        $task->setType($type);
         $em = $this->getDoctrine()->getManager();
         $em->persist($task);
         $em->flush();

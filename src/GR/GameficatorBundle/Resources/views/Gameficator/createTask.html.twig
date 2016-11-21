@@ -105,18 +105,18 @@
                    {{ form_errors(form.description) }}
           </div>
 </div>
+
 <div class="row">
       <div class="col-sm-6"><div class="form-group">
           <div class="col-sm-3">
               <div class="rdio rdio-primary">
-                  <input type="radio" name="radio" id="radioDefault" value="1" >
-                  <label for="radioDefault">Echéance</label>
+                {{ form_widget(form.type[0], {'full_name': 'radio', 'value': '1'})}}
+                {{ form_label(form.type[0])}}
               </div>
           </div>
           <div class="col-sm-3">
               <div class="input-group" id="echeance" style="display:none">
-                  <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                  {{ form_widget(form.deadline, {'id': 'datepicker', 'attr': {'class': 'form-control'}})}}
               </div>
         </div>
       </div><!-- form-group --></div>
@@ -125,8 +125,8 @@
       <div class="col-sm-12"><div class="form-group">
             <div class="col-sm-3">
               <div class="rdio rdio-primary">
-                  <input type="radio" name="radio" value="2" id="radioPrimary">
-                  <label for="radioPrimary">Tâche réccurrente</label>
+                    {{ form_widget(form.type[1], {'full_name': 'radio', 'value': '2'})}}
+                    {{ form_label(form.type[1])}}
                   </div>
               </div>
           </div>
@@ -225,7 +225,7 @@
     </div><!-- form-group --></div>
 </div>
 <div class="form-group">
-      <div class="pull-left">
+      <div class=col-sm-offset-1>
           {{ form_widget(form.save, {'label': 'Create Task', attr:{ 'class': 'btn btn-success'}}) }}
       </div>
 
@@ -239,12 +239,11 @@
 {% endblock %}
 
 {% block script %}
+
 <script type="text/javascript">
-  //Date Picker
-  jQuery(document).ready(function() {
-      jQuery('#datepicker').datepicker();
-      jQuery('#datepicker2').datepicker();
-  });
+
+$('#datepicker').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
+
   // Color Picker
     if(jQuery('#colorpicker').length > 0) {
       jQuery('#colorSelector').ColorPicker({
@@ -263,17 +262,14 @@
       });
     }
   var choiceradio = document.getElementsByName("radio");
+  console.log(choiceradio);
   for( var i = 0; i < choiceradio.length; i++) {
     choiceradio[i].addEventListener("change", function(e) {
       if(e.target.checked == true && e.target.value == 1) {
-        {% set type = 1 %}
-        console.log("BLabla");
         document.getElementById("echeance").style.display = 'block';
         document.getElementById("recurrent").style.display = 'none';
       }
       if(e.target.checked == true && e.target.value == 2) {
-        {% set type = 2 %}
-        console.log("Yop");
         document.getElementById("echeance").style.display = 'none';
         document.getElementById("recurrent").style.display = 'block';
       }
