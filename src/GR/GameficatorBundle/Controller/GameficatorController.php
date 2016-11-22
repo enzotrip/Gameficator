@@ -33,6 +33,56 @@ class GameficatorController extends Controller
         ));
     }
 
+    public function viewProjectsAction()
+    {
+
+      $user = $this->getUser();
+
+      $listProjects = $user->getProjects();
+        return $this->render('GRGameficatorBundle:Gameficator:mesProjets.html.twig', array(
+          'listProjects' => $listProjects
+        ));
+    }
+
+    public function viewRewardsAction()
+    {
+
+      $user = $this->getUser();
+
+      $listRewards = $user->getRewards();
+        return $this->render('GRGameficatorBundle:Gameficator:mesRecompenses.html.twig', array(
+          'listRewards' => $listRewards
+        ));
+    }
+
+    public function viewRewardAction($id)
+    {
+
+      $em = $this->getDoctrine()->getManager();
+      $Rewards= $this->getDoctrine()->getManager()->getRepository('GRGameficatorBundle:Reward');
+      $reward = $Rewards->find($id);
+      if($reward == null){
+        throw new NotFoundHttpException('Récompense introuvable');
+      }
+        return $this->render('GRGameficatorBundle:Gameficator:viewReward.html.twig', array(
+          'reward' => $reward
+        ));
+    }
+
+    public function viewProjectAction($id)
+    {
+
+      $em = $this->getDoctrine()->getManager();
+      $Projects= $this->getDoctrine()->getManager()->getRepository('GRGameficatorBundle:Project');
+      $project = $Projects->find($id);
+      if($project == null){
+        throw new NotFoundHttpException('Projet introuvable');
+      }
+        return $this->render('GRGameficatorBundle:Gameficator:viewProject.html.twig', array(
+          'project' => $project
+        ));
+    }
+
     public function createTaskAction(Request $request)
     {
 

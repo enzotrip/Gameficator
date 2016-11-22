@@ -41,7 +41,7 @@
        <div class="col-sm-6"><div class="form-group">
            <label class="col-sm-2 control-label">Projet(s) lié(s)</label>
            <div class="col-sm-8">
-               {{ form_widget(form.project, {'attr': {'class': 'form-control'}}) }}
+               <input type="text" class="form-control">
             </div>
          </div><!-- form-group --></div>
 </div>
@@ -89,7 +89,7 @@
        <div class="col-sm-6"><div class="form-group">
            <label class="col-sm-2 control-label">Couleur</label>
            <div class="col-sm-6">
-              {{ form_widget(form.color, {'id': 'colorpicker', 'attr': {'class': 'form-control colorpicker-input'} }) }}
+               <input type="text" name="colorpicker" class="form-control colorpicker-input" placeholder="#000000" id="colorpicker">
                <span id="colorSelector" class="colorselector">
                   <span></span>
               </span>
@@ -113,12 +113,10 @@
                   <label for="radioDefault">Echéance</label>
               </div>
           </div>
-          <div class="col-sm-3">
-              <div class="input-group" id="echeance" style="display:none">
-                  <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-              </div>
-        </div>
+          <div class="input-group col-sm-3" >
+              <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+          </div>
       </div><!-- form-group --></div>
 </div>
 <div class="row">
@@ -133,7 +131,7 @@
       </div><!-- form-group --></div>
 </div>
 
-<div id="recurrent" class="row" style="display:none">
+<div class="row">
     <div class="col-sm-12"><div class="form-group">
         <div class="col-sm-1"></div>
         <div class="col-sm-2" style="border-right: 1px solid #8E8585">
@@ -268,14 +266,10 @@
       if(e.target.checked == true && e.target.value == 1) {
         {% set type = 1 %}
         console.log("BLabla");
-        document.getElementById("echeance").style.display = 'block';
-        document.getElementById("recurrent").style.display = 'none';
       }
       if(e.target.checked == true && e.target.value == 2) {
         {% set type = 2 %}
         console.log("Yop");
-        document.getElementById("echeance").style.display = 'none';
-        document.getElementById("recurrent").style.display = 'block';
       }
     });
   }
