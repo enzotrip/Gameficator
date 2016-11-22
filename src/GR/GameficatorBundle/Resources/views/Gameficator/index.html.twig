@@ -42,7 +42,7 @@
                 <li class="list-group-item">
                       <div class="ckbox ckbox-default">
                           <input type="checkbox" id="{{ task.id }}" value="1">
-                          <label for="{{ task.id }}">{{ task.name }}<span class="label label-warning"></span></label>
+                          <label for="{{ task.id }}">{{ task.name }} <span class="label label-warning">{% if task.project.user != null %} {{task.project.name}} {% endif %}</span> &nbsp {{task.deadline | date("d/m/y")}}<span class="label label-warning"></span></label>
                       </div>
                 </li>
                 {% else %}

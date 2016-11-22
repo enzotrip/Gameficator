@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "722c9ec0ed6a16214ff7b823e83ed589",
-    "content-hash": "8032f726aee79c74826454b74a43041b",
+    "hash": "c8d858d9b34e3ce821af83843abb5713",
+    "content-hash": "4d4a8140c94ea5f09c189e9f16f56311",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -781,12 +781,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "4ea37a5f7ef423b03b0619fc7cbe0d1ae436edff"
+                "reference": "c62c727dc7a387edc16df32d2ee4181e620ad35f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/4ea37a5f7ef423b03b0619fc7cbe0d1ae436edff",
-                "reference": "4ea37a5f7ef423b03b0619fc7cbe0d1ae436edff",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/c62c727dc7a387edc16df32d2ee4181e620ad35f",
+                "reference": "c62c727dc7a387edc16df32d2ee4181e620ad35f",
                 "shasum": ""
             },
             "require": {
@@ -807,11 +807,7 @@
                 "symfony/console": "^2.7 || ^3.0",
                 "symfony/phpunit-bridge": "^2.7 || ^3.0",
                 "symfony/validator": "^2.7 || ^3.0",
-                "symfony/yaml": "^2.7 || ^3.0",
-                "willdurand/propel-typehintable-behavior": "^1.0"
-            },
-            "suggest": {
-                "willdurand/propel-typehintable-behavior": "Needed when using the propel implementation"
+                "symfony/yaml": "^2.7 || ^3.0"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -850,7 +846,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-11-15 11:54:41"
+            "time": "2016-11-22 12:21:39"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1979,6 +1975,52 @@
                 "framework"
             ],
             "time": "2016-11-21 02:44:44"
+        },
+        {
+            "name": "tplaner/when",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tplaner/When.git",
+                "reference": "cdd977d7d38ca512742fcb03f6df57441da8a4a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tplaner/When/zipball/cdd977d7d38ca512742fcb03f6df57441da8a4a1",
+                "reference": "cdd977d7d38ca512742fcb03f6df57441da8a4a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "When\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tom Planer",
+                    "email": "tplaner@gmail.com"
+                }
+            ],
+            "description": "Date/Calendar recursion library.",
+            "homepage": "https://github.com/tplaner/When",
+            "keywords": [
+                "date",
+                "datetime",
+                "recurrence",
+                "time"
+            ],
+            "time": "2015-03-07 20:40:45"
         },
         {
             "name": "twig/twig",
