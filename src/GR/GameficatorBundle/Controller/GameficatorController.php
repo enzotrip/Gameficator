@@ -23,13 +23,39 @@ class GameficatorController extends Controller
     public function indexAction()
     {
 
-      $user = $this->getUser();
+      $date = date('Y-m-d');
 
-      $listTasks = $user->getTasks();
+      $user = $this->getUser();
+      
+      $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Task');
+
+      $query = $repository->createQueryBuilder('t')
+        ->where('t.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('t.deadline = :date')
+        ->setParameter('date', $date)
+        ->orderBy('t.priority', 'DESC')
+        ->getQuery();
+
+      $listDaylyTasks = $query->getResult();
+
+      $query2 = $repository->createQueryBuilder('t')
+        ->where('t.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('t.deadline > :date')
+        ->setParameter('date', $date)
+        ->orderBy('t.priority', 'DESC')
+        ->getQuery();
+
+      $listTasks = $query2->getResult();
+
       $listProjects = $user->getProjects();
+
+
         return $this->render('GRGameficatorBundle:Gameficator:index.html.twig', array(
           'listTasks' => $listTasks,
-          'listProjects' => $listProjects
+          'listProjects' => $listProjects,
+          'listDaylyTasks' =>$listDaylyTasks
         ));
     }
 
