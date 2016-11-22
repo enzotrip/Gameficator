@@ -41,11 +41,11 @@
         <tbody>
           {% for task in listTasks %}
             <tr>
-                <td><a href="">{{ task.name }}</a></td>
+                <td><a href="{{ path('gr_gameficator_viewtask', {'id': task.id}) }}">{{ task.name }}</a></td>
                 <td><span class="label label-warning"></span></td>
                 <td></td>
                 <td><span class="badge">A faire</span></td>
-                <td></td>
+                <td>{{task.deadline | date("d/m/y")}}</td>
             </tr>
           {% endfor %}
         </tbody>
