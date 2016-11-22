@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -37,6 +38,16 @@ class TaskType extends AbstractType
         'class' => 'GRGameficatorBundle:Project',
         'choice_label' => 'name',
         'multiple'     => false,
+      ))
+      ->add('type',             ChoiceType::class, array(
+        'choices' => array(
+        'Echéance' => 0,
+        'Récurrent' => 1),
+        'expanded' => true,
+        'multiple' => false))
+      ->add('deadline',        DateType::class, array(
+        'widget' => 'single_text',
+        'format' => 'dd/MM/yyyy'
       ))
       ->add('color',           TextType::class)
       ->add('description',    TextareaType::class)
