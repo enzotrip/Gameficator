@@ -33,3 +33,7 @@ gr_gameficator_viewreward:
 gr_gameficator_viewproject:
     path:    /project/{id}
     defaults: {_controller: GRGameficatorBundle:Gameficator:viewProject }
+
+gr_gameficator_viewtask:
+    path:    /task/{id}
+    defaults: {_controller: GRGameficatorBundle:Gameficator:viewTask }

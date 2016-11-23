@@ -124,10 +124,10 @@
 <div class="row">
       <div class="col-sm-12"><div class="form-group">
             <div class="col-sm-3">
-              <div class="rdio rdio-primary">
+                <div class="rdio rdio-primary">
                     {{ form_widget(form.type[1], {'attr':{'class': 'radio_type'}}) }}
                     {{ form_label(form.type[1])}}
-                  </div>
+                </div>
               </div>
           </div>
       </div><!-- form-group --></div>
@@ -135,14 +135,13 @@
 
 <div id="recurrent" class="row" style="display:none">
     <div class="col-sm-12"><div class="form-group">
-        <div class="col-sm-1"></div>
         <div class="col-sm-2" style="border-right: 1px solid #8E8585">
             <strong>Tous les :</strong>
 
             <div class="row"></br></div>
 
             <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="1" id="checkboxLundi">
+                <input type="checkbox" value="1" id="checkboxLundi" disabled="true">
                   <label for="checkboxLundi">Lundi</label>
             </div>
             <div class="ckbox ckbox-primary">
@@ -170,13 +169,15 @@
                   <label for="checkboxDimanche">Dimanche</label>
             </div>
         </div>
+
         <div class="col-sm-1"></br></br></br></br></br></br><strong>OU</strong></div>
-        <div class="col-sm-3">
+        <div class="col-sm-4">
+            <div class="row"></br></br></br></div>
             <div class="row">
               <div class="form-group">
                 <label class="col-sm-3 control-label"><strong>Date de début</strong></label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker2">
+                  <input type="text" class="form-control" id="datepicker1">
                 </div>
               </div>
             </div>
@@ -202,7 +203,7 @@
         </div>
         <div class="col-sm-5" style="border-left: 1px solid #8E8585">
           <div class="col-sm-1"></br></br></br></br></br></br><strong>OU</strong></div>
-            <div class="row">
+            <div class="row"></br></br></br></br></br>
               <label class="col-sm-2 control-label"><strong>Au moins </strong></label>
               <div class="col-sm-2">
                 <input type="number" class="form-control">
@@ -243,6 +244,7 @@
 <script type="text/javascript">
 
 $('#datepicker').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
+$('#datepicker1').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 
   // Color Picker
     if(jQuery('#colorpicker').length > 0) {
