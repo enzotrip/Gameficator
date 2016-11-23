@@ -1,7 +1,7 @@
 {% extends "GRGameficatorBundle::layout.html.twig" %}
 
 {% block title %}
-    <title>Gamificator | Mon Projet</title>
+    <title>Gamificator | Ma tâche</title>
 {% endblock title %}
 
 {% block pageheader %}
@@ -14,7 +14,7 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
                 <li>Dashboard</li>
-                <li>Taches</li>
+                <li>Tâches</li>
                 <li>{{task.name}}</li>
             </ul>
             <h4>{{task.name}}</h4>
@@ -34,7 +34,7 @@
                 {% endif %}
                 <p><strong>Topic</strong> :</p>
                 <p><strong>Statut</strong> :</p>
-                <p><strong>Echeance / récurrence</strong> : {{ task.deadline|date('d/m/Y') }}</p>
+                <p><strong>Echéance / récurrence</strong> : {{ task.deadline|date('d/m/Y') }}</p>
                 <p><strong>Priorité</strong> : {{ task.priority }}</p>
                 <p><strong>Nombre de points</strong> : {{ task.points }}</p>
                 {% if task.description != null %}
