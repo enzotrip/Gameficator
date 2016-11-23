@@ -31,7 +31,7 @@ class Reward
     /**
      * @var string
      *
-     * @ORM\Column(name="Description", type="string", length=255)
+     * @ORM\Column(name="Description", type="string", length=255, nullable=true)
      */
     private $description;
 
@@ -46,7 +46,7 @@ class Reward
      * @ORM\ManyToOne(targetEntity="GR\UserBundle\Entity\User", inversedBy="rewards")
      */
     private $user;
-    
+
     public function __construct()
     {
         $this->description= 'rien';

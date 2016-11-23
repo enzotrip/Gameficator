@@ -13,7 +13,7 @@ class LoadProject implements FixtureInterface
   {
 
     $names = array(
-      ' '
+      'Aucun'
     );
 
     foreach ($names as $name) {

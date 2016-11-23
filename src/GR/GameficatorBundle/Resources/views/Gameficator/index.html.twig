@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="panel panel-danger-head widget-todo">
             <div class="panel-heading">
                 <div class="pull-right">
@@ -27,9 +27,9 @@
 
             </ul>
         </div>
-    </div><!-- col-md-4 -->
+    </div><!-- col-md-5 -->
 
-    <div class="col-md-6">
+    <div class="col-md-5">
         <div class="panel panel-success-head widget-todo">
             <div class="panel-heading">
                 <div class="pull-right">
@@ -47,14 +47,40 @@
                 </li>
                 {% else %}
                 <li class="list-group-item">
-                    <label>Aucune tâche</label>
+                    <label>Aucune tâche à venir</label>
                 </li>
                 {% endfor %}
 
 
             </ul>
         </div>
-    </div><!-- col-md-6 -->
+    </div><!-- col-md-5 -->
+    <div class="col-md-2">
+        <div class="panel panel-primary-head widget-todo">
+            <div class="panel-heading">
+                <div class="pull-right">
+                    <a title="" data-toggle="tooltip" class="tooltips" id="addnewtodo" href="{{ path('gr_gameficator_createtask') }}" data-original-title="Add New"><i class="glyphicon glyphicon-plus"></i></a>
+                </div><!-- panel-btns -->
+                <h3 class="panel-title">Récompenses</h3>
+            </div>
+            <ul class="panel-body list-group nopadding" style="max-height:300px;overflow:auto;">
+              {% for task in listTasks %}
+                <li class="list-group-item">
+                      <div class="ckbox ckbox-default">
+                          <input type="checkbox" id="{{ task.id }}" value="1">
+                          <label for="{{ task.id }}">{{ task.name }} <span class="label label-warning">{% if task.project.user != null %} {{task.project.name}} {% endif %}</span> &nbsp; {{task.deadline | date("d/m/y")}}<span class="label label-warning"></span></label>
+                      </div>
+                </li>
+                {% else %}
+                <li class="list-group-item">
+                    <label>Aucune récompense</label>
+                </li>
+                {% endfor %}
+
+
+            </ul>
+        </div>
+    </div><!-- col-md-2 -->
 
 </div><!-- row -->
 

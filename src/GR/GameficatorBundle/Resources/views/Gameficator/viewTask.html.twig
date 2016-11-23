@@ -25,5 +25,30 @@
 
 {% block body %}
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <h2>Informations</h2>
+                {% if task.project.user != null %}
+                    <p><strong>Projet</strong> : {{ task.project.name }}</p>
+                {% endif %}
+                <p><strong>Topic</strong> :</p>
+                <p><strong>Statut</strong> :</p>
+                <p><strong>Echeance / récurrence</strong> : {{ task.deadline|date('d/m/Y') }}</p>
+                <p><strong>Priorité</strong> : {{ task.priority }}</p>
+                <p><strong>Nombre de points</strong> : {{ task.points }}</p>
+                {% if task.description != null %}
+                    <p><strong>Description</strong> : {{ task.description }}</p>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h2>Feedback</h2>
+                <p><strong>Cette semaine</strong> : </p>
+                <p><strong>Ce mois</strong> : </p>
+                <p><strong>Cette année</strong> : </p>
+                <p><strong>Depuis le début</strong> : </p>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
