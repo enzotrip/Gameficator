@@ -9,6 +9,7 @@ use GR\GameficatorBundle\Entity\Liste;
 use GR\GameficatorBundle\Entity\Project;
 use GR\GameficatorBundle\Entity\Reward;
 use GR\UserBundle\Entity\User;
+use GR\GameficatorBundle\Entity\Recurrent;
 
 use GR\GameficatorBundle\Form\TaskType;
 use GR\GameficatorBundle\Form\ProjectType;
@@ -137,6 +138,10 @@ class GameficatorController extends Controller
                       ->getRepository('GRUserBundle:User')
                       ->findOneBy(array('username' => $currentuser));
         $task->setUser($user); // set the current user
+        if($task->getType() == 1){
+            $recurrent = new Recurrent();
+            $task->setRecurrent($recurrent);
+        }
         $em = $this->getDoctrine()->getManager();
         $em->persist($task);
         $em->flush();

@@ -33,6 +33,12 @@ class Task
     private $reward;
 
     /**
+     * @ORM\OneToOne(targetEntity="GR\GameficatorBundle\Entity\Recurrent")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $recurrent;
+
+    /**
      * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Project", inversedBy="tasks")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -68,7 +74,7 @@ class Task
     /**
      * @var array
      *
-     * @ORM\Column(name="Type", type="array", nullable=true)
+     * @ORM\Column(name="Type", type="integer", nullable=true)
      */
     private $type;
 
@@ -170,30 +176,6 @@ class Task
     public function getStart()
     {
         return $this->start;
-    }
-
-    /**
-     * Set type
-     *
-     * @param array $type
-     *
-     * @return Task
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return array
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -434,5 +416,53 @@ class Task
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     *
+     * @return Task
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     *
+     * @return Task
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
