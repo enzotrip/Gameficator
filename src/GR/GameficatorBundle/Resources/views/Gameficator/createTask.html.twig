@@ -139,35 +139,14 @@
             <strong>Tous les :</strong>
 
             <div class="row"></br></div>
-
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="1" id="checkboxLundi" disabled="true">
-                  <label for="checkboxLundi">Lundi</label>
+            {% for day in form.recurrent.days %}
+            <div class="row">
+              <div class="ckbox ckbox-primary">
+                {{ form_widget(day, { 'attr' :{ 'class': 'ckbox ckbox-primary'}}) }}
+                {{ form_label(day)}}
+              </div>
             </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="2" id="checkboxMardi">
-                  <label for="checkboxMardi">Mardi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="3" id="checkboxMercredi">
-                  <label for="checkboxMercredi">Mercredi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="4" id="checkboxJeudi">
-                  <label for="checkboxJeudi">Jeudi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="5" id="checkboxVendredi">
-                  <label for="checkboxVendredi">Vendredi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="6" id="checkboxSamedi">
-                  <label for="checkboxSamedi">Samedi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="7" id="checkboxDimanche">
-                  <label for="checkboxDimanche">Dimanche</label>
-            </div>
+            {% endfor %}
         </div>
 
         <div class="col-sm-1"></br></br></br></br></br></br><strong>OU</strong></div>
@@ -177,7 +156,7 @@
               <div class="form-group">
                 <label class="col-sm-3 control-label"><strong>Date de début</strong></label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control" id="datepicker1">
+                  {{ form_widget(form.recurrent.startdate, {'id': 'datepicker1', 'attr': {'class': 'form-control'}})}}
                 </div>
               </div>
             </div>
@@ -187,18 +166,12 @@
             <div class="row">
               <label class="col-sm-3 control-label"><strong>Tous les : </strong></label>
               <div class="col-sm-3">
-                <input type="number" class="form-control">
+                {{ form_widget(form.recurrent.nbchoice2, { 'attr': {'class': 'form-control'} }) }}
               </div>
               <div class="col-sm-4">
-                <select class="form-control " id="sel1">
-                  <option></option>
-                  <option>Heures</option>
-                  <option>Jours</option>
-                  <option>Semaines</option>
-                  <option>Mois</option>
-                  <option>Ans</option>
-                </select>
+               {{ form_widget(form.recurrent.timechoice2, { 'attr': {'class': 'form-control'} }) }}
               </div>
+              {{ form_errors(form.recurrent.timechoice2) }}
             </div>
         </div>
         <div class="col-sm-5" style="border-left: 1px solid #8E8585">
@@ -206,19 +179,13 @@
             <div class="row"></br></br></br></br></br>
               <label class="col-sm-2 control-label"><strong>Au moins </strong></label>
               <div class="col-sm-2">
-                <input type="number" class="form-control">
+                {{ form_widget(form.recurrent.nbchoice3, { 'attr': {'class': 'form-control'} }) }}
               </div>
               <label class="col-sm-2 control-label"><strong>Fois par </strong></label>
               <div class="col-sm-3">
-                <select class="form-control " id="sel1">
-                  <option></option>
-                  <option>Heures</option>
-                  <option>Jours</option>
-                  <option>Semaines</option>
-                  <option>Mois</option>
-                  <option>Ans</option>
-                </select>
+               {{ form_widget(form.recurrent.timechoice3, { 'attr': {'class': 'form-control'} }) }}
               </div>
+              {{ form_errors(form.recurrent.timechoice3) }}
             </div>
             <div class="row"></br></br></br></br></br></br></div>
         </div>

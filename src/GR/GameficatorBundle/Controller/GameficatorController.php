@@ -13,6 +13,7 @@ use GR\GameficatorBundle\Entity\Recurrent;
 
 use GR\GameficatorBundle\Form\TaskType;
 use GR\GameficatorBundle\Form\ProjectType;
+use GR\GameficatorBundle\Form\RecurrentType;
 use GR\GameficatorBundle\Form\RewardType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -127,22 +128,22 @@ class GameficatorController extends Controller
     public function createTaskAction(Request $request)
     {
 
+      $em = $this->getDoctrine()->getManager();
       $task = new Task();
+      $recurrent = new Recurrent();
+      $task->setRecurrent($recurrent);
       $form   = $this->get('form.factory')->create(TaskType::class, $task);
-
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $task = $form->getData();
-
         $currentuser = $this->get('security.token_storage')->getToken()->getUser()->getUsername(); // get the current user
         $user = $this ->getDoctrine()
                       ->getRepository('GRUserBundle:User')
                       ->findOneBy(array('username' => $currentuser));
         $task->setUser($user); // set the current user
-        if($task->getType() == 1){
-            $recurrent = new Recurrent();
+        /*if($task->getType() == 1){
+            $em->persist($recurrent);
             $task->setRecurrent($recurrent);
-        }
-        $em = $this->getDoctrine()->getManager();
+        }*/
         $em->persist($task);
         $em->flush();
 

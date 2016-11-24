@@ -18,6 +18,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use GR\GameficatorBundle\Form\ImageType;
 
 class TaskType extends AbstractType
 {
@@ -53,6 +54,7 @@ class TaskType extends AbstractType
       ->add('description',    TextareaType::class)
       ->add('points',         IntegerType::class)
       ->add('save',           SubmitType::class, array('label' => 'Créer'))
+      ->add('recurrent',      RecurrentType::class)
     ;
 
     $builder->addEventListener(
