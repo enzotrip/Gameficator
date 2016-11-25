@@ -17,7 +17,7 @@
                 <li>Tâches</li>
                 <li>{{task.name}}</li>
             </ul>
-            <h4>{{task.name}}</h4>
+                <h4>{{task.name}} <a href="{{ path('gr_gameficator_updatetask', {'id': task.id}) }}"><span class="glyphicon glyphicon-edit" style="padding-left:20px; "></span></a></h4>
         </div>
     </div><!-- media -->
 </div><!-- pageheader -->
@@ -32,9 +32,13 @@
                 {% if task.project.user != null %}
                     <p><strong>Projet</strong> : {{ task.project.name }}</p>
                 {% endif %}
-                <p><strong>Topic</strong> :</p>
+                <p><strong>Topic</strong> : 
+                {%for topic in task.topics %}
+                        {{topic.name}}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+                </p>
                 <p><strong>Statut</strong> :</p>
-                <p><strong>Echéance / récurrence</strong> : {{ task.deadline|date('d/m/Y') }}</p>
+                <p><strong>Echéance / récurrence</strong> : </p>
                 <p><strong>Priorité</strong> : {{ task.priority }}</p>
                 <p><strong>Nombre de points</strong> : {{ task.points }}</p>
                 {% if task.description != null %}

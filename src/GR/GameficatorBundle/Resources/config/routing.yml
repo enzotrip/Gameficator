@@ -2,6 +2,7 @@ gr_gameficator_homepage:
     path:     /
     defaults: { _controller: GRGameficatorBundle:Gameficator:index }
 
+
 gr_gameficator_createtask:
     path:     /createTask
     defaults: { _controller: GRGameficatorBundle:Gameficator:createTask }
@@ -18,6 +19,22 @@ gr_gameficator_createreward:
     path:    /createReward
     defaults: {_controller: GRGameficatorBundle:Gameficator:createReward }
 
+gr_gameficator_createtopic:
+    path:    /createTopic
+    defaults: {_controller: GRGameficatorBundle:Gameficator:createTopic }
+
+gr_gameficator_updatetask:
+    path:    /updateTask/{id}
+    defaults: {_controller: GRGameficatorBundle:Gameficator:updateTask }
+
+gr_gameficator_updateproject:
+    path:    /updateProject/{id}
+    defaults: {_controller: GRGameficatorBundle:Gameficator:updateProject }
+
+gr_gameficator_updatereward:
+    path:    /updateReward/{id}
+    defaults: {_controller: GRGameficatorBundle:Gameficator:updateReward }
+
 gr_gameficator_viewprojects:
     path:    /mesProjets
     defaults: {_controller: GRGameficatorBundle:Gameficator:viewProjects }
@@ -25,6 +42,7 @@ gr_gameficator_viewprojects:
 gr_gameficator_viewrewards:
     path:    /mesRécompenses
     defaults: {_controller: GRGameficatorBundle:Gameficator:viewRewards }
+
 
 gr_gameficator_viewreward:
     path:    /reward/{id}

@@ -39,6 +39,11 @@ class User extends BaseUser
      */
     private $rewards;
 
+    /**
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", mappedBy="user")
+     */
+    private $topics;
+
     public function __construct()
     {
         parent::__construct();
@@ -184,5 +189,39 @@ class User extends BaseUser
     public function getRewards()
     {
         return $this->rewards;
+    }
+
+    /**
+     * Add topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     *
+     * @return User
+     */
+    public function addTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics[] = $topic;
+        $topic->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     */
+    public function removeTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics->removeElement($topic);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTopics()
+    {
+        return $this->topics;
     }
 }

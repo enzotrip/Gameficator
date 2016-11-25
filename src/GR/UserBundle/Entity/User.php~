@@ -30,6 +30,7 @@ class User extends BaseUser
 
     /**
      * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="user")
+     * @ORM\OrderBy({"deadline" = "ASC"})
      */
     private $tasks;
 
@@ -37,6 +38,11 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Reward", mappedBy="user")
      */
     private $rewards;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", mappedBy="user")
+     */
+    private $topics;
 
     public function __construct()
     {
@@ -149,5 +155,39 @@ class User extends BaseUser
     public function getTasks()
     {
         return $this->tasks;
+    }
+
+    /**
+     * Add reward
+     *
+     * @param \GR\GameficatorBundle\Entity\Reward $reward
+     *
+     * @return User
+     */
+    public function addReward(\GR\GameficatorBundle\Entity\Reward $reward)
+    {
+        $this->rewards[] = $reward;
+        $reward->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove reward
+     *
+     * @param \GR\GameficatorBundle\Entity\Reward $reward
+     */
+    public function removeReward(\GR\GameficatorBundle\Entity\Reward $reward)
+    {
+        $this->rewards->removeElement($reward);
+    }
+
+    /**
+     * Get rewards
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRewards()
+    {
+        return $this->rewards;
     }
 }

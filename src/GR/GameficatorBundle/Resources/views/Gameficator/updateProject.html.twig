@@ -1,7 +1,7 @@
 {% extends "GRGameficatorBundle::layout.html.twig" %}
 
 {% block title %}
-    <title>Gamificator | New Project</title>
+    <title>Gamificator | Mon Projet</title>
 {% endblock title %}
 
 {% block pageheader %}
@@ -14,9 +14,10 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
                 <li>Dashboard</li>
-                <li>Créer un projet</li>
+                <li>Projets</li>
+                <li>{{project.name}}</li>
             </ul>
-            <h4>Créer un projet</h4>
+            <h4>{{project.name}}</h4>
         </div>
     </div><!-- media -->
 </div><!-- pageheader -->
@@ -83,7 +84,7 @@
 
 <div class="form-group">
       <div class="pull-left">
-          {{ form_widget(form.save, { 'attr': {'value': 'Create Task', 'class': 'btn btn-success'}}) }}
+          {{ form_widget(form.save, {'label': 'Mettre à jour', attr:{ 'class': 'btn btn-success'}}) }}
       </div>
 
 </div>

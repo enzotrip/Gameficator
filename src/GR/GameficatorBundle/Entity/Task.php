@@ -3,7 +3,7 @@
 namespace GR\GameficatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Task
  *
@@ -49,6 +49,12 @@ class Task
       * @ORM\JoinColumn(nullable=true)
       */
     private $liste;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", cascade={"persist"})
+     * @ORM\JoinTable(name="gr_tasks_topics")
+     */
+    private $topics;
 
     /**
      * @var string
@@ -119,6 +125,7 @@ class Task
         $this->start= new \Datetime();
         $this->deadline= new \Datetime();
         $this->color='#000000';
+        $this->topics = new ArrayCollection();
     }
     /**
      * Get id
@@ -488,5 +495,39 @@ class Task
     public function getRecurrent()
     {
         return $this->recurrent;
+    }
+
+    /**
+     * Add topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     *
+     * @return Task
+     */
+    public function addTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics[] = $topic;
+
+        return $this;
+    }
+
+    /**
+     * Remove topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     */
+    public function removeTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics->removeElement($topic);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTopics()
+    {
+        return $this->topics;
     }
 }

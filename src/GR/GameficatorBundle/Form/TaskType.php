@@ -40,6 +40,11 @@ class TaskType extends AbstractType
         'choice_label' => 'name',
         'multiple'     => false,
       ))
+      ->add('topics',     EntityType::class, array(
+        'class' => 'GRGameficatorBundle:Topic',
+        'choice_label' => 'name',
+        'multiple'     => true,
+      ))
       ->add('type',             ChoiceType::class, array(
         'choices' => array(
         'Echéance' => 0,
@@ -51,7 +56,7 @@ class TaskType extends AbstractType
         'format' => 'dd/MM/yyyy'
       ))
       ->add('color',           TextType::class)
-      ->add('description',    TextareaType::class)
+      ->add('description',    TextareaType::class, array( 'required' =>false))
       ->add('points',         IntegerType::class)
       ->add('save',           SubmitType::class, array('label' => 'Créer'))
       ->add('recurrent',      RecurrentType::class)

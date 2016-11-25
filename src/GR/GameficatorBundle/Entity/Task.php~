@@ -33,7 +33,7 @@ class Task
     private $reward;
 
     /**
-     * @ORM\OneToOne(targetEntity="GR\GameficatorBundle\Entity\Recurrent")
+     * @ORM\OneToOne(targetEntity="GR\GameficatorBundle\Entity\Recurrent", cascade={"persist"})
      * @ORM\JoinColumn(nullable=true)
      */
     private $recurrent;
@@ -49,6 +49,12 @@ class Task
       * @ORM\JoinColumn(nullable=true)
       */
     private $liste;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", cascade={"persist"})
+     * @ORM\JoinTable(name="gr_tasks_topics")
+     */
+    private $topics;
 
     /**
      * @var string
@@ -464,5 +470,29 @@ class Task
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * Set recurrent
+     *
+     * @param \GR\GameficatorBundle\Entity\Recurrent $recurrent
+     *
+     * @return Task
+     */
+    public function setRecurrent(\GR\GameficatorBundle\Entity\Recurrent $recurrent = null)
+    {
+        $this->recurrent = $recurrent;
+
+        return $this;
+    }
+
+    /**
+     * Get recurrent
+     *
+     * @return \GR\GameficatorBundle\Entity\Recurrent
+     */
+    public function getRecurrent()
+    {
+        return $this->recurrent;
     }
 }
