@@ -19,6 +19,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GR\GameficatorBundle\Form\ImageType;
+use GR\UserBundle\Entity\User;
 
 class TaskType extends AbstractType
 {
@@ -37,6 +38,11 @@ class TaskType extends AbstractType
                     )))
       ->add('project',     EntityType::class, array(
         'class' => 'GRGameficatorBundle:Project',
+        'choice_label' => 'name',
+        'multiple'     => false,
+      ))
+      ->add('taskparent',     EntityType::class, array(
+        'class' => 'GRGameficatorBundle:Task',
         'choice_label' => 'name',
         'multiple'     => false,
       ))

@@ -50,6 +50,18 @@ class Task
       */
     private $liste;
 
+     /**
+      * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Task", inversedBy="tasksenfant")
+      * @ORM\JoinColumn(nullable=true)
+      */
+    private $taskparent;
+
+     /**
+      * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="taskparent")
+      * @ORM\JoinColumn(nullable=true)
+      */
+    private $tasksenfant;
+
     /**
      * @ORM\ManyToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", cascade={"persist"})
      * @ORM\JoinTable(name="gr_tasks_topics")
@@ -126,6 +138,9 @@ class Task
         $this->deadline= new \Datetime();
         $this->color='#000000';
         $this->topics = new ArrayCollection();
+        $this->tasksenfant = new ArrayCollection();
+        $this->priority=0;
+        $this->points=0;
     }
     /**
      * Get id
@@ -529,5 +544,66 @@ class Task
     public function getTopics()
     {
         return $this->topics;
+    }
+
+
+    /**
+     * Set taskparent
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $taskparent
+     *
+     * @return Task
+     */
+    public function setTaskparent(\GR\GameficatorBundle\Entity\Task $taskparent = null)
+    {
+        $this->taskparent = $taskparent;
+
+        return $this;
+    }
+
+    /**
+     * Get taskparent
+     *
+     * @return \GR\GameficatorBundle\Entity\Task
+     */
+    public function getTaskparent()
+    {
+        return $this->taskparent;
+    }
+
+    
+
+    /**
+     * Add tasksenfant
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $tasksenfant
+     *
+     * @return Task
+     */
+    public function addTasksenfant(\GR\GameficatorBundle\Entity\Task $tasksenfant)
+    {
+        $this->tasksenfant[] = $tasksenfant;
+        $tasksenfant->setTaskparent($this);
+        return $this;
+    }
+
+    /**
+     * Remove tasksenfant
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $tasksenfant
+     */
+    public function removeTasksenfant(\GR\GameficatorBundle\Entity\Task $tasksenfant)
+    {
+        $this->tasksenfant->removeElement($tasksenfant);
+    }
+
+    /**
+     * Get tasksenfant
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasksenfant()
+    {
+        return $this->tasksenfant;
     }
 }

@@ -61,10 +61,12 @@
                           {% for task in project.getTasks %}
                             <tr>
                                 <td><a href="{{ path('gr_gameficator_viewtask', {'id': task.id}) }}">{{ task.name }}</a></td>
-                                <td></td>
+                                <td>{%for topic in task.topics %}
+                                        <span class="badge badge-info">{% if topic.name == "Aucun" %}{{topic.name}} {% endif %}</span>{% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
                                 <td><span class="badge">A faire</span></td>
                                 <td>{{task.deadline | date("d/m/y")}}</td>
-                            </tr>
                           {% endfor %}
                         </tbody>
                     </table>
