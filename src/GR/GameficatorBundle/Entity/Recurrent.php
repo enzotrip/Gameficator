@@ -279,7 +279,35 @@ class Recurrent
     public function setOccurrencesByWhen() {
         $r = new When();
         $r2 = new When();
-        if($this->mode == 2) {
+        $flag =false;
+        $today = new \Datetime();
+        $stdr = substr(strtoupper($today->format('l')), 0, 2);
+        $days = array($stdr);
+        foreach($this->days as $day) {
+            if($day->getName() == "Lundi"){
+                $days[] = "MO";
+                $flag = true;
+            }elseif($day->getName() == "Mardi") {
+                $days[] = "TU";
+                $flag = true;
+            }elseif($day->getName() == "Mercredi") {
+                $days[] = "WE";
+                $flag = true;
+            }elseif($day->getName() == "Jeudi") {
+                $days[] = "TH";
+                $flag = true;
+            }elseif($day->getName() == "Vendredi") {
+                $days[] = "FR";
+                $flag = true;
+            }elseif($day->getName() == "Samedi") {
+                $days[] = "SA";
+                $flag = true;
+            }elseif($day->getName() == "Dimanche") {
+                $days[] = "SU";
+                $flag = true;
+            }
+        }
+        if($flag == false) {
             if($this->timechoice2 == "Heures"){
                 $r->startDate($this->startdate)
                   ->freq("hourly")
@@ -312,42 +340,22 @@ class Recurrent
                   ->interval($this->nbchoice2)
                   ->generateOccurrences();
             }
-       }elseif ($this->mode == 1){
-            $today = new \Datetime();
-            $stdr = substr(strtoupper($today->format('l')), 0, 2);
-            $days = array($stdr);
-            foreach($this->days as $day) {
-                if($day->getName() == "Lundi"){
-                    $days[] = "MO";
-                }elseif($day->getName() == "Mardi") {
-                    $days[] = "TU";
-                }elseif($day->getName() == "Mercredi") {
-                    $days[] = "WE";
-                }elseif($day->getName() == "Jeudi") {
-                    $days[] = "TH";
-                }elseif($day->getName() == "Vendredi") {
-                    $days[] = "FR";
-                }elseif($day->getName() == "Samedi") {
-                    $days[] = "SA";
-                }elseif($day->getName() == "Dimanche") {
-                    $days[] = "SU";
-                }
-            }
-           
-            $r2->startDate(new \Datetime())
-               ->freq("weekly")
-               ->count(10)
-               ->byday($days)
-               ->generateOccurrences();
+       }elseif ($flag==true){
+          // if($flag==true) {
+                $r2->startDate(new \Datetime())
+                   ->freq("weekly")
+                   ->count(10)
+                   ->byday($days)
+                   ->generateOccurrences();
+                unset($days[0]);
+                $days = array_values($days);
 
-            unset($days[0]);
-            $days = array_values($days);
-
-            $r->startDate($r2->occurrences[1])
-              ->freq("weekly")
-              ->count(10)
-              ->byday($days)
-              ->generateOccurrences();
+                $r->startDate($r2->occurrences[1])
+                  ->freq("weekly")
+                  ->count(10)
+                  ->byday($days)
+                  ->generateOccurrences();
+           // }
        }
         $occurrences = $r->occurrences;
         $this->occurences = $occurrences;
