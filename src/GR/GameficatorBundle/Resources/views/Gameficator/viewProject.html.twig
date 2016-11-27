@@ -66,7 +66,7 @@
                                     {% endfor %}
                                 </td>
                                 <td><span class="badge">A faire</span></td>
-                                <td>{{task.deadline | date("d/m/y")}}</td>
+                                <td>{% if task.type==0 %}{{task.deadline | date("d/m/y")}} {% else %} Recurrente {% endif %}</td>
                           {% endfor %}
                         </tbody>
                     </table>

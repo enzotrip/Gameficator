@@ -80,12 +80,11 @@ class Recurrent
      */
     private $occurences;
 
-
     public function __construct() {
 
         $this->startdate = new \Datetime();
         $this->days = new ArrayCollection();
-        $this->mode = 2;
+        $this->mode = 0;
 
     }
     /**
@@ -276,103 +275,49 @@ class Recurrent
         return $this->mode;
     }
 
-    public function setOccurrencesByWhen() {
-        $r = new When();
-        $r2 = new When();
-        if($this->mode == 2) {
-            if($this->timechoice2 == "Heures"){
-                $r->startDate($this->startdate)
+    public function setOccurrence() {
+        //if($this->mode == 2) {
+            if($this->timechoice2 == "Heure"){
+                $r = new When();
+                $r->startDate($this->startDate)
                   ->freq("hourly")
                   ->count(10)
                   ->interval($this->nbchoice2)
                   ->generateOccurrences();
-            }elseif($this->timechoice2 == "Jours"){
-                $r->startDate($this->startdate)
+                $occurrences = $r->occurrences;
+            }elseif($this->timechoice2 == "Jour"){
+                 $r->startDate($this->startDate)
                   ->freq("daily")
                   ->count(10)
                   ->interval($this->nbchoice2)
                   ->generateOccurrences();
-            }elseif($this->timechoice2 == "Semaines"){
-                $r->startDate($this->startdate)
+                $occurrences = $r->occurrences;
+            }elseif($this->timechoice2 == "Semaine"){
+                $r->startDate($this->startDate)
                   ->freq("weekly")
                   ->count(10)
                   ->interval($this->nbchoice2)
                   ->generateOccurrences();
+                $occurrences = $r->occurrences;
+                        $occurrences = $r->occurrences;
             }elseif($this->timechoice2 == "Mois"){
-                $r->startDate($this->startdate)
+                $r->startDate($this->startDate)
                   ->freq("monthly")
                   ->count(10)
                   ->interval($this->nbchoice2)
                   ->generateOccurrences();
-            }elseif($this->timechoice2 == "Ans"){
-                $r->startDate($this->startdate)
+                $occurrences = $r->occurrences;
+            }elseif($this->timechoice2 == "An"){
+                $r->startDate($this->startDate)
                   ->freq("yearly")
                   ->count(10)
-                  ->bymonth($this->startdate->format('m'))
                   ->interval($this->nbchoice2)
                   ->generateOccurrences();
+                $occurrences = $r->occurrences;
             }
-       }elseif ($this->mode == 1){
-            $today = new \Datetime();
-            $stdr = substr(strtoupper($today->format('l')), 0, 2);
-            $days = array($stdr);
-            foreach($this->days as $day) {
-                if($day->getName() == "Lundi"){
-                    $days[] = "MO";
-                }elseif($day->getName() == "Mardi") {
-                    $days[] = "TU";
-                }elseif($day->getName() == "Mercredi") {
-                    $days[] = "WE";
-                }elseif($day->getName() == "Jeudi") {
-                    $days[] = "TH";
-                }elseif($day->getName() == "Vendredi") {
-                    $days[] = "FR";
-                }elseif($day->getName() == "Samedi") {
-                    $days[] = "SA";
-                }elseif($day->getName() == "Dimanche") {
-                    $days[] = "SU";
-                }
-            }
-           
-            $r2->startDate(new \Datetime())
-               ->freq("weekly")
-               ->count(10)
-               ->byday($days)
-               ->generateOccurrences();
-
-            unset($days[0]);
-            $days = array_values($days);
-
-            $r->startDate($r2->occurrences[1])
-              ->freq("weekly")
-              ->count(10)
-              ->byday($days)
-              ->generateOccurrences();
-       }
-        $occurrences = $r->occurrences;
-        $this->occurences = $occurrences;
-        return $this;
+        //}
+        return $occurrences;
     }
-    /**
-     * Set occurences
-     *
-     * @param array $occurences
-     *
-     * @return Recurrent
-     */
-    public function setOccurences($occurences)
-    {
-        $this->occurences = $occurences;
 
-        return $this;
-    }
-    /**
-     * Get occurences
-     *
-     * @return array
-     */
-    public function getOccurences()
-    {
-        return $this->occurences;
-    }
+
 }

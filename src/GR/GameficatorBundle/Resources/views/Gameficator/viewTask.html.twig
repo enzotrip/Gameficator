@@ -30,7 +30,7 @@
             <div class="col-md-6">
                 <h2>Informations</h2>
                 {% if task.project.user != null %}
-                    <p><strong>Projet</strong> : {{ task.project.name }}</p>
+                    <p><strong>Projet</strong> : <a href="{{ path('gr_gameficator_viewproject', {'id': task.project.id}) }}">{{ task.project.name }} </a></p>
                 {% endif %}
                 <p><strong>Topic</strong> : 
                 {%for topic in task.topics %}
@@ -38,12 +38,21 @@
                 {% endfor %}
                 </p>
                 <p><strong>Statut</strong> :</p>
-                <p><strong>Echéance / récurrence</strong> : </p>
+                <p><strong>Echéance / récurrence</strong> : {% if task.type==0 %}{{task.deadline | date("d/m/y")}} {% else %} Recurrente {% endif %}</p>
                 <p><strong>Priorité</strong> : {{ task.priority }}</p>
                 <p><strong>Nombre de points</strong> : {{ task.points }}</p>
                 {% if task.description != null %}
                     <p><strong>Description</strong> : {{ task.description }}</p>
                 {% endif %}
+                <p>{{task.recurrent.timechoice2}}</p>
+                {% for occurence in task.recurrent.occurences %}
+                    <p>{{occurence| date("d/m/y H:i:s l")}}</p>
+                {%  endfor %}
+                {% for day in task.recurrent.days %}
+                    <p> {{day.name}} </p>
+                {% else %}
+                    <p> pas de jour </p>
+                {% endfor %}
             </div>
             <div class="col-md-6">
                 <h2>Feedback</h2>

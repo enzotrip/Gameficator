@@ -33,7 +33,7 @@ class RecurrentType extends AbstractType
                 ->add('timechoice2',        ChoiceType::class, array(
                     'choices' => array(
                         'Heures' => "Heures",
-                        'Jours' => "Jour",
+                        'Jours' => "Jours",
                         'Semaines' => "Semaines",
                         'Mois' => "Mois",
                         'Ans' => 'Ans'
@@ -42,7 +42,7 @@ class RecurrentType extends AbstractType
                 ->add('timechoice3',        ChoiceType::class, array(
                     'choices' => array(
                         'Heures' => "Heures",
-                        'Jours' => "Jour",
+                        'Jours' => "Jours",
                         'Semaines' => "Semaines",
                         'Mois' => "Mois",
                         'Ans' => 'Ans'

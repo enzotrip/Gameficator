@@ -135,7 +135,7 @@ class GameficatorController extends Controller
       $recurrent = new Recurrent();
       $task->setRecurrent($recurrent);
       $form   = $this->get('form.factory')->create(TaskType::class, $task);
-      
+
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $task = $form->getData();
         $currentuser = $this->get('security.token_storage')->getToken()->getUser()->getUsername(); // get the current user
@@ -143,6 +143,7 @@ class GameficatorController extends Controller
                       ->getRepository('GRUserBundle:User')
                       ->findOneBy(array('username' => $currentuser));
         $task->setUser($user);
+        $task->getRecurrent()->setOccurrencesByWhen();
         $em->persist($task);
         $em->flush();
 
@@ -252,7 +253,7 @@ class GameficatorController extends Controller
       $form   = $this->get('form.factory')->create(TaskType::class, $task);
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $task = $form->getData();
-        
+        $task->getRecurrent()->setOccurrencesByWhen();
         $em->persist($task);
         $em->flush();
 
