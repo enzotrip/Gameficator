@@ -141,6 +141,7 @@ class Task
         $this->tasksenfant = new ArrayCollection();
         $this->priority=0;
         $this->points=0;
+        $this->state=1;
     }
     /**
      * Get id

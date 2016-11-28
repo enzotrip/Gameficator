@@ -40,6 +40,8 @@ class GameficatorController extends Controller
         ->setParameter('user', $user)
         ->andWhere('t.deadline = :date')
         ->setParameter('date', $date)
+        ->andWhere('t.state = :state')
+        ->setParameter('state', 1)
         ->orderBy('t.priority', 'DESC')
         ->getQuery();
 
@@ -50,12 +52,23 @@ class GameficatorController extends Controller
         ->setParameter('user', $user)
         ->andWhere('t.deadline > :date')
         ->setParameter('date', $date)
+        ->andWhere('t.state = :state')
+        ->setParameter('state', 1)
         ->orderBy('t.priority', 'DESC')
         ->getQuery();
 
       $listTasks = $query2->getResult();
 
-      $listProjects = $user->getProjects();
+      $repository_project = $this->getDoctrine()->getRepository('GRGameficatorBundle:Project');
+
+      $query3 = $repository_project->createQueryBuilder('p')
+        ->where('p.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('p.state = :state')
+        ->setParameter('state', 1)
+        ->getQuery();
+
+      $listProjects = $query->getResult();
 
 
         return $this->render('GRGameficatorBundle:Gameficator:index.html.twig', array(
@@ -70,7 +83,17 @@ class GameficatorController extends Controller
 
       $user = $this->getUser();
 
-      $listProjects = $user->getProjects();
+      $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Project');
+
+      $query = $repository->createQueryBuilder('p')
+        ->where('p.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('p.state = :state')
+        ->setParameter('state', 1)
+        ->getQuery();
+
+      $listProjects = $query->getResult();
+
         return $this->render('GRGameficatorBundle:Gameficator:mesProjets.html.twig', array(
           'listProjects' => $listProjects
         ));

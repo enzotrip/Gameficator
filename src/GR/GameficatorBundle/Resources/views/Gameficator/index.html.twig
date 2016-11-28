@@ -68,7 +68,7 @@
                         <p class="mb15">Statut de vos projets</p>
                         {% for project in listProjects %}
                         <div class="col-md-3">
-                            <span class=""><a href="{{ path('gr_gameficator_viewproject', {'id': project.id}) }}">{{project.name}}</a> ({{project.avancement}} %)</span>
+                            <span class=""><a href="{{ path('gr_gameficator_viewproject', {'id': project.id}) }}">{{project.name}}</a> ({{project.avancement}}%)</span>
                             <div class="progress progress-striped active">
                                 <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{project.avancement}}%"></div>
                             </div><!-- progress -->
