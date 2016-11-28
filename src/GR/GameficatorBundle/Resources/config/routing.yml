@@ -11,6 +11,15 @@ gr_gameficator_taskstodo:
     path:     /tasksToDo
     defaults: { _controller: GRGameficatorBundle:Gameficator:tasksToDo }
 
+
+gr_gameficator_projetsarchives:
+    path:     /mesProjetsArchives
+    defaults: { _controller: GRGameficatorBundle:Gameficator:projetsArchives }
+
+gr_gameficator_projetscorbeille:
+    path:     /projetsCorbeille
+    defaults: { _controller: GRGameficatorBundle:Gameficator:projetsCorbeille }
+
 gr_gameficator_tachesarchivees:
     path:     /tachesArchivees
     defaults: { _controller: GRGameficatorBundle:Gameficator:tachesArchivees }
@@ -18,6 +27,7 @@ gr_gameficator_tachesarchivees:
 gr_gameficator_tachescorbeille:
     path:     /tachesCorbeille
     defaults: { _controller: GRGameficatorBundle:Gameficator:tachesCorbeille }
+
 
 gr_gameficator_createproject:
     path:    /createProject

@@ -100,7 +100,6 @@ class Project
         $this->deadline= new \Datetime();
         $this->lastUpdate= new \Datetime();
         $this->avancement= 0;
-        $this->state=1;
         $this->priority=0;
     }
 
@@ -373,29 +372,5 @@ class Project
     public function getAvancement()
     {
         return $this->avancement;
-    }
-
-    /**
-     * Set state
-     *
-     * @param integer $state
-     *
-     * @return Project
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
-
-        return $this;
-    }
-
-    /**
-     * Get state
-     *
-     * @return integer
-     */
-    public function getState()
-    {
-        return $this->state;
     }
 }

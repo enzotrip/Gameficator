@@ -347,6 +347,48 @@ class GameficatorController extends Controller
       ));
     }
 
+    public function projetsArchivesAction()
+    {
+
+      $user = $this->getUser();
+
+      $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Project');
+
+      $query = $repository->createQueryBuilder('p')
+        ->where('p.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('p.state = :state')
+        ->setParameter('state', 2)
+        ->getQuery();
+
+      $listProjects = $query->getResult();
+
+      return $this->render('GRGameficatorBundle:Gameficator:mesProjetsArchives.html.twig', array(
+        'listProjects' => $listProjects
+      ));
+    }
+
+    public function projetsCorbeilleAction()
+    {
+
+      $user = $this->getUser();
+
+      $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Project');
+
+      $query = $repository->createQueryBuilder('p')
+        ->where('p.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('p.state = :state')
+        ->setParameter('state', 3)
+        ->getQuery();
+
+      $listProjects = $query->getResult();
+
+      return $this->render('GRGameficatorBundle:Gameficator:projetsCorbeille.html.twig', array(
+        'listProjects' => $listProjects
+      ));
+    }
+
     public function tachesArchiveesAction()
     {
 

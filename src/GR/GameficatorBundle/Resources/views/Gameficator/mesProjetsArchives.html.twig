@@ -1,0 +1,57 @@
+{% extends "GRGameficatorBundle::layout.html.twig" %}
+
+{% block title %}
+    <title>Gamificator | Mes Projets archivés</title>
+{% endblock title %}
+
+{% block pageheader %}
+<div class="pageheader">
+    <div class="media">
+        <div class="pageicon pull-left">
+            <i class="fa fa-file"></i>
+        </div>
+        <div class="media-body">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li>Dashboard</li>
+                <li>Projets</li>
+                <li>Mes Projets archivés</li>
+            </ul>
+            <h4>Mes Projets archivés</h4>
+        </div>
+    </div><!-- media -->
+</div><!-- pageheader -->
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-sm-12">
+    {% for project in listProjects %}
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a href="{{ path('gr_gameficator_viewproject', {'id': project.id}) }}"><h2 class=".h2">{{project.name}}</h2></a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Avancement ({{project.avancement}}%) :</p>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="progress progress-striped active">
+                            <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{project.avancement}}%"></div>
+                        </div><!-- progress -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
