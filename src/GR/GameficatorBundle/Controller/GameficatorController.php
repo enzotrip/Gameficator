@@ -148,6 +148,7 @@ class GameficatorController extends Controller
                       ->getRepository('GRUserBundle:User')
                       ->findOneBy(array('username' => $currentuser));
         $task->setUser($user);
+        $task->setState(1); // 1: a faire, 2: archivée(terminée), 3: corbeille
         $task->getRecurrent()->setOccurrencesByWhen();
         $em->persist($task);
         $em->flush();
@@ -329,9 +330,63 @@ class GameficatorController extends Controller
 
       $user = $this->getUser();
 
-      $listTasks = $user->getTasks();
+      $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Task');
+
+      $query = $repository->createQueryBuilder('t')
+        ->where('t.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('t.state = :state')
+        ->setParameter('state', 1)
+        ->orderBy('t.priority', 'DESC')
+        ->getQuery();
+
+      $listTasks = $query->getResult();
 
       return $this->render('GRGameficatorBundle:Gameficator:tasksToDo.html.twig', array(
+        'listTasks' => $listTasks
+      ));
+    }
+
+    public function tachesArchiveesAction()
+    {
+
+      $user = $this->getUser();
+
+      $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Task');
+
+      $query = $repository->createQueryBuilder('t')
+        ->where('t.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('t.state = :state')
+        ->setParameter('state', 2)
+        ->orderBy('t.priority', 'DESC')
+        ->getQuery();
+
+      $listTasks = $query->getResult();
+
+      return $this->render('GRGameficatorBundle:Gameficator:tachesArchivees.html.twig', array(
+        'listTasks' => $listTasks
+      ));
+    }
+
+    public function tachesCorbeilleAction()
+    {
+
+      $user = $this->getUser();
+
+      $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Task');
+
+      $query = $repository->createQueryBuilder('t')
+        ->where('t.user = :user')
+        ->setParameter('user', $user)
+        ->andWhere('t.state = :state')
+        ->setParameter('state', 3)
+        ->orderBy('t.priority', 'DESC')
+        ->getQuery();
+
+      $listTasks = $query->getResult();
+
+      return $this->render('GRGameficatorBundle:Gameficator:tachesCorbeille.html.twig', array(
         'listTasks' => $listTasks
       ));
     }

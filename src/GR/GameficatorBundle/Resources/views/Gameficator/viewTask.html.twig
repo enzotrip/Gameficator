@@ -32,12 +32,12 @@
                 {% if task.project.user != null %}
                     <p><strong>Projet</strong> : <a href="{{ path('gr_gameficator_viewproject', {'id': task.project.id}) }}">{{ task.project.name }} </a></p>
                 {% endif %}
-                <p><strong>Topic</strong> : 
-                {%for topic in task.topics %}
+                <p><strong>Topic</strong> :
+                {% for topic in task.topics %}
                         {{topic.name}}{% if not loop.last %}, {% endif %}
                 {% endfor %}
                 </p>
-                <p><strong>Statut</strong> :</p>
+                <p><strong>Statut</strong> : {% if task.state == 1 %}A faire{% elseif task.state == 2 %}Archivée{% else %}Corbeille{% endif %}</p>
                 <p><strong>Echéance / récurrence</strong> : {% if task.type==0 %}{{task.deadline | date("d/m/y")}} {% else %} Recurrente {% endif %}</p>
                 <p><strong>Priorité</strong> : {{ task.priority }}</p>
                 <p><strong>Nombre de points</strong> : {{ task.points }}</p>

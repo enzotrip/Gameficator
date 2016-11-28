@@ -104,9 +104,9 @@ class Task
     private $deadline;
 
     /**
-     * @var array
+     * @var int
      *
-     * @ORM\Column(name="State", type="array")
+     * @ORM\Column(name="State", type="integer")
      * @ORM\JoinColumn(nullable=true)
      */
     private $state;
