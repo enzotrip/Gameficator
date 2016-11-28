@@ -29,6 +29,23 @@ gr_gameficator_tachescorbeille:
     defaults: { _controller: GRGameficatorBundle:Gameficator:tachesCorbeille }
 
 
+gr_gameficator_archiverproject:
+    path:    /archiverproject/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:ArchiverProject}
+
+gr_gameficator_corbeilleproject:
+    path:    /corbeilleproject/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:CorbeilleProject}
+
+gr_gameficator_majproject:
+    path:    /majproject/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:MajProject}
+
+gr_gameficator_deleteproject:
+    path:    /deleteproject/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:DeleteProject}
+
+
 gr_gameficator_createproject:
     path:    /createProject
     defaults: {_controller: GRGameficatorBundle:Gameficator:createProject }
@@ -40,6 +57,7 @@ gr_gameficator_createreward:
 gr_gameficator_createtopic:
     path:    /createTopic
     defaults: {_controller: GRGameficatorBundle:Gameficator:createTopic }
+
 
 gr_gameficator_updatetask:
     path:    /updateTask/{id}
@@ -53,6 +71,7 @@ gr_gameficator_updatereward:
     path:    /updateReward/{id}
     defaults: {_controller: GRGameficatorBundle:Gameficator:updateReward }
 
+
 gr_gameficator_viewprojects:
     path:    /mesProjets
     defaults: {_controller: GRGameficatorBundle:Gameficator:viewProjects }
@@ -60,7 +79,6 @@ gr_gameficator_viewprojects:
 gr_gameficator_viewrewards:
     path:    /mesRécompenses
     defaults: {_controller: GRGameficatorBundle:Gameficator:viewRewards }
-
 
 gr_gameficator_viewreward:
     path:    /reward/{id}

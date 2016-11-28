@@ -82,6 +82,19 @@
             </div>
         </div>
     </div>
+    <div class="row">
+    {% if project.state == 1 %}
+    <a href="{{ path('gr_gameficator_archiverproject', {'id': project.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-share"></span> Archiver</button></a>
+    <a href="{{ path('gr_gameficator_corbeilleproject', {'id': project.id}) }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Corbeille </button></a>
+    {% elseif project.state == 2 %}
+    <a href="{{ path('gr_gameficator_majproject', {'id': project.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-share"></span> Mettre à jour </button></a>
+    <a href="{{ path('gr_gameficator_corbeilleproject', {'id': project.id}) }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Corbeille </button></a>
+    {% elseif project.state == 3 %}
+    <a href="{{ path('gr_gameficator_majproject', {'id': project.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-share"></span> Mettre à jour </button></a>
+    <a href="{{ path('gr_gameficator_archiverproject', {'id': project.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-share"></span> Archiver</button></a>
+    <a href="{{ path('gr_gameficator_deleteproject', {'id': project.id}) }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer définitivement </button></a>
+    {% endif %}
+    </div>
 
     <br />
 
