@@ -68,7 +68,7 @@ class GameficatorController extends Controller
         ->setParameter('state', 1)
         ->getQuery();
 
-      $listProjects = $query->getResult();
+      $listProjects = $query3->getResult();
 
 
         return $this->render('GRGameficatorBundle:Gameficator:index.html.twig', array(
