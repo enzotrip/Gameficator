@@ -456,6 +456,7 @@ class GameficatorController extends Controller
       ));
     }
 
+
     public function ArchiverProjectAction($id)
     {
       $em = $this->getDoctrine()->getManager();
@@ -503,4 +504,47 @@ class GameficatorController extends Controller
       $em->flush();
       return $this->redirectToRoute('gr_gameficator_homepage');
     }
+
+    public function ArchiverTaskAction($id)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $task = $em->getRepository('GRGameficatorBundle:Task')->find($id);
+      $task->setState(2);
+      $em->persist($task);
+      $em->flush();
+
+      return $this->redirectToRoute('gr_gameficator_tachesarchivees');
+    }
+
+    public function CorbeilleTaskAction($id)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $task = $em->getRepository('GRGameficatorBundle:Task')->find($id);
+      $task->setState(3);
+      $em->persist($task);
+      $em->flush();
+
+      return $this->redirectToRoute('gr_gameficator_tachescorbeille');
+    }
+
+    public function MajTaskAction($id)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $task = $em->getRepository('GRGameficatorBundle:Task')->find($id);
+      $task->setState(1);
+      $em->persist($task);
+      $em->flush();
+
+      return $this->redirectToRoute('gr_gameficator_taskstodo');
+    }
+
+    public function DeleteTaskAction($id)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $task = $em->getRepository('GRGameficatorBundle:Task')->find($id);
+      $em->remove($task);
+      $em->flush();
+      return $this->redirectToRoute('gr_gameficator_homepage');
+    }
+
 }

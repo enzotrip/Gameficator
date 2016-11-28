@@ -46,6 +46,24 @@ gr_gameficator_deleteproject:
     defaults: { _controller: GRGameficatorBundle:Gameficator:DeleteProject}
 
 
+gr_gameficator_archivertask:
+    path:    /archivertask/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:ArchiverTask}
+
+gr_gameficator_corbeilletask:
+    path:    /corbeilletask/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:CorbeilleTask}
+
+gr_gameficator_majtask:
+    path:    /majtask/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:MajTask}
+
+gr_gameficator_deletetask:
+    path:    /deletetask/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:DeleteTask}
+
+
+
 gr_gameficator_createproject:
     path:    /createProject
     defaults: {_controller: GRGameficatorBundle:Gameficator:createProject }
