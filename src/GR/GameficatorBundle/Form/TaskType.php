@@ -20,12 +20,14 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GR\GameficatorBundle\Form\ImageType;
 use GR\UserBundle\Entity\User;
+use Doctrine\ORM\EntityRepository;
 
 class TaskType extends AbstractType
 {
 
   public function buildForm(FormBuilderInterface $builder, array $options)
   {
+    $user = $options['user'];
 
     $builder
       ->add('name',           TextType::class)
@@ -36,18 +38,33 @@ class TaskType extends AbstractType
                         '2' => 2,
                         '3' => 3
                     )))
-      ->add('project',     EntityType::class, array(
+      ->add('project', EntityType::class, array(
         'class' => 'GRGameficatorBundle:Project',
+        'query_builder' => function (EntityRepository $er) use (&$user) {
+          return $er->createQueryBuilder('t')
+                    ->where('t.user is NULL OR t.user = :user')
+                    ->setParameter('user', $user);
+          },
         'choice_label' => 'name',
         'multiple'     => false,
       ))
       ->add('taskparent',     EntityType::class, array(
         'class' => 'GRGameficatorBundle:Task',
+        'query_builder' => function (EntityRepository $er) use (&$user, &$id) {
+          return $er->createQueryBuilder('t')
+                    ->where('t.user is NULL OR t.user = :user')
+                    ->setParameter('user', $user);
+          },
         'choice_label' => 'name',
         'multiple'     => false,
       ))
       ->add('topics',     EntityType::class, array(
         'class' => 'GRGameficatorBundle:Topic',
+        'query_builder' => function (EntityRepository $er) use (&$user) {
+          return $er->createQueryBuilder('t')
+                    ->where('t.user is NULL OR t.user = :user')
+                    ->setParameter('user', $user);
+          },
         'choice_label' => 'name',
         'multiple'     => true,
       ))
@@ -86,7 +103,8 @@ class TaskType extends AbstractType
   public function configureOptions(OptionsResolver $resolver)
   {
     $resolver->setDefaults(array(
-      'data_class' => 'GR\GameficatorBundle\Entity\Task'
+      'data_class' => 'GR\GameficatorBundle\Entity\Task',
+      'user' => null,
     ));
   }
 }

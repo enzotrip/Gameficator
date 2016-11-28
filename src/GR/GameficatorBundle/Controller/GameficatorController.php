@@ -12,6 +12,8 @@ use GR\GameficatorBundle\Entity\Topic;
 use GR\UserBundle\Entity\User;
 use GR\GameficatorBundle\Entity\Recurrent;
 
+use GR\GameficatorBundle\Form\EditTaskType;
+
 use GR\GameficatorBundle\Form\TaskType;
 use GR\GameficatorBundle\Form\TopicType;
 use GR\GameficatorBundle\Form\ProjectType;
@@ -30,7 +32,7 @@ class GameficatorController extends Controller
       $date = date('Y-m-d');
 
       $user = $this->getUser();
-      
+
       $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Task');
 
       $query = $repository->createQueryBuilder('t')
@@ -130,11 +132,14 @@ class GameficatorController extends Controller
     public function createTaskAction(Request $request)
     {
 
+      $user = $this->getUser()->getId();
+
       $em = $this->getDoctrine()->getManager();
+
       $task = new Task();
       $recurrent = new Recurrent();
       $task->setRecurrent($recurrent);
-      $form   = $this->get('form.factory')->create(TaskType::class, $task);
+      $form   = $this->get('form.factory')->create(TaskType::class, $task, array('user' => $user));
 
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $task = $form->getData();
@@ -247,10 +252,13 @@ class GameficatorController extends Controller
     public function updateTaskAction($id, Request $request)
     {
 
+      $user = $this->getUser()->getId();
+
       $em = $this->getDoctrine()->getManager();
+
       $task = $em->getRepository('GRGameficatorBundle:Task')->find($id);
 
-      $form   = $this->get('form.factory')->create(TaskType::class, $task);
+      $form   = $this->get('form.factory')->create(EditTaskType::class, $task, array('user' => $user, 'id' => $id));
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $task = $form->getData();
         $task->getRecurrent()->setOccurrencesByWhen();
@@ -277,7 +285,7 @@ class GameficatorController extends Controller
       $form   = $this->get('form.factory')->create(ProjectType::class, $project);
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $project = $form->getData();
-        
+
         $em->persist($project);
         $em->flush();
 
@@ -301,7 +309,7 @@ class GameficatorController extends Controller
       $form   = $this->get('form.factory')->create(RewardType::class, $reward);
       if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         $reward = $form->getData();
-        
+
         $em->persist($reward);
         $em->flush();
 

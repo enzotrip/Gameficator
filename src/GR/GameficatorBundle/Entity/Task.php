@@ -177,6 +177,15 @@ class Task
     }
 
     /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Set start
      *
      * @param \DateTime $start
@@ -571,7 +580,7 @@ class Task
         return $this->taskparent;
     }
 
-    
+
 
     /**
      * Add tasksenfant

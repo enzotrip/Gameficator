@@ -132,6 +132,15 @@ class Project
     }
 
     /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Set deadline
      *
      * @param \DateTime $deadline

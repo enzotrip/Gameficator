@@ -69,6 +69,15 @@ class Topic
     }
 
     /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Set user
      *
      * @param \GR\UserBundle\Entity\User $user

@@ -19,28 +19,28 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Project", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Project", mappedBy="user", cascade={"persist"})
      */
     private $projects;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Liste", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Liste", mappedBy="user", cascade={"persist"})
      */
     private $listes;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="user", cascade={"persist"})
      * @ORM\OrderBy({"deadline" = "ASC"})
      */
     private $tasks;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Reward", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Reward", mappedBy="user", cascade={"persist"})
      */
     private $rewards;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", mappedBy="user", cascade={"persist"})
      */
     private $topics;
 
