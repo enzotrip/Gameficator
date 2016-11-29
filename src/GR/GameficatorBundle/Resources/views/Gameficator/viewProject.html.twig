@@ -50,7 +50,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-6">
-                <h2>Liste des tâches</h2>
+              {% if project.getTasks|length > 0 %}
+                <h2>Liste des tâches<a href="{{ path('gr_gameficator_createtask') }}"><span class="glyphicon glyphicon-plus" style="padding-left:20px; "></span></a></h2>
                 <p><strong>Trier les tâches par</strong> : Date | Statut | Récurrence</p>
                 </br>
                 <div class="panel panel-primary-head">
@@ -85,6 +86,9 @@
                         </tbody>
                     </table>
                 </div><!-- panel -->
+            {% else %}
+            <h2>Aucune tâche créée<a href="{{ path('gr_gameficator_createtask') }}"><span class="glyphicon glyphicon-plus" style="padding-left:20px; "></span></a></h2>
+            {% endif %}
             </div>
         </div>
     </div>
