@@ -360,6 +360,7 @@ class Project
      */
     public function setAvancement($avancement)
     {
+
         $this->avancement = $avancement;
 
         return $this;
@@ -372,7 +373,27 @@ class Project
      */
     public function getAvancement()
     {
-        return $this->avancement;
+      $tasks = $this->getTasks();
+      $somme_finie = 0;
+      $somme = 0;
+      if ($tasks != null) {
+        foreach($tasks as $task) {
+          if ($task->getState() == 2 | $task->getState() == 3) {
+            $somme_finie = $somme_finie + $task->getPriority();
+          }
+          $somme = $somme + $task->getPriority();
+        }
+        if ($somme > 0) {
+          $this->setAvancement(($somme_finie/$somme)*100);
+          return $this->avancement = ($somme_finie/$somme)*100;
+        }
+        else {
+          return $this->avancement = 0;
+        }
+      }
+      else {
+        return $this->avancement = 0;
+      }
     }
 
     /**
