@@ -69,6 +69,10 @@ class GameficatorController extends Controller
         ->getQuery();
 
       $listProjects = $query3->getResult();
+      foreach ($listProjects as $project) {
+        $avance = $project->getAvancement();
+        $project->setAvancement($avance);
+      }
 
 
         return $this->render('GRGameficatorBundle:Gameficator:index.html.twig', array(

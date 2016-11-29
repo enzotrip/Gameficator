@@ -384,8 +384,8 @@ class Project
           $somme = $somme + $task->getPriority();
         }
         if ($somme > 0) {
-          $this->setAvancement(($somme_finie/$somme)*100);
-          return $this->avancement = ($somme_finie/$somme)*100;
+          $avancement = round(($somme_finie/$somme)*100);
+          return $this->avancement = $avancement;
         }
         else {
           return $this->avancement = 0;
