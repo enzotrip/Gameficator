@@ -388,11 +388,8 @@ class Project
           return $this->avancement = $avancement;
         }
         else {
-          return $this->avancement = 0;
+          return $this->avancement = -1;
         }
-      }
-      else {
-        return $this->avancement = 0;
       }
     }
 

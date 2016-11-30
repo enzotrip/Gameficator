@@ -551,4 +551,12 @@ class GameficatorController extends Controller
       return $this->redirectToRoute('gr_gameficator_homepage');
     }
 
+    public function CheckedTaskAction($id)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $task = $em->getRepository('GRGameficatorBundle:Task')->find($id);
+      $task->setState(2);
+      $em->persist($task);
+      $em->flush();
+    }
 }

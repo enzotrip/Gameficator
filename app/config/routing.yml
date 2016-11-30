@@ -1,6 +1,8 @@
 gr_gameficator:
     resource: "@GRGameficatorBundle/Resources/config/routing.yml"
     prefix:   /
+    options:
+        expose: true
 
 app:
     resource: "@AppBundle/Controller/"
@@ -8,3 +10,8 @@ app:
 
 fos_user:
     resource: "@GRUserBundle/Resources/config/routing/all.xml"
+    options:
+        expose: true
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
