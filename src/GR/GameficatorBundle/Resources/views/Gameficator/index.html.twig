@@ -22,7 +22,7 @@
                         </span></label>
                         {% endif %}
 
-                        {% if task.deadline|time_diff > "24h" %}
+                        {% if task.deadline|date('Y-m-d') < "now"|date('Y-m-d') %}
                         <span class="label label-danger" style="background:{{task.project.color}}">
                             {{ task.deadline|time_diff }}
                         </span></label>
