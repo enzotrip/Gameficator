@@ -41,7 +41,7 @@
           {% for task in listTasks %}
             <tr>
                 <td><a href="{{ path('gr_gameficator_viewtask', {'id': task.id}) }}">{{ task.name }}</a></td>
-                <td><span class="label label-warning">{% if task.project.user != null %} {{task.project.name}} {% endif %}</span></td>
+                <td><span class="label label-warning" style="background:{{task.project.color}}">{% if task.project.user != null %} {{task.project.name}} {% endif %}</span></td>
                 <td>{%for topic in task.topics %}
                     <span class="badge badge-info">{{topic.name}}</span>{% if not loop.last %}, {% endif %}
                     {% endfor %}

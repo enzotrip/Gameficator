@@ -29,6 +29,10 @@ class RecurrentType extends AbstractType
                       'widget' => 'single_text',
                       'format' => 'dd/MM/yyyy', 'required' =>false
                  ))
+                ->add('enddate',        DateType::class, array(
+                      'widget' => 'single_text',
+                      'format' => 'dd/MM/yyyy', 'required' =>false
+                 ))
                 ->add('nbchoice2',      IntegerType::class,array( 'required' =>false))
                 ->add('timechoice2',        ChoiceType::class, array(
                     'choices' => array(

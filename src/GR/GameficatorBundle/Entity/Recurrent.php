@@ -37,6 +37,12 @@ class Recurrent
      */
     private $startdate;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="enddate", type="datetime", nullable=true)
+     */
+    private $enddate;
 
     /**
      * @var int
@@ -84,6 +90,7 @@ class Recurrent
     public function __construct() {
 
         $this->startdate = new \Datetime();
+        $this->enddate = new \Datetime();
         $this->days = new ArrayCollection();
         $this->mode = 2;
 
@@ -313,24 +320,28 @@ class Recurrent
                   ->freq("hourly")
                   ->count(10)
                   ->interval($this->nbchoice2)
+                  ->until($this->enddate)
                   ->generateOccurrences();
             }elseif($this->timechoice2 == "Jours"){
                 $r->startDate($this->startdate)
                   ->freq("daily")
                   ->count(10)
                   ->interval($this->nbchoice2)
+                  ->until($this->enddate)
                   ->generateOccurrences();
             }elseif($this->timechoice2 == "Semaines"){
                 $r->startDate($this->startdate)
                   ->freq("weekly")
                   ->count(10)
                   ->interval($this->nbchoice2)
+                  ->until($this->enddate)
                   ->generateOccurrences();
             }elseif($this->timechoice2 == "Mois"){
                 $r->startDate($this->startdate)
                   ->freq("monthly")
                   ->count(10)
                   ->interval($this->nbchoice2)
+                  ->until($this->enddate)
                   ->generateOccurrences();
             }elseif($this->timechoice2 == "Ans"){
                 $r->startDate($this->startdate)
@@ -338,6 +349,7 @@ class Recurrent
                   ->count(10)
                   ->bymonth($this->startdate->format('m'))
                   ->interval($this->nbchoice2)
+                  ->until($this->enddate)
                   ->generateOccurrences();
             }
        }elseif ($flag==true){
@@ -346,6 +358,7 @@ class Recurrent
                    ->freq("weekly")
                    ->count(10)
                    ->byday($days)
+                   ->until($this->enddate)
                    ->generateOccurrences();
                 unset($days[0]);
                 $days = array_values($days);
@@ -354,6 +367,7 @@ class Recurrent
                   ->freq("weekly")
                   ->count(10)
                   ->byday($days)
+                  ->until($this->enddate)
                   ->generateOccurrences();
            // }
        }
@@ -382,5 +396,29 @@ class Recurrent
     public function getOccurences()
     {
         return $this->occurences;
+    }
+
+    /**
+     * Set enddate
+     *
+     * @param \DateTime $enddate
+     *
+     * @return Recurrent
+     */
+    public function setEnddate($enddate)
+    {
+        $this->enddate = $enddate;
+
+        return $this;
+    }
+
+    /**
+     * Get enddate
+     *
+     * @return \DateTime
+     */
+    public function getEnddate()
+    {
+        return $this->enddate;
     }
 }

@@ -1,8 +1,10 @@
 {% extends "GRGameficatorBundle::layout.html.twig" %}
 
 {% block title %}
-    <title>Gamificator | Ma tâche</title>
+    <title>Gamificator | New Task</title>
 {% endblock title %}
+
+
 
 {% block pageheader %}
 <div class="pageheader">
@@ -14,10 +16,9 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
                 <li>Dashboard</li>
-                <li>Tâches</li>
-                <li>{{task.name}}</li>
+                <li>Créer une tache</li>
             </ul>
-                <h4>{{task.name}} <a href=""><span class="glyphicon glyphicon-edit" style="padding-left:20px; "></span></a></h4>
+            <h4>Créer une tache</h4>
         </div>
     </div><!-- media -->
 </div><!-- pageheader -->
@@ -57,7 +58,7 @@
        <div class="col-sm-6"><div class="form-group">
            <label class="col-sm-2 control-label">Tâche parente</label>
            <div class="col-sm-8">
-              {{ form_widget(form.taskparent, {'attr': {'class': 'form-control'}}) }}
+               {{ form_widget(form.taskparent, {'attr': {'class': 'form-control'}}) }}
             </div>
          </div><!-- form-group --></div>
 </div>
@@ -80,12 +81,13 @@
 
 <div class="row">
          <div class="col-sm-6"><div class="form-group">
-           <label class="col-sm-2 control-label">Priorité</label>
-           <div class="col-sm-8">
-               {{ form_widget(form.priority, { 'attr': {'class': 'form-control'} }) }}
-            </div>
-            {{ form_errors(form.priority) }}
-         </div><!-- form-group --></div>
+             <label class="col-sm-2 control-label">Priorité</label>
+             <div class="col-sm-8">
+                 {{ form_widget(form.priority, { 'attr': {'class': 'form-control'} }) }}
+              </div>
+              {{ form_errors(form.priority) }}
+           </div><!-- form-group -->
+         </div>
 </div>
 <div class="row">
          <div class="form-group">
@@ -121,6 +123,14 @@
                 </div>
               </div>
           </div>
+           <div class="col-sm-6">
+              <div class="input-group" id="recurrent2" style="display:none">
+                  <label class="col-sm-3 control-label"><strong>Date de fin</strong></label>
+                  <div class="col-sm-3">
+                  {{ form_widget(form.recurrent.enddate, {'id': 'datepicker2', 'attr': {'class': 'form-control'}})}}
+                  </div>
+              </div>
+        </div>
       </div><!-- form-group --></div>
 </div>
 
@@ -185,7 +195,7 @@
 </div>
 <div class="form-group">
       <div class=col-sm-offset-1>
-          {{ form_widget(form.save, {'label': 'Mettre à jour', attr:{ 'class': 'btn btn-success'}}) }}
+          {{ form_widget(form.save, {'label': 'Create Task', attr:{ 'class': 'btn btn-success'}}) }}
       </div>
 
 </div>
@@ -203,6 +213,7 @@
 
 $('#datepicker').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 $('#datepicker1').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
+$('#datepicker2').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 
   var choiceradio = document.getElementsByClassName("radio_type");
   console.log(choiceradio);
@@ -211,10 +222,13 @@ $('#datepicker1').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
       if(e.target.checked == true && e.target.value == 0) {
         document.getElementById("echeance").style.display = 'block';
         document.getElementById("recurrent").style.display = 'none';
+        document.getElementById("recurrent2").style.display = 'none';
+
       }
       if(e.target.checked == true && e.target.value == 1) {
         document.getElementById("echeance").style.display = 'none';
         document.getElementById("recurrent").style.display = 'block';
+        document.getElementById("recurrent2").style.display = 'block';
       }
     });
   }

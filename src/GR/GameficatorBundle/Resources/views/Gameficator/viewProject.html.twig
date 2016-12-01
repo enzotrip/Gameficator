@@ -71,7 +71,7 @@
                             <tr>
                                 <td><a href="{{ path('gr_gameficator_viewtask', {'id': task.id}) }}">{{ task.name }}</a></td>
                                 <td>{%for topic in task.topics %}
-                                        <span class="badge badge-info">{% if topic.name == "Aucun" %}{{topic.name}} {% endif %}</span>{% if not loop.last %}, {% endif %}
+                                        <span class="badge badge-info">{{topic.name}}</span>{% if not loop.last %}, {% endif %}
                                     {% endfor %}
                                 </td>
                                 <td><span class="badge">

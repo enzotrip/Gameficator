@@ -123,6 +123,14 @@
                 </div>
               </div>
           </div>
+           <div class="col-sm-6">
+              <div class="input-group" id="recurrent2" style="display:none">
+                  <label class="col-sm-3 control-label"><strong>Date de fin</strong></label>
+                  <div class="col-sm-3">
+                  {{ form_widget(form.recurrent.enddate, {'id': 'datepicker2', 'attr': {'class': 'form-control'}})}}
+                  </div>
+              </div>
+        </div>
       </div><!-- form-group --></div>
 </div>
 
@@ -205,6 +213,7 @@
 
 $('#datepicker').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 $('#datepicker1').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
+$('#datepicker2').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 
   var choiceradio = document.getElementsByClassName("radio_type");
   console.log(choiceradio);
@@ -213,10 +222,13 @@ $('#datepicker1').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
       if(e.target.checked == true && e.target.value == 0) {
         document.getElementById("echeance").style.display = 'block';
         document.getElementById("recurrent").style.display = 'none';
+        document.getElementById("recurrent2").style.display = 'none';
+
       }
       if(e.target.checked == true && e.target.value == 1) {
         document.getElementById("echeance").style.display = 'none';
         document.getElementById("recurrent").style.display = 'block';
+        document.getElementById("recurrent2").style.display = 'block';
       }
     });
   }
