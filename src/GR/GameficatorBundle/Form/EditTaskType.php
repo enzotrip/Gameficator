@@ -81,7 +81,6 @@ class EditTaskType extends AbstractType
         'widget' => 'single_text',
         'format' => 'dd/MM/yyyy'
       ))
-      ->add('color',           TextType::class)
       ->add('description',    TextareaType::class, array( 'required' =>false))
       ->add('points',         IntegerType::class)
       ->add('save',           SubmitType::class, array('label' => 'Créer'))
