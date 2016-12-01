@@ -33,7 +33,6 @@ class TaskType extends AbstractType
       ->add('name',           TextType::class)
       ->add('priority',        ChoiceType::class, array(
                     'choices' => array(
-                        '0' => 0,
                         '1' => 1,
                         '2' => 2,
                         '3' => 3

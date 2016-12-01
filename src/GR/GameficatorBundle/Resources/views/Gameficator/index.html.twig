@@ -17,13 +17,13 @@
                         <input type="checkbox" id="{{ task.id }}" value="1">
                         <label for="{{ task.id }}">{{ task.name }}
                         {% if task.project.user != null %}
-                        <span class="label label-warning">
+                        <span class="label label-success">
                            {{task.project.name}}
                         </span></label>
                         {% endif %}
 
-                        {% if task.deadline != "now"|date("m/d/Y") %}
-                        <span class="label label-warning">
+                        {% if task.deadline|time_diff > "1d" %}
+                        <span class="label label-danger">
                             {{ task.deadline|time_diff }}
                         </span></label>
                         {% endif %}

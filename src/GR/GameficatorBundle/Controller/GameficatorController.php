@@ -38,7 +38,7 @@ class GameficatorController extends Controller
       $query = $repository->createQueryBuilder('t')
         ->where('t.user = :user')
         ->setParameter('user', $user)
-        ->andWhere('t.deadline = :date')
+        ->andWhere('t.deadline <= :date')
         ->setParameter('date', $date)
         ->andWhere('t.state = :state')
         ->setParameter('state', 1)
@@ -70,8 +70,12 @@ class GameficatorController extends Controller
 
       $listProjects = $query3->getResult();
       foreach ($listProjects as $project) {
+        $em = $this->getDoctrine()->getManager();
+        $project = $em->getRepository('GRGameficatorBundle:Project')->find($project->getId());
         $avance = $project->getAvancement();
         $project->setAvancement($avance);
+        $em->persist($project);
+        $em->flush();
       }
 
 
