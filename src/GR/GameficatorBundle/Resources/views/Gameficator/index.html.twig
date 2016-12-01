@@ -82,7 +82,7 @@
                         <div class="col-md-3">
                             <div class="panel panel-default">
                                 <div class="panel-heading" style="background:{{project.color}}">
-                                    <h3 class="panel-title"><a href="{{ path('gr_gameficator_viewproject', {'id': project.id}) }}" style="color:black">{{project.name}}</a> {% if project.avancement == -1 %}(Aucune tâche){% else %}({{project.avancement}}%){% endif %}</h3>
+                                    <h3 class="panel-title" style="color:white"><a href="{{ path('gr_gameficator_viewproject', {'id': project.id}) }}">{{project.name}}</a> {% if project.avancement == -1 %}(Aucune tâche){% else %}({{project.avancement}}%){% endif %}</h3>
                                 </div>
                                 <div class="panel-body">
                                     <div class="progress progress-striped active">
