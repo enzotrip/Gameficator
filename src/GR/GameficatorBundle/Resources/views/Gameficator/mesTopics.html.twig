@@ -1,0 +1,44 @@
+{% extends "GRGameficatorBundle::layout.html.twig" %}
+
+{% block title %}
+    <title>Gamificator | Mes Topics</title>
+{% endblock title %}
+
+{% block pageheader %}
+<div class="pageheader">
+    <div class="media">
+        <div class="pageicon pull-left">
+            <i class="fa fa-file"></i>
+        </div>
+        <div class="media-body">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li>Dashboard</li>
+                <li>Mes Topics</li>
+            </ul>
+            <h4>Mes Topics</h4>
+        </div>
+    </div><!-- media -->
+</div><!-- pageheader -->
+{% endblock %}
+
+{% block body %}
+<div class="row">
+  <div class="col-sm-12">
+    {% for topic in listTopics %}
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+          <div class="panel-body">
+              <h3 class=".h3">{{topic.name}}<span class="pull-right"><a href="{{ path('gr_gameficator_deletetopic', { id:topic.id }) }}"><i class="glyphicon glyphicon-trash" style="color:red"></i></a></span></h3>
+          </div>
+      </div>
+    </div>
+    {% else %}
+    <div class="col-sm-4">
+        <h3 class=".h3">Aucun topic créé<span class="pull-right"><a href="{{ path('gr_gameficator_createtopic') }}"><i class="glyphicon glyphicon-plus"></i></span></h3>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

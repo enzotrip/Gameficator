@@ -125,18 +125,10 @@ class Task
      */
     private $points;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Color", type="string", length=255, nullable=true)
-     */
-    private $color;
-
     public function __construct()
     {
         $this->start= new \Datetime();
         $this->deadline= new \Datetime();
-        $this->color='#000000';
         $this->topics = new ArrayCollection();
         $this->tasksenfant = new ArrayCollection();
         $this->priority=0;
@@ -448,30 +440,6 @@ class Task
     public function getUser()
     {
         return $this->user;
-    }
-
-    /**
-     * Set color
-     *
-     * @param string $color
-     *
-     * @return Task
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string
-     */
-    public function getColor()
-    {
-        return $this->color;
     }
 
     /**

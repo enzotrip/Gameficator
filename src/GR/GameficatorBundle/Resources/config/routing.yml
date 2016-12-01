@@ -62,6 +62,10 @@ gr_gameficator_deletetask:
     path:    /deletetask/{id}
     defaults: { _controller: GRGameficatorBundle:Gameficator:DeleteTask}
 
+gr_gameficator_deletetopic:
+    path:    /deletetopic/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:DeleteTopic}
+
 gr_gameficator_createproject:
     path:    /createProject
     defaults: {_controller: GRGameficatorBundle:Gameficator:createProject }
@@ -95,6 +99,10 @@ gr_gameficator_viewprojects:
 gr_gameficator_viewrewards:
     path:    /mesRécompenses
     defaults: {_controller: GRGameficatorBundle:Gameficator:viewRewards }
+
+gr_gameficator_viewtopics:
+    path:    /mesTopics
+    defaults: {_controller: GRGameficatorBundle:Gameficator:viewTopics }
 
 gr_gameficator_viewreward:
     path:    /reward/{id}

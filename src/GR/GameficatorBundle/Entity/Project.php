@@ -92,6 +92,13 @@ class Project
     // state=1 à faire state=2 archive state=3 corbeille
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="Color", type="string", length=255, nullable=true)
+     */
+    private $color;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -102,6 +109,7 @@ class Project
         $this->avancement= 0;
         $this->state=1;
         $this->priority=0;
+        $this->color='#000000';
     }
 
     /**
@@ -415,5 +423,29 @@ class Project
     public function getState()
     {
         return $this->state;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     *
+     * @return Task
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

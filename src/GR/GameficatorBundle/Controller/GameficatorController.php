@@ -118,6 +118,17 @@ class GameficatorController extends Controller
         ));
     }
 
+    public function viewTopicsAction()
+    {
+
+      $user = $this->getUser();
+
+      $listTopics = $user->getTopics();
+        return $this->render('GRGameficatorBundle:Gameficator:mesTopics.html.twig', array(
+          'listTopics' => $listTopics
+        ));
+    }
+
     public function viewRewardAction($id)
     {
 
@@ -244,7 +255,7 @@ class GameficatorController extends Controller
 
         $request->getSession()->getFlashBag()->add('notice', 'Topic bien créé.');
 
-        return $this->redirectToRoute('gr_gameficator_homepage');
+        return $this->redirectToRoute('gr_gameficator_viewtopics');
       }
 
       return $this->render('GRGameficatorBundle:Gameficator:createTopic.html.twig', array(
@@ -553,6 +564,15 @@ class GameficatorController extends Controller
       $em->remove($task);
       $em->flush();
       return $this->redirectToRoute('gr_gameficator_homepage');
+    }
+
+    public function DeleteTopicAction($id)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $topic = $em->getRepository('GRGameficatorBundle:Topic')->find($id);
+      $em->remove($topic);
+      $em->flush();
+      return $this->redirectToRoute('gr_gameficator_viewtopics');
     }
 
     public function CheckedTaskAction($id)
