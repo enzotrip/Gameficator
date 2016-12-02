@@ -128,7 +128,9 @@ class Task
     public function __construct()
     {
         $this->start= new \Datetime();
+        date_add($this->start, date_interval_create_from_date_string('1 hour'));
         $this->deadline= new \Datetime();
+        date_add($this->deadline, date_interval_create_from_date_string('1 hour'));
         $this->topics = new ArrayCollection();
         $this->tasksenfant = new ArrayCollection();
         $this->priority=0;

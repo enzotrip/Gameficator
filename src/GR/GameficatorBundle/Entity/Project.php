@@ -105,11 +105,13 @@ class Project
     {
         $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->deadline= new \Datetime();
+        date_add($this->deadline, date_interval_create_from_date_string('1 hour'));
         $this->lastUpdate= new \Datetime();
+        date_add($this->lastUpdate, date_interval_create_from_date_string('1 hour'));
         $this->avancement= 0;
         $this->state=1;
         $this->priority=0;
-        $this->color='#000000';
+        $this->color='#428BCA';
     }
 
     /**

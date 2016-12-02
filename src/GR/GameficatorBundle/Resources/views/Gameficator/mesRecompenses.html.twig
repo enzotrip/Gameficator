@@ -44,6 +44,10 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <div class="col-sm-4">
+        <h3 class=".h3">Aucune récompense créé<span class="pull-right"><a href="{{ path('gr_gameficator_createreward') }}"><i class="glyphicon glyphicon-plus"></i></span></h3>
+    </div>
     {% endfor %}
   </div>
 </div>

@@ -46,6 +46,12 @@ class GameficatorController extends Controller
         ->getQuery();
 
       $listDaylyTasks = $query->getResult();
+      foreach ($listDaylyTasks as $task) {
+          $em = $this->getDoctrine()->getManager();
+          $task->getRecurrent()->updateOccurrences();
+          $em->persist($task);
+          $em->flush();
+      }
 
       $query2 = $repository->createQueryBuilder('t')
         ->where('t.user = :user')
@@ -58,7 +64,12 @@ class GameficatorController extends Controller
         ->getQuery();
 
       $listTasks = $query2->getResult();
-
+      foreach ($listTasks as $task) {
+          $em = $this->getDoctrine()->getManager();
+          $task->getRecurrent()->updateOccurrences();
+          $em->persist($task);
+          $em->flush();
+      }
       $repository_project = $this->getDoctrine()->getRepository('GRGameficatorBundle:Project');
 
       $query3 = $repository_project->createQueryBuilder('p')
@@ -152,6 +163,11 @@ class GameficatorController extends Controller
       if($project == null){
         throw new NotFoundHttpException('Projet introuvable');
       }
+      foreach ($project->getTasks() as $task) {
+          $task->getRecurrent()->updateOccurrences();
+          $em->persist($task);
+          $em->flush();
+      }
         return $this->render('GRGameficatorBundle:Gameficator:viewProject.html.twig', array(
           'project' => $project
         ));
@@ -166,6 +182,9 @@ class GameficatorController extends Controller
       if($task == null){
         throw new NotFoundHttpException('Tache introuvable');
       }
+      $task->getRecurrent()->updateOccurrences();
+      $em->persist($task);
+      $em->flush();
         return $this->render('GRGameficatorBundle:Gameficator:viewTask.html.twig', array(
           'task' => $task
         ));
@@ -371,7 +390,7 @@ class GameficatorController extends Controller
     {
 
       $user = $this->getUser();
-
+      $em = $this->getDoctrine()->getManager();
       $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Task');
 
       $query = $repository->createQueryBuilder('t')
@@ -383,7 +402,11 @@ class GameficatorController extends Controller
         ->getQuery();
 
       $listTasks = $query->getResult();
-
+      foreach ($listTasks as $task) {
+          $task->getRecurrent()->updateOccurrences();
+          $em->persist($task);
+          $em->flush();
+      }
       return $this->render('GRGameficatorBundle:Gameficator:tasksToDo.html.twig', array(
         'listTasks' => $listTasks
       ));
@@ -435,7 +458,7 @@ class GameficatorController extends Controller
     {
 
       $user = $this->getUser();
-
+      $em = $this->getDoctrine()->getManager();
       $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Task');
 
       $query = $repository->createQueryBuilder('t')
@@ -448,6 +471,11 @@ class GameficatorController extends Controller
 
       $listTasks = $query->getResult();
 
+      foreach ($listTasks as $task) {
+          $task->getRecurrent()->updateOccurrences();
+          $em->persist($task);
+          $em->flush();
+      }
       return $this->render('GRGameficatorBundle:Gameficator:tachesArchivees.html.twig', array(
         'listTasks' => $listTasks
       ));
@@ -457,7 +485,7 @@ class GameficatorController extends Controller
     {
 
       $user = $this->getUser();
-
+      $em = $this->getDoctrine()->getManager();
       $repository = $this->getDoctrine()->getRepository('GRGameficatorBundle:Task');
 
       $query = $repository->createQueryBuilder('t')
@@ -469,7 +497,11 @@ class GameficatorController extends Controller
         ->getQuery();
 
       $listTasks = $query->getResult();
-
+      foreach ($listTasks as $task) {
+          $task->getRecurrent()->updateOccurrences();
+          $em->persist($task);
+          $em->flush();
+      }
       return $this->render('GRGameficatorBundle:Gameficator:tachesCorbeille.html.twig', array(
         'listTasks' => $listTasks
       ));

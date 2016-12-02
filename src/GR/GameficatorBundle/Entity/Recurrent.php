@@ -38,13 +38,6 @@ class Recurrent
     private $startdate;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="enddate", type="datetime", nullable=true)
-     */
-    private $enddate;
-
-    /**
      * @var int
      *
      * @ORM\Column(name="mode", type="integer", nullable=true)
@@ -90,7 +83,7 @@ class Recurrent
     public function __construct() {
 
         $this->startdate = new \Datetime();
-        $this->enddate = new \Datetime();
+        date_add($this->startdate, date_interval_create_from_date_string('1 hour'));
         $this->days = new ArrayCollection();
         $this->mode = 2;
 
@@ -288,6 +281,7 @@ class Recurrent
         $r2 = new When();
         $flag =false;
         $today = new \Datetime();
+        date_add($today, date_interval_create_from_date_string('1 hour'));
         $stdr = substr(strtoupper($today->format('l')), 0, 2);
         $days = array($stdr);
         foreach($this->days as $day) {
@@ -316,32 +310,36 @@ class Recurrent
         }
         if($flag == false) {
             if($this->timechoice2 == "Heures"){
-                $r->startDate($this->startdate)
+                $r2->startDate($this->startdate)
+                   ->freq("hourly")
+                   ->count(10)
+                   ->interval($this->nbchoice2)
+                   ->generateOccurrences();
+                unset($r2->occurrences[0]);
+                $r2->occurrences = array_values($r2->occurrences);
+
+                $r->startDate($r2->occurrences[0])
                   ->freq("hourly")
                   ->count(10)
                   ->interval($this->nbchoice2)
-                  ->until($this->enddate)
                   ->generateOccurrences();
             }elseif($this->timechoice2 == "Jours"){
                 $r->startDate($this->startdate)
                   ->freq("daily")
                   ->count(10)
                   ->interval($this->nbchoice2)
-                  ->until($this->enddate)
                   ->generateOccurrences();
             }elseif($this->timechoice2 == "Semaines"){
                 $r->startDate($this->startdate)
                   ->freq("weekly")
                   ->count(10)
                   ->interval($this->nbchoice2)
-                  ->until($this->enddate)
                   ->generateOccurrences();
             }elseif($this->timechoice2 == "Mois"){
                 $r->startDate($this->startdate)
                   ->freq("monthly")
                   ->count(10)
                   ->interval($this->nbchoice2)
-                  ->until($this->enddate)
                   ->generateOccurrences();
             }elseif($this->timechoice2 == "Ans"){
                 $r->startDate($this->startdate)
@@ -349,16 +347,16 @@ class Recurrent
                   ->count(10)
                   ->bymonth($this->startdate->format('m'))
                   ->interval($this->nbchoice2)
-                  ->until($this->enddate)
                   ->generateOccurrences();
             }
        }elseif ($flag==true){
           // if($flag==true) {
-                $r2->startDate(new \Datetime())
+            $date = new \Datetime();
+            date_add($date, date_interval_create_from_date_string('1 hour'));
+                $r2->startDate($date)
                    ->freq("weekly")
                    ->count(10)
                    ->byday($days)
-                   ->until($this->enddate)
                    ->generateOccurrences();
                 unset($days[0]);
                 $days = array_values($days);
@@ -367,13 +365,28 @@ class Recurrent
                   ->freq("weekly")
                   ->count(10)
                   ->byday($days)
-                  ->until($this->enddate)
                   ->generateOccurrences();
            // }
        }
         $occurrences = $r->occurrences;
         $this->occurences = $occurrences;
         return $this;
+    }
+
+    public function updateOccurrences(){
+        $today[] = new \Datetime();
+        $today[0]->setTimezone(new \DateTimeZone('Europe/Paris'));
+        date_add($today[0], date_interval_create_from_date_string('1 hours'));
+
+        $clone = $today;
+        $date = new \Datetime();
+        date_add($date, date_interval_create_from_date_string('1 hours'));
+        if($this->occurences[0] < $clone[0]){
+            unset($this->occurences[0]);
+            $this->setStartdate($date);
+            $this->setOccurrencesByWhen();
+            //$this->occurences = array_values($this->occurences);
+        }
     }
     /**
      * Set occurences
@@ -398,27 +411,4 @@ class Recurrent
         return $this->occurences;
     }
 
-    /**
-     * Set enddate
-     *
-     * @param \DateTime $enddate
-     *
-     * @return Recurrent
-     */
-    public function setEnddate($enddate)
-    {
-        $this->enddate = $enddate;
-
-        return $this;
-    }
-
-    /**
-     * Get enddate
-     *
-     * @return \DateTime
-     */
-    public function getEnddate()
-    {
-        return $this->enddate;
-    }
 }
