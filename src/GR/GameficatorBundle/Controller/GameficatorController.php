@@ -42,7 +42,7 @@ class GameficatorController extends Controller
         ->setParameter('date', $date)
         ->andWhere('t.state = :state')
         ->setParameter('state', 1)
-        ->addOrderBy('t.deadline', 'DESC')
+        ->addOrderBy('t.deadline', 'ASC')
         ->addOrderBy('t.priority', 'DESC')
         ->getQuery();
 
