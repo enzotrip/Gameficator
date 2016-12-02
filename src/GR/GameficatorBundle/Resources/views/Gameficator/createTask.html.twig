@@ -135,7 +135,7 @@
             {% for day in form.recurrent.days %}
             <div class="row">
               <div class="ckbox ckbox-primary">
-                {{ form_widget(day, { 'attr' :{ 'class': 'ckbox ckbox-primary'}}) }}
+                {{ form_widget(day, { 'attr' :{ 'class': 'ckbox ckbox-primary NON' }}) }}
                 {{ form_label(day)}}
               </div>
             </div>
@@ -159,10 +159,10 @@
             <div class="row">
               <label class="col-sm-3 control-label"><strong>Tous les : </strong></label>
               <div class="col-sm-3">
-                {{ form_widget(form.recurrent.nbchoice2, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_widget(form.recurrent.nbchoice2, { 'id': 'type_2_1', 'attr': {'class': 'form-control', 'value': 0} }) }}
               </div>
               <div class="col-sm-4">
-               {{ form_widget(form.recurrent.timechoice2, { 'attr': {'class': 'form-control'} }) }}
+               {{ form_widget(form.recurrent.timechoice2, { 'id': 'type_2_2', 'attr': {'class': 'form-control'} }) }}
               </div>
               {{ form_errors(form.recurrent.timechoice2) }}
             </div>
@@ -172,11 +172,11 @@
             <div class="row"></br></br></br></br></br>
               <label class="col-sm-2 control-label"><strong>Au moins </strong></label>
               <div class="col-sm-2">
-                {{ form_widget(form.recurrent.nbchoice3, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_widget(form.recurrent.nbchoice3, { 'id': 'type_3_1', 'attr': {'class': 'form-control', 'value': 0} }) }}
               </div>
               <label class="col-sm-2 control-label"><strong>Fois par </strong></label>
               <div class="col-sm-3">
-               {{ form_widget(form.recurrent.timechoice3, { 'attr': {'class': 'form-control'} }) }}
+               {{ form_widget(form.recurrent.timechoice3, { 'id': 'type_3_2', 'attr': {'class': 'form-control'} }) }}
               </div>
               {{ form_errors(form.recurrent.timechoice3) }}
             </div>
@@ -203,25 +203,124 @@
 
 <script type="text/javascript">
 
+// TYPE 1
+var choiceday = document.getElementsByClassName("NON");
+for (var i=0; i < choiceday.length; i++) {
+  choiceday[i].addEventListener("change", function(e) {
+    if (e.target.checked == true) {
+      document.getElementById("datepicker1").disabled = true;
+      document.getElementById("type_2_1").disabled = true;
+      document.getElementById("type_2_2").disabled = true;
+      document.getElementById("type_3_1").disabled = true;
+      document.getElementById("type_3_2").disabled = true;
+    } else if (e.target.checked == false && $('.NON:checked').size() > 0){
+      document.getElementById("datepicker1").disabled = true;
+      document.getElementById("type_2_1").disabled = true;
+      document.getElementById("type_2_2").disabled = true;
+      document.getElementById("type_3_1").disabled = true;
+      document.getElementById("type_3_2").disabled = true;
+    } else {
+      document.getElementById("datepicker1").disabled = false;
+      document.getElementById("type_2_1").disabled = false;
+      document.getElementById("type_2_2").disabled = false;
+      document.getElementById("type_3_1").disabled = false;
+      document.getElementById("type_3_2").disabled = false;
+    }
+  });
+}
+// TYPE 2_1
+var type_2_1 = document.getElementById("type_2_1");
+type_2_1.addEventListener("change", function(e) {
+  if ( type_2_1.value > 0 ) {
+    document.getElementById("type_3_1").disabled = true;
+    document.getElementById("type_3_2").disabled = true;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = true;
+    }
+  } else {
+    document.getElementById("type_3_1").disabled = false;
+    document.getElementById("type_3_2").disabled = false;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = false;
+    }
+  }
+});
+// TYPE 2_2
+var type_2_2 = document.getElementById("type_2_2");
+type_2_2.addEventListener("change", function(e) {
+  if ( type_2_2.value != '' ) {
+    document.getElementById("type_3_1").disabled = true;
+    document.getElementById("type_3_2").disabled = true;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = true;
+    }
+  } else if ( type_2_2.value == '' ) {
+    document.getElementById("type_3_1").disabled = false;
+    document.getElementById("type_3_2").disabled = false;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = false;
+    }
+  }
+});
+// TYPE 3_1
+var type_3_1 = document.getElementById("type_3_1");
+type_3_1.addEventListener("change", function(e) {
+  if ( type_3_1.value > 0 ) {
+    document.getElementById("datepicker1").disabled = true;
+    document.getElementById("type_2_1").disabled = true;
+    document.getElementById("type_2_2").disabled = true;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = true;
+    }
+  } else {
+    document.getElementById("datepicker1").disabled = false;
+    document.getElementById("type_2_1").disabled = false;
+    document.getElementById("type_2_2").disabled = false;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = false;
+    }
+  }
+});
+// TYPE 3_2
+var type_3_2 = document.getElementById("type_3_2");
+type_3_2.addEventListener("change", function(e) {
+  if ( type_3_2.value != '' ) {
+    document.getElementById("datepicker1").disabled = true;
+    document.getElementById("type_2_1").disabled = true;
+    document.getElementById("type_2_2").disabled = true;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = true;
+    }
+  } else if ( type_3_2.value == '' ) {
+    document.getElementById("datepicker1").disabled = false;
+    document.getElementById("type_2_1").disabled = false;
+    document.getElementById("type_2_2").disabled = false;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = false;
+    }
+  }
+});
+
+
 $('#datepicker').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 $('#datepicker1').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 
-  var choiceradio = document.getElementsByClassName("radio_type");
-  console.log(choiceradio);
-  for( var i = 0; i < choiceradio.length; i++) {
-    choiceradio[i].addEventListener("change", function(e) {
-      if(e.target.checked == true && e.target.value == 0) {
-        document.getElementById("echeance").style.display = 'block';
-        document.getElementById("recurrent").style.display = 'none';
-        document.getElementById("recurrent2").style.display = 'none';
+var choiceradio = document.getElementsByClassName("radio_type");
+console.log(choiceradio);
+for( var i = 0; i < choiceradio.length; i++) {
+  choiceradio[i].addEventListener("change", function(e) {
+    if(e.target.checked == true && e.target.value == 0) {
+      document.getElementById("echeance").style.display = 'block';
+      document.getElementById("recurrent").style.display = 'none';
+      document.getElementById("recurrent2").style.display = 'none';
 
-      }
-      if(e.target.checked == true && e.target.value == 1) {
-        document.getElementById("echeance").style.display = 'none';
-        document.getElementById("recurrent").style.display = 'block';
-        document.getElementById("recurrent2").style.display = 'block';
-      }
-    });
-  }
+    }
+    if(e.target.checked == true && e.target.value == 1) {
+      document.getElementById("echeance").style.display = 'none';
+      document.getElementById("recurrent").style.display = 'block';
+      document.getElementById("recurrent2").style.display = 'block';
+    }
+  });
+}
 </script>
 {% endblock %}
