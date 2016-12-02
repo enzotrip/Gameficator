@@ -42,7 +42,8 @@ class GameficatorController extends Controller
         ->setParameter('date', $date)
         ->andWhere('t.state = :state')
         ->setParameter('state', 1)
-        ->orderBy('t.priority', 'DESC')
+        ->addOrderBy('t.deadline', 'DESC')
+        ->addOrderBy('t.priority', 'DESC')
         ->getQuery();
 
       $listDaylyTasks = $query->getResult();
@@ -61,7 +62,8 @@ class GameficatorController extends Controller
         ->setParameter('date', $date)
         ->andWhere('t.state = :state')
         ->setParameter('state', 1)
-        ->orderBy('t.priority', 'DESC')
+        ->addOrderBy('t.deadline', 'ASC')
+        ->addOrderBy('t.priority', 'DESC')
         ->getQuery();
 
       $listTasks = $query2->getResult();
