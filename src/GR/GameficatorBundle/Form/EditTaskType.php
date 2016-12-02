@@ -83,7 +83,7 @@ class EditTaskType extends AbstractType
       ))
       ->add('description',    TextareaType::class, array( 'required' =>false))
       ->add('points',         IntegerType::class)
-      ->add('save',           SubmitType::class, array('label' => 'Créer'))
+      ->add('save',           SubmitType::class, array('label' => 'Mettre à jour'))
       ->add('recurrent',      RecurrentType::class)
     ;
 
