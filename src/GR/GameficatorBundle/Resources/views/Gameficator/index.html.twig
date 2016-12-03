@@ -14,20 +14,28 @@
             {% for task in listDaylyTasks %}
               <li class="list-group-item">
                     <div class="ckbox ckbox-default">
-                        <input type="checkbox" id="{{ task.id }}" value="1">
+                        <input type="checkbox" id="{{ task.id }}" value="1"
+                            {% if task.taskparent != 'Aucune' %}
+                                {% if task.taskparent.state == 1 %}
+                                disabled=true
+                                {% endif %}
+                            {% endif %} >
                         <label for="{{ task.id }}">{{ task.name }}
                         {% if task.project.user != null %}
                         <span class="label label-default" style="background:{{task.project.color}}">
                            {{task.project.name}}
                         </span></label>
                         {% endif %}
-
                         {% if task.deadline|date('Y-m-d') < "now"|date('Y-m-d') %}
                         <span class="label label-danger" style="background:{{task.project.color}}">
                             {{ task.deadline|time_diff }}
                         </span></label>
                         {% endif %}
-
+                        {% if task.taskparent != 'Aucune' %}
+                            {% if task.taskparent.state == 1 %}
+                            <span style="font-style: italic">bloquée par {{ task.taskparent.name }}</span>
+                            {% endif %}
+                        {% endif %}
                     </div>
               </li>
               {% else %}
