@@ -1,6 +1,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="col-sm-6 col-sm-offset-3">
+<div class="col-sm-3">
+  <img
+    class="img-circle img-offline img-responsive img-profile"
+    {% if app.user.profile_picture == null %}
+    src="{{ asset('Template/images/photos/santa-claus.png') }}"
+    {% else %}
+    src="{{ asset(app.user.profile_picture.webPath) }}"
+    {% endif %}
+    alt=""
+  >
+</div>
+
+<div class="col-sm-6 col-sm-offset-1">
     <h2><strong>{{ 'profile.show.username'|trans }}</strong>: {{ user.username }}</h2>
     <h2><strong>{{ 'profile.show.email'|trans }}</strong>: {{ user.email }}</h2>
 </div>

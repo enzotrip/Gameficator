@@ -19,34 +19,41 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Project", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Project", mappedBy="user", cascade={"persist"})
      */
     private $projects;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Liste", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Liste", mappedBy="user", cascade={"persist"})
      */
     private $listes;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="user", cascade={"persist"})
      * @ORM\OrderBy({"deadline" = "ASC"})
      */
     private $tasks;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Reward", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Reward", mappedBy="user", cascade={"persist"})
      */
     private $rewards;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", mappedBy="user", cascade={"persist"})
      */
     private $topics;
+
+    /**
+     * @ORM\OneToOne(targetEntity="GR\UserBundle\Entity\ProfilePicture", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $profil_picture;
 
     public function __construct()
     {
         parent::__construct();
+        $this->profil_picture = NULL;
     }
 
     /**
@@ -190,4 +197,39 @@ class User extends BaseUser
     {
         return $this->rewards;
     }
+
+    /**
+     * Add topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     *
+     * @return User
+     */
+    public function addTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics[] = $topic;
+        $topic->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     */
+    public function removeTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics->removeElement($topic);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTopics()
+    {
+        return $this->topics;
+    }
+
 }

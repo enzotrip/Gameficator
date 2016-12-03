@@ -3,8 +3,56 @@
 
 <div class="col-sm-6 col-sm-offset-3">
 {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
-    {{ form_widget(form) }}
-    <div>
+  <div class="well">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group mb15">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'Enter Email Adress' } }) }}
+            </div><!-- input-group -->
+            {{ form_errors(form.email) }}
+        </div>
+    </div><!-- row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group mb15">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'Enter Username' } }) }}
+            </div><!-- input-group -->
+            {{ form_errors(form.username) }}
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <div class="panel-btns">
+                  <a href="" class="panel-minimize tooltips" data-toggle="tooltip" title="Minimize Panel"><i class="fa fa-minus"></i></a>
+              </div><!-- panel-btns -->
+              <h4 class="panel-title">Ajoutez ou modifiez votre photo de profil</h4>
+          </div>
+          <div class="panel-body">
+              <form action="files" class="dropzone">
+                  <div class="fallback">
+                      {{ form_widget(form.profile_picture, {'attr': {'class': 'form-control-file'}}) }}
+                  </div>
+              </form>
+          </div><!-- panel-body -->
+      </div><!-- panel -->
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-sm-12">
+          <div class="input-group mb15">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+              {{ form_widget(form.current_password, { 'attr': {'class': 'form-control', 'placeholder': 'Enter Password' } }) }}
+          </div><!-- input-group -->
+          {{ form_errors(form.current_password) }}
+      </div>
+  </div><!-- row -->
+<div>
         <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class ="btn btn-success"/>
         <button class ="btn btn-danger pull-right"><a href="{{ path('fos_user_change_password') }}" style="color:white">Modifier le mot de passe</a></button>
     </div>

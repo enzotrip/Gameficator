@@ -44,9 +44,16 @@ class User extends BaseUser
      */
     private $topics;
 
+    /**
+     * @ORM\OneToOne(targetEntity="GR\UserBundle\Entity\ProfilePicture", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    public $profile_picture;
+
     public function __construct()
     {
         parent::__construct();
+        $this->profil_picture = NULL;
     }
 
     /**
@@ -223,5 +230,30 @@ class User extends BaseUser
     public function getTopics()
     {
         return $this->topics;
+    }
+
+
+    /**
+     * Set profilPicture
+     *
+     * @param \GR\UserBundle\Entity\ProfilePicture $profilPicture
+     *
+     * @return User
+     */
+    public function setProfilePicture(\GR\UserBundle\Entity\ProfilePicture $profilePicture)
+    {
+        $this->profile_picture = $profilePicture;
+
+        return $this;
+    }
+
+    /**
+     * Get profilPicture
+     *
+     * @return \GR\UserBundle\Entity\ProfilePicture
+     */
+    public function getProfilePicture()
+    {
+        return $this->profile_picture;
     }
 }

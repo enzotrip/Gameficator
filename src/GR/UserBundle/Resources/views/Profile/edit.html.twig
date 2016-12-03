@@ -20,6 +20,7 @@
         <link href="{{ asset('Template/css/toggles.css') }}" rel="stylesheet" />
         <link href="{{ asset('Template/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" />
         <link href="{{ asset('Template/css/colorpicker.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/dropzone.css') }}" rel="stylesheet" />
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
 
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -133,7 +134,14 @@
                 <div class="leftpanel">
                     <div class="media profile-left">
                         <a class="pull-left profile-thumb" href="{{ path('fos_user_profile_show') }}">
-                            <img class="img-circle" src="{{ asset('Template/images/photos/rl.jpg') }}" alt="">
+                          <img class="img-circle"
+                            {% if app.user.profile_picture == null %}
+                            src="{{ asset('Template/images/photos/santa-claus.png') }}"
+                            {% else %}
+                            src="{{ asset(app.user.profile_picture.webPath) }}"
+                            {% endif %}
+                            alt=""
+                          >
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">{{ app.user.username }}</h4>
@@ -246,6 +254,7 @@
 
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+        <script src="js/dropzone.min.js"></script>
 
     </body>
 </html>
