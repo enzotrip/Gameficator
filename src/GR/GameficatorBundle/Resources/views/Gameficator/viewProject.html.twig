@@ -50,6 +50,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-6">
+              {% set flag = false %}
               {% if project.getTasks|length > 0 %}
                 <h2>Liste des tâches<a href="{{ path('gr_gameficator_createtask') }}"><span class="glyphicon glyphicon-plus" style="padding-left:20px; "></span></a></h2>
                 <p><strong>Trier les tâches par</strong> : Date | Statut | Récurrence</p>
@@ -76,6 +77,7 @@
                                 </td>
                                 <td><span class="badge">
                                     {% if task.state == 1 %}A faire
+                                        {% set flag = true %}
                                     {% elseif task.state == 2 %}Archivée
                                     {% else %}Corbeille
                                     {% endif %}
@@ -96,7 +98,11 @@
       <div class="col-md-12">
         <div class="col-sm-6">
             {% if project.state == 1 %}
-            <a href="{{ path('gr_gameficator_archiverproject', {'id': project.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-saved"></span> Archiver</button></a>
+                {% if flag == true %}
+                        <button data-original-title="Veuillez terminer les tâches liées à ce projet" type="button" class="btn btn-primary tooltips" data-toggle="tooltip" data-placement="left" title=""><span class="glyphicon  glyphicon-saved"></span> Archiver</button>
+                {% else %}
+                        <a href="{{ path('gr_gameficator_archiverproject', {'id': project.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-saved"></span> Archiver</button></a>
+                {% endif %}
             <a href="{{ path('gr_gameficator_corbeilleproject', {'id': project.id}) }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Corbeille </button></a>
             {% elseif project.state == 2 %}
             <a href="{{ path('gr_gameficator_majproject', {'id': project.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-share"></span> Mettre à jour </button></a>

@@ -119,3 +119,7 @@ gr_gameficator_viewtask:
 gr_gameficator_checkedtask:
     path:    /checkedtask/{id}
     defaults: { _controller: GRGameficatorBundle:Gameficator:CheckedTask}
+
+gr_gameficator_changeoccurrences:
+    path:    /changeoccurrences/{id}
+    defaults: { _controller: GRGameficatorBundle:Gameficator:ChangeOccurrences}

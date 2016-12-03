@@ -22,6 +22,7 @@ use GR\GameficatorBundle\Form\RewardType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class GameficatorController extends Controller
@@ -48,7 +49,7 @@ class GameficatorController extends Controller
 
       $listDaylyTasks = $query->getResult();
       foreach ($listDaylyTasks as $task) {
-        if($task->getType() == 2) {
+        if($task->getType() == 1) {
           $task->getRecurrent()->updateOccurrences();
           $em->persist($task);
           $em->flush();
@@ -68,7 +69,7 @@ class GameficatorController extends Controller
 
       $listTasks = $query2->getResult();
       foreach ($listTasks as $task) {
-        if($task->getType() == 2) {
+        if($task->getType() == 1) {
           $task->getRecurrent()->updateOccurrences();
           $em->persist($task);
           $em->flush();
@@ -168,7 +169,7 @@ class GameficatorController extends Controller
         throw new NotFoundHttpException('Projet introuvable');
       }
       foreach ($project->getTasks() as $task) {
-        if($task->getType() == 2) {
+        if($task->getType() == 1) {
           $task->getRecurrent()->updateOccurrences();
           $em->persist($task);
           $em->flush();
@@ -188,7 +189,7 @@ class GameficatorController extends Controller
       if($task == null){
         throw new NotFoundHttpException('Tache introuvable');
       }
-      if($task->getType() == 2) {
+      if($task->getType() == 1) {
           $task->getRecurrent()->updateOccurrences();
           $em->persist($task);
           $em->flush();
@@ -411,7 +412,7 @@ class GameficatorController extends Controller
 
       $listTasks = $query->getResult();
       foreach ($listTasks as $task) {
-        if($task->getType() == 2) {
+        if($task->getType() == 1) {
           $task->getRecurrent()->updateOccurrences();
           $em->persist($task);
           $em->flush();
@@ -482,7 +483,7 @@ class GameficatorController extends Controller
       $listTasks = $query->getResult();
 
       foreach ($listTasks as $task) {
-        if($task->getType() == 2) {
+        if($task->getType() == 1) {
           $task->getRecurrent()->updateOccurrences();
           $em->persist($task);
           $em->flush();
@@ -510,7 +511,7 @@ class GameficatorController extends Controller
 
       $listTasks = $query->getResult();
       foreach ($listTasks as $task) {
-        if($task->getType() == 2) {
+        if($task->getType() == 1) {
           $task->getRecurrent()->updateOccurrences();
           $em->persist($task);
           $em->flush();
@@ -628,5 +629,19 @@ class GameficatorController extends Controller
       $task->setState(2);
       $em->persist($task);
       $em->flush();
+    }
+
+    public function ChangeOccurrencesAction($id)
+    {
+      $em = $this->getDoctrine()->getManager();
+      $task = $em->getRepository('GRGameficatorBundle:Task')->find($id);
+      $occurrences = $task->getRecurrent()->getOccurences();
+      unset($occurrences[0]);
+      $occurrences = array_values($occurrences);
+      $task->getRecurrent()->setOccurences($occurrences);
+      $em->persist($task);
+      $em->flush();
+
+      return $this->redirectToRoute('gr_gameficator_viewtask', array ('id' => $id));
     }
 }

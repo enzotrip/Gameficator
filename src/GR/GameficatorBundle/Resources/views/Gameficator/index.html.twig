@@ -20,7 +20,8 @@
                                 disabled=true
                                 {% endif %}
                             {% endif %} >
-                        <label for="{{ task.id }}">{{ task.name }}
+                        <label for="{{ task.id }}"><a href="{{ path('gr_gameficator_viewtask', {'id': task.id}) }}">{{ task.name }}</a>
+                        &nbsp;
                         {% if task.project.user != null %}
                         <span class="label label-default" style="background:{{task.project.color}}">
                            {{task.project.name}}
@@ -33,7 +34,7 @@
                         {% endif %}
                         {% if task.taskparent != 'Aucune' %}
                             {% if task.taskparent.state == 1 %}
-                            <span style="font-style: italic">bloquée par {{ task.taskparent.name }}</span>
+                            <span style="font-style: italic">bloquée par <a href="{{ path('gr_gameficator_viewtask', {'id': task.taskparent.id}) }}">{{ task.taskparent.name }}</a></span>
                             {% endif %}
                         {% endif %}
                     </div>
@@ -61,8 +62,18 @@
               {% for task in listTasks %}
                 <li class="list-group-item">
                       <div class="ckbox ckbox-default">
-                          <input type="checkbox" id="{{ task.id }}" value="1">
-                          <label for="{{ task.id }}">{{ task.name }} <span class="label label-default" style="background:{{task.project.color}}">{% if task.project.user != null %} {{task.project.name}} {% endif %}</span> &nbsp; {{task.deadline | date("d/m/y")}}<span class="label label-warning"></span></label>
+                          <input type="checkbox" id="{{ task.id }}" value="1"
+                            {% if task.taskparent != 'Aucune' %}
+                                {% if task.taskparent.state == 1 %}
+                                disabled=true
+                                {% endif %}
+                            {% endif %} >
+                          <label for="{{ task.id }}"><a href="{{ path('gr_gameficator_viewtask', {'id': task.id}) }}">{{ task.name }}</a>  &nbsp; <span class="label label-default" style="background:{{task.project.color}}">{% if task.project.user != null %} {{task.project.name}} {% endif %}</span> &nbsp; {{task.deadline | date("d/m/y")}}<span class="label label-warning"></span></label>
+                          {% if task.taskparent != 'Aucune' %}
+                            {% if task.taskparent.state == 1 %}
+                            <span style="font-style: italic">bloquée par <a href="{{ path('gr_gameficator_viewtask', {'id': task.taskparent.id}) }}">{{ task.taskparent.name }}</a></span>
+                            {% endif %}
+                        {% endif %} 
                       </div>
                 </li>
                 {% else %}
