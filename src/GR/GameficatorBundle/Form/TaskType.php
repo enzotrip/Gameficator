@@ -52,6 +52,7 @@ class TaskType extends AbstractType
         'query_builder' => function (EntityRepository $er) use (&$user, &$id) {
           return $er->createQueryBuilder('t')
                     ->where('t.user is NULL OR t.user = :user')
+                    ->andWhere('t.state = 1')
                     ->setParameter('user', $user);
           },
         'choice_label' => 'name',
