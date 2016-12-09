@@ -54,6 +54,7 @@
                         <li><a href="{{ path('gr_gameficator_createtask') }}">Tâche</a></li>
                         <li><a href="{{ path('gr_gameficator_createproject') }}">Projet</a></li>
                         <li><a href="{{ path('gr_gameficator_createreward') }}">Récompense</a></li>
+                        <li><a href="{{ path('gr_gameficator_createtopic') }}">Topic</a></li>
                       </ul>
                     </div>
 
@@ -132,7 +133,14 @@
                 <div class="leftpanel">
                     <div class="media profile-left">
                         <a class="pull-left profile-thumb" href="{{ path('fos_user_profile_show') }}">
-                            <img class="img-circle" src="{{ asset('Template/images/photos/rl.jpg') }}" alt="">
+                            <img class="img-circle"
+                              {% if app.user.profile_picture == null %}
+                              src="{{ asset('Template/images/photos/santa-claus.png') }}"
+                              {% else %}
+                              src="{{ asset(app.user.profile_picture.webPath) }}"
+                              {% endif %}
+                              alt=""
+                            >
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">{{ app.user.username }}</h4>
@@ -145,8 +153,8 @@
                         <li class="parent"><a href=""><i class="fa fa-suitcase"></i> <span>Projets</span></a>
                             <ul class="children">
                                 <li><a href="{{ path('gr_gameficator_viewprojects') }}">Mes projets</a></li>
-                                <li><a href="">Mes projets archivés</a></li>
-                                <li><a href="">Corbeille</a></li>
+                                <li><a href="{{ path('gr_gameficator_projetsarchives') }}">Mes projets archivés</a></li>
+                                <li><a href="{{ path('gr_gameficator_projetscorbeille') }}">Corbeille</a></li>
                             </ul>
                         </li>
                         <li class="parent"><a href=""><i class="fa fa-edit"></i> <span>Tâches</span></a>
@@ -154,8 +162,8 @@
                                 <li><a href="calendar.html">Calendrier des tâches</a></li>
                                 <li><a href="{{ path('gr_gameficator_taskstodo') }}">Tâches à faire</a></li>
                                 <li><a href="">Tâches récurrentes</a></li>
-                                <li><a href="">Tâches archivées</a></li>
-                                <li><a href="">Corbeille</a></li>
+                                <li><a href="{{ path('gr_gameficator_tachesarchivees') }}">Tâches archivées</a></li>
+                                <li><a href="{{ path('gr_gameficator_tachescorbeille') }}">Corbeille</a></li>
                             </ul>
                         </li>
                         <li class="parent"><a href=""><i class="fa fa-bars"></i> <span>Récompenses</span></a>
@@ -163,6 +171,11 @@
                                 <li><a href="{{ path('gr_gameficator_viewrewards') }}">Mes récompenses</a></li>
                                 <li><a href="">Récompenses en cours</a></li>
                                 <li><a href="">Récompenses archivées</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href=""><i class="fa fa-cloud"></i> <span>Topics</span></a>
+                            <ul class="children">
+                                <li><a href="{{ path('gr_gameficator_viewtopics') }}">Mes Topics</a></li>
                             </ul>
                         </li>
 
@@ -235,6 +248,9 @@
         <script src="{{ asset('Template/js/dataTables.bootstrap.js') }}"></script>
         <script src="{{ asset('Template/js/dataTables.responsive.js') }}"></script>
         <script src="{{ asset('Template/js/select2.min.js') }}"></script>
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
     </body>
 </html>

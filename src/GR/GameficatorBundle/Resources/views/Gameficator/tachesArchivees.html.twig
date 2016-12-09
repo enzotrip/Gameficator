@@ -1,0 +1,64 @@
+{% extends "GRGameficatorBundle::layout.html.twig" %}
+
+{% block title %}
+    <title>Gamificator | Tâches Archivées</title>
+{% endblock title %}
+
+{% block pageheader %}
+<div class="pageheader">
+    <div class="media">
+        <div class="pageicon pull-left">
+            <i class="fa fa-th-list"></i>
+        </div>
+        <div class="media-body">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li>Tasks</li>
+                <li>Archive</li>
+                <li class="pull-right"><a href="{{ path('gr_gameficator_createtask') }}"><button class="btn btn-primary"><i class="fa fa-plus"> </i> Add New Task</button></a></li>
+            </ul>
+            <h4>Tâches Archivées</h4>
+        </div>
+    </div><!-- media -->
+</div><!-- pageheader -->
+{% endblock %}
+
+{% block body %}
+
+<div class="panel panel-primary-head">
+
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+            <th>Nom</th>
+            <th>Projets liés</th>
+            <th>Topic</th>
+            <th>Date limite</th>
+            </tr>
+        </thead>
+
+        <tbody>
+          {% for task in listTasks %}
+            <tr>
+                <td><a href="{{ path('gr_gameficator_viewtask', {'id': task.id}) }}">{{ task.name }}</a></td>
+                <td><span class="label label-warning" style="background:{{task.project.color}}">{% if task.project.user != null %} {{task.project.name}} {% endif %}</span></td>
+                <td>{%for topic in task.topics %}
+                    <span class="badge badge-info">{{topic.name}}</span>{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </td>
+                <td>{% if task.type==0 %}{{task.deadline | date("d/m/y")}} {% else %} Recurrente {% endif %}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+</div><!-- panel -->
+
+<br />
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+
+{% endblock %}

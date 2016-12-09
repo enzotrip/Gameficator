@@ -26,6 +26,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use GR\GameficatorBundle\Entity\Topic;
+use GR\GameficatorBundle\Entity\Task;
+use GR\GameficatorBundle\Entity\Project;
+
 /**
  * Controller managing the registration.
  *
@@ -49,6 +53,7 @@ class RegistrationController extends Controller
         $dispatcher = $this->get('event_dispatcher');
 
         $user = $userManager->createUser();
+
         $user->setEnabled(true);
 
         $event = new GetResponseUserEvent($user, $request);

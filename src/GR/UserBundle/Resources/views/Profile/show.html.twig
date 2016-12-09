@@ -1,5 +1,257 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-{% block fos_user_content %}
-{% include "FOSUserBundle:Profile:show_content.html.twig" %}
-{% endblock fos_user_content %}
+        {% block title %}
+            <title>Gamificator | Profil</title>
+        {% endblock title %}
+
+        <link href="{{ asset('Template/css/style.default.css') }}" rel="stylesheet">
+        <link href="{{ asset('Template/css/morris.css') }}" rel="stylesheet">
+        <link href="{{ asset('Template/css/select2.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/style.datatables.css') }}" rel="stylesheet">
+        <link href="{{ asset('Template/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('Template/css/dropzone.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/jquery.tagsinput.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/toggles.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" />
+        <link href="{{ asset('Template/css/colorpicker.css') }}" rel="stylesheet" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <header>
+            <div class="headerwrapper">
+                <div class="header-left">
+                    <a href="{{ path('gr_gameficator_homepage') }}" class="logo">
+                        <img src="{{ asset('Template/images/logo.png') }}" alt="" />
+                    </a>
+                    <div class="pull-right">
+                        <a href="" class="menu-collapse">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </div>
+                </div><!-- header-left -->
+
+                <div class="header-right">
+                    <div class="pull-left dropdown">
+                      <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Ajouter
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="{{ path('gr_gameficator_createtask') }}">Tâche</a></li>
+                        <li><a href="{{ path('gr_gameficator_createproject') }}">Projet</a></li>
+                        <li><a href="{{ path('gr_gameficator_createreward') }}">Récompense</a></li>
+                        <li><a href="{{ path('gr_gameficator_createtopic') }}">Topic</a></li>
+                      </ul>
+                    </div>
+
+                    <div class="pull-right">
+
+                        <form class="form form-search" action="search-results.html">
+                            <input type="search" class="form-control" placeholder="Search" />
+                        </form>
+
+                        <div class="btn-group btn-group-list btn-group-notification">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <i class="fa fa-bell-o"></i>
+                              <span class="badge">5</span>
+                            </button>
+                            <div class="dropdown-menu pull-right">
+                                <a href="" class="link-right"><i class="fa fa-search"></i></a>
+                                <h5>Notification</h5>
+                                <ul class="media-list dropdown-list">
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016  <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <div class="media-body">
+                                          <strong>Nom de la tâche</strong> à finir le 10/10/2016   <span class="label label-warning">Projet 1</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="dropdown-footer text-center">
+                                    <a href="" class="link">See All Notifications</a>
+                                </div>
+                            </div><!-- dropdown-menu -->
+                        </div><!-- btn-group -->
+
+
+
+                        <div class="btn-group btn-group-option">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                              <li><a href="{{ path('fos_user_profile_show') }}"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-star"></i> Activity Log</a></li>
+                              <li><a href="{{ path('fos_user_profile_edit') }}"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
+                              <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
+                              <li class="divider"></li>
+                              <li><a href="{{ path('fos_user_security_logout') }}"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
+                            </ul>
+                        </div><!-- btn-group -->
+
+                    </div><!-- pull-right -->
+
+                </div><!-- header-right -->
+
+            </div><!-- headerwrapper -->
+        </header>
+
+        <section>
+            <div class="mainwrapper">
+                <div class="leftpanel">
+                    <div class="media profile-left">
+                        <a class="pull-left profile-thumb" href="{{ path('fos_user_profile_show') }}">
+                          <img class="img-circle"
+                            {% if app.user.profile_picture == null %}
+                            src="{{ asset('Template/images/photos/santa-claus.png') }}"
+                            {% else %}
+                            src="{{ asset(app.user.profile_picture.webPath) }}"
+                            {% endif %}
+                            alt=""
+                          >
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{ app.user.username }}</h4>
+                        </div>
+                    </div><!-- media -->
+
+                    <h5 class="leftpanel-title">Navigation</h5>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a href="{{ path('gr_gameficator_homepage') }}"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                        <li class="parent"><a href=""><i class="fa fa-suitcase"></i> <span>Projets</span></a>
+                            <ul class="children">
+                                <li><a href="{{ path('gr_gameficator_viewprojects') }}">Mes projets</a></li>
+                                <li><a href="{{ path('gr_gameficator_projetsarchives') }}">Mes projets archivés</a></li>
+                                <li><a href="{{ path('gr_gameficator_projetscorbeille') }}">Corbeille</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href=""><i class="fa fa-edit"></i> <span>Tâches</span></a>
+                            <ul class="children">
+                                <li><a href="calendar.html">Calendrier des tâches</a></li>
+                                <li><a href="{{ path('gr_gameficator_taskstodo') }}">Tâches à faire</a></li>
+                                <li><a href="">Tâches récurrentes</a></li>
+                                <li><a href="{{ path('gr_gameficator_tachesarchivees') }}">Tâches archivées</a></li>
+                                <li><a href="{{ path('gr_gameficator_tachescorbeille') }}">Corbeille</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href=""><i class="fa fa-bars"></i> <span>Récompenses</span></a>
+                            <ul class="children">
+                                <li><a href="{{ path('gr_gameficator_viewrewards') }}">Mes récompenses</a></li>
+                                <li><a href="">Récompenses en cours</a></li>
+                                <li><a href="">Récompenses archivées</a></li>
+                            </ul>
+                        </li>
+                        <li class="parent"><a href=""><i class="fa fa-cloud"></i> <span>Topics</span></a>
+                            <ul class="children">
+                                <li><a href="{{ path('gr_gameficator_viewtopics') }}">Mes Topics</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                </div><!-- leftpanel -->
+
+                <div class="mainpanel">
+                    {% block pageheader %}
+                    <div class="pageheader">
+                        <div class="media">
+                            <div class="pageicon pull-left">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="media-body">
+                                <ul class="breadcrumb">
+                                    <li><a href="{{ path('gr_gameficator_homepage')}}"><i class="glyphicon glyphicon-home"></i></a></li>
+                                    <li>Profil</li>
+                                </ul>
+                                <h4>Profil <a href="{{ path('fos_user_profile_edit') }}"><span class="glyphicon glyphicon-edit" style="padding-left:20px; "></span></a></h4>
+                            </div>
+                        </div><!-- media -->
+                    </div><!-- pageheader -->
+                    {% endblock %}
+
+
+                    <div class="contentpanel">
+                      {% block fos_user_content %}
+                      {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+                      {% endblock fos_user_content %}
+                    </div><!-- contentpanel -->
+
+                </div><!-- mainpanel -->
+            </div><!-- mainwrapper -->
+        </section>
+
+
+        <script src="{{ asset('Template/js/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery-migrate-1.2.1.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery-ui-1.10.3.min.js') }}"></script>
+        <script src="{{ asset('Template/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('Template/js/modernizr.min.js') }}"></script>
+        <script src="{{ asset('Template/js/pace.min.js') }}"></script>
+        <script src="{{ asset('Template/js/retina.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.cookies.js') }}"></script>
+
+        <script src="{{ asset('Template/js/flot/jquery.flot.min.js') }}"></script>
+
+        <script src="{{ asset('Template/js/jquery.autogrow-textarea.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.mousewheel.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.tagsinput.min.js') }}"></script>
+        <script src="{{ asset('Template/js/toggles.min.js') }}"></script>
+        <script src="{{ asset('Template/js/bootstrap-timepicker.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.maskedinput.min.js') }}"></script>
+        <script src="{{ asset('Template/js/colorpicker.js') }}"></script>
+        <script src="{{ asset('Template/js/dropzone.min.js') }}"></script>
+
+        <script src="{{ asset('Template/js/flot/jquery.flot.resize.min.js') }}"></script>
+        <script src="{{ asset('Template/js/flot/jquery.flot.spline.min.js') }}"></script>
+        <script src="{{ asset('Template/js/jquery.sparkline.min.js') }}"></script>
+        <script src="{{ asset('Template/js/morris.min.js') }}"></script>
+        <script src="{{ asset('Template/js/raphael-2.1.0.min.js') }}"></script>
+        <script src="{{ asset('Template/js/bootstrap-wizard.min.js') }}"></script>
+        <script src="{{ asset('Template/js/select2.min.js') }}"></script>
+
+        <script src="{{ asset('Template/js/custom.js') }}"></script>
+        <script src="{{ asset('Template/js/dashboard.js') }}"></script>
+        {% block script %}
+        {% endblock %}
+        <script src="{{ asset('Template/js/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('Template/js/dataTables.bootstrap.js') }}"></script>
+        <script src="{{ asset('Template/js/dataTables.responsive.js') }}"></script>
+        <script src="{{ asset('Template/js/select2.min.js') }}"></script>
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+    </body>
+</html>

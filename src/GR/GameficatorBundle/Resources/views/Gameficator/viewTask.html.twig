@@ -1,7 +1,7 @@
 {% extends "GRGameficatorBundle::layout.html.twig" %}
 
 {% block title %}
-    <title>Gamificator | Mon Projet</title>
+    <title>Gamificator | Ma tâche</title>
 {% endblock title %}
 
 {% block pageheader %}
@@ -14,10 +14,10 @@
             <ul class="breadcrumb">
                 <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
                 <li>Dashboard</li>
-                <li>Taches</li>
+                <li>Tâches</li>
                 <li>{{task.name}}</li>
             </ul>
-            <h4>{{task.name}}</h4>
+                <h4>{{task.name}} <a href="{{ path('gr_gameficator_updatetask', {'id': task.id}) }}"><span class="glyphicon glyphicon-edit" style="padding-left:20px; "></span></a></h4>
         </div>
     </div><!-- media -->
 </div><!-- pageheader -->
@@ -25,5 +25,87 @@
 
 {% block body %}
 
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <h2>Informations</h2>
+                {% if task.project.user != null %}
+                    <p><strong>Projet</strong> : <a href="{{ path('gr_gameficator_viewproject', {'id': task.project.id}) }}">{{ task.project.name }} </a></p>
+                {% endif %}
+                <p><strong>Topic</strong> :
+                {% for topic in task.topics %}
+                        {{topic.name}}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+                </p>
+                <p><strong>Statut</strong> : 
+                {% if task.taskparent != 'Aucune' %}
+                    {% if task.taskparent.state == 1 %}
+                            Bloquée par <a href="{{ path('gr_gameficator_viewtask', {'id': task.taskparent.id}) }}">{{ task.taskparent.name }}</a>
+                    {% else %}
+                            {% if task.state == 1 %}A faire{% elseif task.state == 2 %}Archivée{% else %}Corbeille{% endif %}
+                    {% endif %}
+
+                {% else %}
+                    {% if task.state == 1 %}A faire{% elseif task.state == 2 %}Archivée{% else %}Corbeille{% endif %}
+                {% endif %}
+                </p>
+                <p><strong>Echéance / récurrence</strong> : {% if task.type==0 %}{{task.deadline | date("d/m/y")}} {% else %} Recurrente {% endif %}</p>
+                <p><strong>Priorité</strong> : {{ task.priority }}</p>
+                <p><strong>Nombre de points</strong> : {{ task.points }}</p>
+                {% if task.description != null %}
+                    <p><strong>Description</strong> : {{ task.description }}</p>
+                {% endif %}
+                <p>{{task.recurrent.timechoice2}}</p>
+                {% for occurence in task.recurrent.occurences %}
+                    <p>{{occurence| date("d/m/y H:i:s l")}}</p>
+                {%  endfor %}
+                {% for day in task.recurrent.days %}
+                    <p> {{day.name}} </p>
+                {% else %}
+                    <p> pas de jour </p>
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                <h2>Feedback</h2>
+                <p><strong>Cette semaine</strong> : </p>
+                <p><strong>Ce mois</strong> : </p>
+                <p><strong>Cette année</strong> : </p>
+                <p><strong>Depuis le début</strong> : </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-sm-6">
+            {% if task.state == 1 %}
+            {% if task.taskparent != 'Aucune' %}
+                    {% if task.taskparent.state == 1 %}
+                       <button data-original-title="Veuillez terminer la tâche bloquante pour archiver celle-ci" type="button" class="btn btn-primary tooltips" data-toggle="tooltip" data-placement="left" title=""><span class="glyphicon  glyphicon-saved"></span> Archiver</button>
+                    {% else %}
+                        <a href="{{ path('gr_gameficator_archivertask', {'id': task.id}) }}">
+                        <button class="btn btn-primary"><span class="glyphicon  glyphicon-saved"></span> Archiver</button></a>
+                    {% endif %}
+
+            {% else %}
+                {% if task.type == 1%}
+                    <a href="{{ path('gr_gameficator_changeoccurrences', {'id': task.id}) }}">
+                    <button class="btn btn-primary"><span class="glyphicon  glyphicon-saved"></span> Fait</button></a>
+                {% else %}
+                    <a href="{{ path('gr_gameficator_archivertask', {'id': task.id}) }}">
+                    <button class="btn btn-primary"><span class="glyphicon  glyphicon-saved"></span> Archiver</button></a>
+                {% endif %}
+            {% endif %}
+            <a href="{{ path('gr_gameficator_corbeilletask', {'id': task.id}) }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Corbeille </button></a>
+            {% elseif task.state == 2 %}
+            <a href="{{ path('gr_gameficator_majtask', {'id': task.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-share"></span> Mettre à jour </button></a>
+            <a href="{{ path('gr_gameficator_corbeilletask', {'id': task.id}) }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Corbeille </button></a>
+            {% elseif task.state == 3 %}
+            <a href="{{ path('gr_gameficator_majtask', {'id': task.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-share"></span> Mettre à jour </button></a>
+            <a href="{{ path('gr_gameficator_archivertask', {'id': task.id}) }}"><button class="btn btn-primary"><span class="glyphicon  glyphicon-saved"></span> Archiver</button></a>
+            <a href="{{ path('gr_gameficator_deletetask', {'id': task.id}) }}"><button class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Supprimer définitivement </button></a>
+            {% endif %}
+        </div>
+      </div>
+    </div>
 
 {% endblock %}

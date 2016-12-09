@@ -3,7 +3,7 @@
 namespace GR\GameficatorBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Task
  *
@@ -33,6 +33,12 @@ class Task
     private $reward;
 
     /**
+     * @ORM\OneToOne(targetEntity="GR\GameficatorBundle\Entity\Recurrent", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $recurrent;
+
+    /**
      * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Project", inversedBy="tasks")
      * @ORM\JoinColumn(nullable=true)
      */
@@ -43,6 +49,24 @@ class Task
       * @ORM\JoinColumn(nullable=true)
       */
     private $liste;
+
+     /**
+      * @ORM\ManyToOne(targetEntity="GR\GameficatorBundle\Entity\Task", inversedBy="tasksenfant")
+      * @ORM\JoinColumn(nullable=true)
+      */
+    private $taskparent;
+
+     /**
+      * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="taskparent")
+      * @ORM\JoinColumn(nullable=true)
+      */
+    private $tasksenfant;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", cascade={"persist"})
+     * @ORM\JoinTable(name="gr_tasks_topics")
+     */
+    private $topics;
 
     /**
      * @var string
@@ -68,7 +92,7 @@ class Task
     /**
      * @var array
      *
-     * @ORM\Column(name="Type", type="array", nullable=true)
+     * @ORM\Column(name="Type", type="integer", nullable=true)
      */
     private $type;
 
@@ -80,9 +104,9 @@ class Task
     private $deadline;
 
     /**
-     * @var array
+     * @var int
      *
-     * @ORM\Column(name="State", type="array")
+     * @ORM\Column(name="State", type="integer")
      * @ORM\JoinColumn(nullable=true)
      */
     private $state;
@@ -101,18 +125,17 @@ class Task
      */
     private $points;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="Color", type="string", length=255, nullable=true)
-     */
-    private $color;
-
     public function __construct()
     {
         $this->start= new \Datetime();
+        date_add($this->start, date_interval_create_from_date_string('1 hour'));
         $this->deadline= new \Datetime();
-        $this->color='#000000';
+        date_add($this->deadline, date_interval_create_from_date_string('1 hour'));
+        $this->topics = new ArrayCollection();
+        $this->tasksenfant = new ArrayCollection();
+        $this->priority=0;
+        $this->points=0;
+        $this->state=1;
     }
     /**
      * Get id
@@ -149,6 +172,15 @@ class Task
     }
 
     /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Set start
      *
      * @param \DateTime $start
@@ -170,30 +202,6 @@ class Task
     public function getStart()
     {
         return $this->start;
-    }
-
-    /**
-     * Set type
-     *
-     * @param array $type
-     *
-     * @return Task
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return array
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -437,26 +445,145 @@ class Task
     }
 
     /**
-     * Set color
+     * Set type
      *
-     * @param string $color
+     * @param integer $type
      *
      * @return Task
      */
-    public function setColor($color)
+    public function setType($type)
     {
-        $this->color = $color;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get color
+     * Get type
      *
-     * @return string
+     * @return integer
      */
-    public function getColor()
+    public function getType()
     {
-        return $this->color;
+        return $this->type;
+    }
+
+    /**
+     * Set recurrent
+     *
+     * @param \GR\GameficatorBundle\Entity\Recurrent $recurrent
+     *
+     * @return Task
+     */
+    public function setRecurrent(\GR\GameficatorBundle\Entity\Recurrent $recurrent = null)
+    {
+        $this->recurrent = $recurrent;
+
+        return $this;
+    }
+
+    /**
+     * Get recurrent
+     *
+     * @return \GR\GameficatorBundle\Entity\Recurrent
+     */
+    public function getRecurrent()
+    {
+        return $this->recurrent;
+    }
+
+    /**
+     * Add topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     *
+     * @return Task
+     */
+    public function addTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics[] = $topic;
+
+        return $this;
+    }
+
+    /**
+     * Remove topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     */
+    public function removeTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics->removeElement($topic);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTopics()
+    {
+        return $this->topics;
+    }
+
+
+    /**
+     * Set taskparent
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $taskparent
+     *
+     * @return Task
+     */
+    public function setTaskparent(\GR\GameficatorBundle\Entity\Task $taskparent = null)
+    {
+        $this->taskparent = $taskparent;
+
+        return $this;
+    }
+
+    /**
+     * Get taskparent
+     *
+     * @return \GR\GameficatorBundle\Entity\Task
+     */
+    public function getTaskparent()
+    {
+        return $this->taskparent;
+    }
+
+
+
+    /**
+     * Add tasksenfant
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $tasksenfant
+     *
+     * @return Task
+     */
+    public function addTasksenfant(\GR\GameficatorBundle\Entity\Task $tasksenfant)
+    {
+        $this->tasksenfant[] = $tasksenfant;
+        $tasksenfant->setTaskparent($this);
+        return $this;
+    }
+
+    /**
+     * Remove tasksenfant
+     *
+     * @param \GR\GameficatorBundle\Entity\Task $tasksenfant
+     */
+    public function removeTasksenfant(\GR\GameficatorBundle\Entity\Task $tasksenfant)
+    {
+        $this->tasksenfant->removeElement($tasksenfant);
+    }
+
+    /**
+     * Get tasksenfant
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTasksenfant()
+    {
+        return $this->tasksenfant;
     }
 }

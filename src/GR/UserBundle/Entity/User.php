@@ -19,29 +19,41 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Project", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Project", mappedBy="user", cascade={"persist"})
      */
     private $projects;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Liste", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Liste", mappedBy="user", cascade={"persist"})
      */
     private $listes;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Task", mappedBy="user", cascade={"persist"})
      * @ORM\OrderBy({"deadline" = "ASC"})
      */
     private $tasks;
 
     /**
-     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Reward", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Reward", mappedBy="user", cascade={"persist"})
      */
     private $rewards;
+
+    /**
+     * @ORM\OneToMany(targetEntity="GR\GameficatorBundle\Entity\Topic", mappedBy="user", cascade={"persist"})
+     */
+    private $topics;
+
+    /**
+     * @ORM\OneToOne(targetEntity="GR\UserBundle\Entity\ProfilePicture", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    public $profile_picture;
 
     public function __construct()
     {
         parent::__construct();
+        $this->profil_picture = NULL;
     }
 
     /**
@@ -184,5 +196,64 @@ class User extends BaseUser
     public function getRewards()
     {
         return $this->rewards;
+    }
+
+    /**
+     * Add topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     *
+     * @return User
+     */
+    public function addTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics[] = $topic;
+        $topic->setUser($this);
+        return $this;
+    }
+
+    /**
+     * Remove topic
+     *
+     * @param \GR\GameficatorBundle\Entity\Topic $topic
+     */
+    public function removeTopic(\GR\GameficatorBundle\Entity\Topic $topic)
+    {
+        $this->topics->removeElement($topic);
+    }
+
+    /**
+     * Get topics
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTopics()
+    {
+        return $this->topics;
+    }
+
+
+    /**
+     * Set profilPicture
+     *
+     * @param \GR\UserBundle\Entity\ProfilePicture $profilPicture
+     *
+     * @return User
+     */
+    public function setProfilePicture(\GR\UserBundle\Entity\ProfilePicture $profilePicture)
+    {
+        $this->profile_picture = $profilePicture;
+
+        return $this;
+    }
+
+    /**
+     * Get profilPicture
+     *
+     * @return \GR\UserBundle\Entity\ProfilePicture
+     */
+    public function getProfilePicture()
+    {
+        return $this->profile_picture;
     }
 }

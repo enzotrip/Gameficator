@@ -1,0 +1,51 @@
+{% extends "GRGameficatorBundle::layout.html.twig" %}
+
+{% block title %}
+    <title>Gamificator | New Topic</title>
+{% endblock title %}
+
+{% block pageheader %}
+<div class="pageheader">
+    <div class="media">
+        <div class="pageicon pull-left">
+            <i class="fa fa-file"></i>
+        </div>
+        <div class="media-body">
+            <ul class="breadcrumb">
+                <li><a href="{{ path('gr_gameficator_homepage') }}"><i class="glyphicon glyphicon-home"></i></a></li>
+                <li>Dashboard</li>
+                <li>Créer un topic</li>
+            </ul>
+            <h4>Créer un topic</h4>
+        </div>
+    </div><!-- media -->
+</div><!-- pageheader -->
+{% endblock %}
+
+{% block body %}
+
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+<div class="row">
+     <div class="col-sm-6 col-sm-offset-3">
+       <div class="form-group">
+           <label class="col-sm-2 control-label">Nom du topic</label>
+           <div class="col-sm-8">
+               {{ form_widget(form.name, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            {{ form_errors(form.name) }}
+     </div>
+    </div><!-- form-group -->
+</div>
+
+<div class="form-group">
+      <div class="col-sm-6 col-sm-offset-4">
+          {{ form_widget(form.save, { 'attr': {'value': 'Create Task', 'class': 'btn btn-success'}}) }}
+      </div>
+
+</div>
+
+
+
+{{ form_end(form) }}
+
+{% endblock %}

@@ -86,15 +86,32 @@ class Project
     private $avancement;
 
     /**
+     * @ORM\Column(name="State", type="integer")
+     */
+    private $state;
+    // state=1 à faire state=2 archive state=3 corbeille
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Color", type="string", length=255, nullable=true)
+     */
+    private $color;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->tasks = new \Doctrine\Common\Collections\ArrayCollection();
         $this->deadline= new \Datetime();
+        date_add($this->deadline, date_interval_create_from_date_string('1 hour'));
         $this->lastUpdate= new \Datetime();
+        date_add($this->lastUpdate, date_interval_create_from_date_string('1 hour'));
         $this->avancement= 0;
+        $this->state=1;
         $this->priority=0;
+        $this->color='#428BCA';
     }
 
     /**
@@ -129,6 +146,15 @@ class Project
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * toString
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName();
     }
 
     /**
@@ -344,6 +370,7 @@ class Project
      */
     public function setAvancement($avancement)
     {
+
         $this->avancement = $avancement;
 
         return $this;
@@ -356,6 +383,71 @@ class Project
      */
     public function getAvancement()
     {
-        return $this->avancement;
+      $tasks = $this->getTasks();
+      $somme_finie = 0;
+      $somme = 0;
+      if ($tasks != null) {
+        foreach($tasks as $task) {
+          if ($task->getState() == 2 | $task->getState() == 3) {
+            $somme_finie = $somme_finie + $task->getPriority();
+          }
+          $somme = $somme + $task->getPriority();
+        }
+        if ($somme > 0) {
+          $avancement = round(($somme_finie/$somme)*100);
+          return $this->avancement = $avancement;
+        }
+        else {
+          return $this->avancement = -1;
+        }
+      }
+    }
+
+    /**
+     * Set state
+     *
+     * @param integer $state
+     *
+     * @return Project
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    /**
+     * Get state
+     *
+     * @return integer
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     *
+     * @return Task
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

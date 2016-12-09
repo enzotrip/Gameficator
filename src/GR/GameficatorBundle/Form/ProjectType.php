@@ -32,12 +32,13 @@ class ProjectType extends AbstractType
                         '3' => 3
                     )))
                 ->add('motivationplus', TextareaType::class)
-                ->add('motivationneg',   TextareaType::class)        
+                ->add('motivationneg',   TextareaType::class)
+                ->add('color',           TextType::class)      
                 ->add('save',           SubmitType::class, array('label' => 'Créer'))
 
         ;
     }
-    
+
     /**
      * {@inheritdoc}
      */

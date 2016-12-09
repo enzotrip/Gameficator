@@ -71,3 +71,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: GR\UserBundle\Entity\User
+    registration:
+        form:
+            type: GR\UserBundle\Form\RegistrationType
+    profile:
+        form:
+            type: GR\UserBundle\Form\EditProfileType

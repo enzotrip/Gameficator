@@ -50,14 +50,15 @@
        <div class="col-sm-6"><div class="form-group">
            <label class="col-sm-2 control-label">Topic</label>
            <div class="col-sm-8">
-               <input type="text" class="form-control">
+               {{ form_widget(form.topics, {'attr': {'class': 'form-control'}}) }}
                </div>
+               {{ form_errors(form.topics) }}
          </div><!-- form-group -->
          </div>
        <div class="col-sm-6"><div class="form-group">
            <label class="col-sm-2 control-label">Tâche parente</label>
            <div class="col-sm-8">
-               <input type="text" class="form-control">
+               {{ form_widget(form.taskparent, {'attr': {'class': 'form-control'}}) }}
             </div>
          </div><!-- form-group --></div>
 </div>
@@ -80,21 +81,13 @@
 
 <div class="row">
          <div class="col-sm-6"><div class="form-group">
-           <label class="col-sm-2 control-label">Priorité</label>
-           <div class="col-sm-8">
-               {{ form_widget(form.priority, { 'attr': {'class': 'form-control'} }) }}
-            </div>
-            {{ form_errors(form.priority) }}
-         </div><!-- form-group --></div>
-       <div class="col-sm-6"><div class="form-group">
-           <label class="col-sm-2 control-label">Couleur</label>
-           <div class="col-sm-6">
-              {{ form_widget(form.color, {'id': 'colorpicker', 'attr': {'class': 'form-control colorpicker-input'} }) }}
-               <span id="colorSelector" class="colorselector">
-                  <span></span>
-              </span>
-            </div>
-         </div><!-- form-group --></div>
+             <label class="col-sm-2 control-label">Priorité</label>
+             <div class="col-sm-8">
+                 {{ form_widget(form.priority, { 'attr': {'class': 'form-control'} }) }}
+              </div>
+              {{ form_errors(form.priority) }}
+           </div><!-- form-group -->
+         </div>
 </div>
 <div class="row">
          <div class="form-group">
@@ -130,7 +123,7 @@
                 </div>
               </div>
           </div>
-      </div><!-- form-group --></div>
+      </div><!-- form-group -->
 </div>
 
 <div id="recurrent" class="row" style="display:none">
@@ -139,35 +132,14 @@
             <strong>Tous les :</strong>
 
             <div class="row"></br></div>
-
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="1" id="checkboxLundi" disabled="true">
-                  <label for="checkboxLundi">Lundi</label>
+            {% for day in form.recurrent.days %}
+            <div class="row">
+              <div class="ckbox ckbox-primary">
+                {{ form_widget(day, { 'attr' :{ 'class': 'ckbox ckbox-primary NON' }}) }}
+                {{ form_label(day)}}
+              </div>
             </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="2" id="checkboxMardi">
-                  <label for="checkboxMardi">Mardi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="3" id="checkboxMercredi">
-                  <label for="checkboxMercredi">Mercredi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="4" id="checkboxJeudi">
-                  <label for="checkboxJeudi">Jeudi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="5" id="checkboxVendredi">
-                  <label for="checkboxVendredi">Vendredi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="6" id="checkboxSamedi">
-                  <label for="checkboxSamedi">Samedi</label>
-            </div>
-            <div class="ckbox ckbox-primary">
-                <input type="checkbox" value="7" id="checkboxDimanche">
-                  <label for="checkboxDimanche">Dimanche</label>
-            </div>
+            {% endfor %}
         </div>
 
         <div class="col-sm-1"></br></br></br></br></br></br><strong>OU</strong></div>
@@ -177,7 +149,7 @@
               <div class="form-group">
                 <label class="col-sm-3 control-label"><strong>Date de début</strong></label>
                 <div class="col-sm-7">
-                  <input type="text" class="form-control" id="datepicker1">
+                  {{ form_widget(form.recurrent.startdate, {'id': 'datepicker1', 'attr': {'class': 'form-control'}})}}
                 </div>
               </div>
             </div>
@@ -187,18 +159,12 @@
             <div class="row">
               <label class="col-sm-3 control-label"><strong>Tous les : </strong></label>
               <div class="col-sm-3">
-                <input type="number" class="form-control">
+                {{ form_widget(form.recurrent.nbchoice2, { 'id': 'type_2_1', 'attr': {'class': 'form-control', 'value': 0} }) }}
               </div>
               <div class="col-sm-4">
-                <select class="form-control " id="sel1">
-                  <option></option>
-                  <option>Heures</option>
-                  <option>Jours</option>
-                  <option>Semaines</option>
-                  <option>Mois</option>
-                  <option>Ans</option>
-                </select>
+               {{ form_widget(form.recurrent.timechoice2, { 'id': 'type_2_2', 'attr': {'class': 'form-control'} }) }}
               </div>
+              {{ form_errors(form.recurrent.timechoice2) }}
             </div>
         </div>
         <div class="col-sm-5" style="border-left: 1px solid #8E8585">
@@ -206,19 +172,13 @@
             <div class="row"></br></br></br></br></br>
               <label class="col-sm-2 control-label"><strong>Au moins </strong></label>
               <div class="col-sm-2">
-                <input type="number" class="form-control">
+                {{ form_widget(form.recurrent.nbchoice3, { 'id': 'type_3_1', 'attr': {'class': 'form-control', 'value': 0} }) }}
               </div>
               <label class="col-sm-2 control-label"><strong>Fois par </strong></label>
               <div class="col-sm-3">
-                <select class="form-control " id="sel1">
-                  <option></option>
-                  <option>Heures</option>
-                  <option>Jours</option>
-                  <option>Semaines</option>
-                  <option>Mois</option>
-                  <option>Ans</option>
-                </select>
+               {{ form_widget(form.recurrent.timechoice3, { 'id': 'type_3_2', 'attr': {'class': 'form-control'} }) }}
               </div>
+              {{ form_errors(form.recurrent.timechoice3) }}
             </div>
             <div class="row"></br></br></br></br></br></br></div>
         </div>
@@ -243,39 +203,124 @@
 
 <script type="text/javascript">
 
+// TYPE 1
+var choiceday = document.getElementsByClassName("NON");
+for (var i=0; i < choiceday.length; i++) {
+  choiceday[i].addEventListener("change", function(e) {
+    if (e.target.checked == true) {
+      document.getElementById("datepicker1").disabled = true;
+      document.getElementById("type_2_1").disabled = true;
+      document.getElementById("type_2_2").disabled = true;
+      document.getElementById("type_3_1").disabled = true;
+      document.getElementById("type_3_2").disabled = true;
+    } else if (e.target.checked == false && $('.NON:checked').size() > 0){
+      document.getElementById("datepicker1").disabled = true;
+      document.getElementById("type_2_1").disabled = true;
+      document.getElementById("type_2_2").disabled = true;
+      document.getElementById("type_3_1").disabled = true;
+      document.getElementById("type_3_2").disabled = true;
+    } else {
+      document.getElementById("datepicker1").disabled = false;
+      document.getElementById("type_2_1").disabled = false;
+      document.getElementById("type_2_2").disabled = false;
+      document.getElementById("type_3_1").disabled = false;
+      document.getElementById("type_3_2").disabled = false;
+    }
+  });
+}
+// TYPE 2_1
+var type_2_1 = document.getElementById("type_2_1");
+type_2_1.addEventListener("change", function(e) {
+  if ( type_2_1.value > 0 ) {
+    document.getElementById("type_3_1").disabled = true;
+    document.getElementById("type_3_2").disabled = true;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = true;
+    }
+  } else {
+    document.getElementById("type_3_1").disabled = false;
+    document.getElementById("type_3_2").disabled = false;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = false;
+    }
+  }
+});
+// TYPE 2_2
+var type_2_2 = document.getElementById("type_2_2");
+type_2_2.addEventListener("change", function(e) {
+  if ( type_2_2.value != '' ) {
+    document.getElementById("type_3_1").disabled = true;
+    document.getElementById("type_3_2").disabled = true;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = true;
+    }
+  } else if ( type_2_2.value == '' ) {
+    document.getElementById("type_3_1").disabled = false;
+    document.getElementById("type_3_2").disabled = false;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = false;
+    }
+  }
+});
+// TYPE 3_1
+var type_3_1 = document.getElementById("type_3_1");
+type_3_1.addEventListener("change", function(e) {
+  if ( type_3_1.value > 0 ) {
+    document.getElementById("datepicker1").disabled = true;
+    document.getElementById("type_2_1").disabled = true;
+    document.getElementById("type_2_2").disabled = true;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = true;
+    }
+  } else {
+    document.getElementById("datepicker1").disabled = false;
+    document.getElementById("type_2_1").disabled = false;
+    document.getElementById("type_2_2").disabled = false;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = false;
+    }
+  }
+});
+// TYPE 3_2
+var type_3_2 = document.getElementById("type_3_2");
+type_3_2.addEventListener("change", function(e) {
+  if ( type_3_2.value != '' ) {
+    document.getElementById("datepicker1").disabled = true;
+    document.getElementById("type_2_1").disabled = true;
+    document.getElementById("type_2_2").disabled = true;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = true;
+    }
+  } else if ( type_3_2.value == '' ) {
+    document.getElementById("datepicker1").disabled = false;
+    document.getElementById("type_2_1").disabled = false;
+    document.getElementById("type_2_2").disabled = false;
+    for (var i=0; i < choiceday.length; i++) {
+      choiceday[i].disabled = false;
+    }
+  }
+});
+
+
 $('#datepicker').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 $('#datepicker1').datepicker({dateFormat: 'dd/mm/yy', firstDay: 1});
 
-  // Color Picker
-    if(jQuery('#colorpicker').length > 0) {
-      jQuery('#colorSelector').ColorPicker({
-        onShow: function (colpkr) {
-          jQuery(colpkr).fadeIn(500);
-          return false;
-        },
-        onHide: function (colpkr) {
-          jQuery(colpkr).fadeOut(500);
-          return false;
-        },
-        onChange: function (hsb, hex, rgb) {
-          jQuery('#colorSelector span').css('backgroundColor', '#' + hex);
-          jQuery('#colorpicker').val('#'+hex);
-        }
-      });
+var choiceradio = document.getElementsByClassName("radio_type");
+console.log(choiceradio);
+for( var i = 0; i < choiceradio.length; i++) {
+  choiceradio[i].addEventListener("change", function(e) {
+    if(e.target.checked == true && e.target.value == 0) {
+      document.getElementById("echeance").style.display = 'block';
+      document.getElementById("recurrent").style.display = 'none';
+      document.getElementById("recurrent2").style.display = 'none';
+
     }
-  var choiceradio = document.getElementsByClassName("radio_type");
-  console.log(choiceradio);
-  for( var i = 0; i < choiceradio.length; i++) {
-    choiceradio[i].addEventListener("change", function(e) {
-      if(e.target.checked == true && e.target.value == 0) {
-        document.getElementById("echeance").style.display = 'block';
-        document.getElementById("recurrent").style.display = 'none';
-      }
-      if(e.target.checked == true && e.target.value == 1) {
-        document.getElementById("echeance").style.display = 'none';
-        document.getElementById("recurrent").style.display = 'block';
-      }
-    });
-  }
+    if(e.target.checked == true && e.target.value == 1) {
+      document.getElementById("echeance").style.display = 'none';
+      document.getElementById("recurrent").style.display = 'block';
+      document.getElementById("recurrent2").style.display = 'block';
+    }
+  });
+}
 </script>
 {% endblock %}
